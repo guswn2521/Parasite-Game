@@ -1,5 +1,6 @@
-[gd_scene load_steps=42 format=3 uid="uid://dd61sgl40cawi"]
+[gd_scene load_steps=43 format=3 uid="uid://dd61sgl40cawi"]
 
+[ext_resource type="Script" uid="uid://u1mmd1ysyqdv" path="res://scripts/monster.gd" id="1_1cbnp"]
 [ext_resource type="Texture2D" uid="uid://flywivx5bpsa" path="res://assets/sprites/Bringer-of-Death-SpritSheet.png" id="1_uwnm8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1cbnp"]
@@ -304,11 +305,12 @@ animations = [{
 }]
 
 [node name="Monster" type="Node2D"]
+script = ExtResource("1_1cbnp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -46)
 sprite_frames = SubResource("SpriteFrames_70tfl")
-animation = &"death"
-autoplay = "death"
-frame = 3
-frame_progress = 0.529457
+animation = &"walk"
+autoplay = "walk"
+frame = 6
+frame_progress = 0.999998
