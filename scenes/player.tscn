@@ -30,7 +30,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_fulsm")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -109,7 +109,7 @@ script = ExtResource("1_qfm1y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-7, -9)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"walk"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -9)
@@ -123,3 +123,5 @@ shape = SubResource("RectangleShape2D_qfm1y")
 position = Vector2(-38, -3)
 rotation = 1.15192
 shape = SubResource("CapsuleShape2D_qfm1y")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
