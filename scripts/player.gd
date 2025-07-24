@@ -11,7 +11,6 @@ var hp = 100
 signal player_died
 
 
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

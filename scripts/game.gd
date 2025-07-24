@@ -19,7 +19,7 @@ func _on_start_timer_timeout() -> void:
 
 
 func _on_mob_timer_timeout() -> void:
-	print("monster 생")
+	print("monster 생성")
 	var mob = mob_scene.instantiate()
 	add_child(mob)
 
