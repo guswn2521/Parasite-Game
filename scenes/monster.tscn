@@ -315,7 +315,7 @@ position = Vector2(35, -47)
 sprite_frames = SubResource("SpriteFrames_70tfl")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.331683
+frame_progress = 0.53914
 flip_h = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

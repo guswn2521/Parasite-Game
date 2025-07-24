@@ -46,8 +46,8 @@ func _physics_process(delta: float) -> void:
 		return
 	if is_dead:
 		velocity.x = 0
-		emit_signal("player_died")
 		if animated_sprite.animation != "death":
+			emit_signal("player_died")
 			animated_sprite.play("death")
 	elif is_on_floor():
 		if not Input.is_anything_pressed() and direction == 0:
