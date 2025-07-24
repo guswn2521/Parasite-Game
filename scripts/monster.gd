@@ -1,8 +1,8 @@
 extends Node2D
 
 var direction = 1
-const SPEED = 60
-var gravity = 500
+var SPEED = 60
+var gravity = 300
 var death = false
 
 @onready var player: CharacterBody2D = $"../../player"
