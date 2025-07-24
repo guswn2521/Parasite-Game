@@ -6,18 +6,17 @@ extends Node2D
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters
 
+func new_game():
+	mob_timer.start()
+
 func game_over():
 	mob_timer.stop()
 	print("game_over")
-	new_game()
-	
-
-func new_game():
 	start_timer.start()
 
 func _on_start_timer_timeout() -> void:
-	print("df")
-	mob_timer.start()
+	get_tree().reload_current_scene()
+
 
 func _on_mob_timer_timeout() -> void:
 	print("monster 생성")
@@ -27,7 +26,7 @@ func _on_mob_timer_timeout() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.connect("player_died", Callable(self, "game_over"))
-
+	new_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
