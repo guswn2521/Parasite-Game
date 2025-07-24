@@ -2,12 +2,16 @@ extends Node2D
 
 var direction = 1
 const SPEED = 60
+var gravity = 500
 
 @onready var player: CharacterBody2D = $"../../player"
 @onready var ray_cast_right: RayCast2D = $RayCast2D_right
 @onready var ray_cast_left: RayCast2D = $RayCast2D_left
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var ray_cast_bottom: RayCast2D = $RayCast2D_bottom
+
+signal is_on_floor
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +19,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+	if not ray_cast_bottom.is_colliding():
+		position.y += gravity * delta
+		
 	if ray_cast_left.is_colliding():
 		print("flip to left")
 		direction = -1
@@ -30,6 +36,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	player.hp = 0
-	player.is_dead = true
+	if body is CharacterBody2D:
+		player.hp = 0
+		player.is_dead = true
 	

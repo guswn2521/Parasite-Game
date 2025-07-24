@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_lbhrr"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -176, -1, 0, 0, 0, 0, 256, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -176, -1, 0, 0, 0, 0, 393, -2)
 }
 point_count = 2
 
@@ -43,7 +43,7 @@ curve = SubResource("Curve2D_lbhrr")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(-176, -1)
-rotation = 0.00231481
+rotation = -0.00175747
 
 [connection signal="timeout" from="Timers/StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]

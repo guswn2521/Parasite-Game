@@ -5,6 +5,7 @@ extends Node2D
 @onready var start_timer: Timer = $Timers/StartTimer
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters
+@onready var mob_spawn_location: PathFollow2D = $MobPath/MobSpawnLocation
 
 func new_game():
 	mob_timer.start()
@@ -12,6 +13,13 @@ func new_game():
 func _on_mob_timer_timeout() -> void:
 	print("monster 생성")
 	var mob = mob_scene.instantiate()
+	mob_spawn_location.progress_ratio = randf()
+	mob.position = mob_spawn_location.position
+	mob.position.y = -40
+	print("mob position : ")
+	print(mob.position)
+	
+	
 	monsters.add_child(mob)
 	
 func game_over():
