@@ -57,6 +57,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			animated_sprite.play("walk")
 		
+func start(pos):
+	position = pos
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
