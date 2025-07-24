@@ -129,35 +129,35 @@ region = Rect2(980, 0, 140, 93)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xt71w"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(0, 93, 140, 93)
+region = Rect2(70, 118, 70, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok33r"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(140, 93, 140, 93)
+region = Rect2(210, 118, 70, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hejqc"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(280, 93, 140, 93)
+region = Rect2(350, 118, 70, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tk6rn"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(420, 93, 140, 93)
+region = Rect2(490, 118, 70, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6p6v"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(560, 93, 140, 93)
+region = Rect2(630, 118, 70, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtsjp"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(700, 93, 140, 93)
+region = Rect2(770, 118, 70, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kclhv"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(840, 93, 140, 93)
+region = Rect2(910, 118, 70, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6cem0"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(980, 93, 140, 93)
+region = Rect2(1050, 118, 70, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70tfl"]
 animations = [{
@@ -305,28 +305,37 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cbnp"]
-size = Vector2(19.5, 62.25)
+
+size = Vector2(16, 51.5)
+
 
 [node name="Monster" type="Node2D"]
 script = ExtResource("1_1cbnp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(35, -47)
+position = Vector2(0, -34)
 sprite_frames = SubResource("SpriteFrames_70tfl")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.53914
+frame = 7
+frame_progress = 0.660001
 flip_h = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D_left" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D_right" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(-10, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-1, -29)
-collision_layer = 4
+
+position = Vector2(0, -26)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-3.25, -3.875)
+
 shape = SubResource("RectangleShape2D_1cbnp")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
