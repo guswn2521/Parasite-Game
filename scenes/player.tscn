@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ka077qt00kxj" path="res://assets/small_dragon/Idle1.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b6orhmotvc05e" path="res://assets/small_dragon/Attack1.png" id="1_a8ls1"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_qfm1y"]
+[ext_resource type="Script" uid="uid://cte1415s4ejmr" path="res://scripts/player.gd" id="1_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://b3gio2bgvkir1" path="res://assets/small_dragon/Attack2.png" id="2_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://cxt0umw47ou5c" path="res://assets/small_dragon/Idle2.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://bqgxg8rlyach4" path="res://assets/small_dragon/Idle3.png" id="3_dqkch"]
