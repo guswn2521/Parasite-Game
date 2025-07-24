@@ -9,6 +9,11 @@ extends Node2D
 func new_game():
 	mob_timer.start()
 
+func _on_mob_timer_timeout() -> void:
+	print("monster 생성")
+	var mob = mob_scene.instantiate()
+	monsters.add_child(mob)
+	
 func game_over():
 	mob_timer.stop()
 	print("game_over")
@@ -16,12 +21,6 @@ func game_over():
 
 func _on_start_timer_timeout() -> void:
 	get_tree().reload_current_scene()
-
-
-func _on_mob_timer_timeout() -> void:
-	print("monster 생성")
-	var mob = mob_scene.instantiate()
-	monsters.add_child(mob)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
