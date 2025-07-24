@@ -6,9 +6,18 @@ const JUMP_VELOCITY = -300.0
 var is_dead = false
 var attack_state = false
 var hp = 100
+const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
+const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
+var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 signal player_died
+
+func fire_ball() -> void:
+	var fireball_instance = FIREBALL_SCENE.instantiate()
+	get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
+	fireball_instance.global_position = global_position + FIREBALL_OFFSET
+	fireball_instance.set_left(animated_sprite.flip_h)
 
 
 func _physics_process(delta: float) -> void:
@@ -40,6 +49,7 @@ func _physics_process(delta: float) -> void:
 	# Play Animations
 	if Input.is_action_just_pressed("attack") and not attack_state:
 		animated_sprite.play("attack")
+		fire_ball()
 		attack_state=true
 	if attack_state:
 		return
@@ -50,8 +60,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("death")
 	elif is_on_floor():
 		if not Input.is_anything_pressed() and direction == 0:
-			animated_sprite.play("idle")
-		elif Input.is_action_just_pressed("idle"):
 			animated_sprite.play("idle")
 		else:
 			animated_sprite.play("walk")
