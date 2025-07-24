@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" path="res://scenes/tile_map.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://78ust3vythj4" path="res://scenes/tile_map.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uwrxv")
+mob_scene = ExtResource("4_lbhrr")
 
 [node name="player" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(-75, -97)
+collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(4, 4)
@@ -21,3 +23,12 @@ layer_0/tile_data = PackedInt32Array(196598, 0, 0, 196599, 0, 0, 196600, 0, 0, 1
 [node name="Monsters" type="Node" parent="."]
 
 [node name="Monster" parent="Monsters" instance=ExtResource("4_lbhrr")]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="StartTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="MobTimer" type="Timer" parent="Timers"]
+wait_time = 0.5

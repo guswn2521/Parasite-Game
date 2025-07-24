@@ -5,7 +5,11 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 var is_dead = false
 var attack_state = false
+var hp = 100
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+signal player_died
+
 
 
 func _physics_process(delta: float) -> void:
@@ -42,6 +46,7 @@ func _physics_process(delta: float) -> void:
 		return
 	if is_dead:
 		velocity.x = 0
+		emit_signal("player_died")
 		if animated_sprite.animation != "death":
 			animated_sprite.play("death")
 	elif is_on_floor():
