@@ -55,7 +55,7 @@ animations = [{
 radius = 5.0
 
 [node name="fireball" type="Area2D"]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_mi4h5")
 
@@ -71,4 +71,4 @@ frame_progress = 1.0
 position = Vector2(2, -2)
 shape = SubResource("CircleShape2D_mi4h5")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
