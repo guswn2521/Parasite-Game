@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://x23a1o2q4n7e"]
+
+[ext_resource type="Script" uid="uid://coskwuosyinp4" path="res://scripts/fireball.gd" id="1_mi4h5"]
+[ext_resource type="Texture2D" uid="uid://cuk3t1bkicv7x" path="res://assets/small_dragon/Fire_Attack1.png" id="2_wyo3q"]
+[ext_resource type="Texture2D" uid="uid://cblxvra4weatn" path="res://assets/small_dragon/Fire_Attack2.png" id="3_1fb5b"]
+[ext_resource type="Texture2D" uid="uid://bhr6syosksbjr" path="res://assets/small_dragon/Fire_Attack3.png" id="4_tyqc2"]
+[ext_resource type="Texture2D" uid="uid://b0eqn2i7qbkba" path="res://assets/small_dragon/Fire_Attack4.png" id="5_pq144"]
+[ext_resource type="Texture2D" uid="uid://cmpssgkbhpvbj" path="res://assets/small_dragon/Fire_Attack5.png" id="6_0rtms"]
+[ext_resource type="Texture2D" uid="uid://cqce5ws6k1llr" path="res://assets/small_dragon/Fire_Attack6.png" id="7_nxa2u"]
+[ext_resource type="Texture2D" uid="uid://c2pi314ku1um6" path="res://assets/small_dragon/Fire_Attack7.png" id="8_7iiyt"]
+[ext_resource type="Texture2D" uid="uid://cuwji8thigu8n" path="res://assets/small_dragon/Fire_Attack9.png" id="9_mi4h5"]
+[ext_resource type="Texture2D" uid="uid://yck7iqiqruno" path="res://assets/small_dragon/Fire_Attack8.png" id="9_y511n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wyo3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_0rtms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nxa2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7iiyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_y511n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mi4h5")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wyo3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1fb5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tyqc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pq144")
+}],
+"loop": false,
+"name": &"fireball",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mi4h5"]
+radius = 5.0
+
+[node name="fireball" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_mi4h5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-10, -9)
+sprite_frames = SubResource("SpriteFrames_wyo3q")
+animation = &"fireball"
+autoplay = "fireball"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -2)
+shape = SubResource("CircleShape2D_mi4h5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
