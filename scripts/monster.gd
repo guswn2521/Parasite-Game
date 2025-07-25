@@ -25,6 +25,7 @@ var maxHP = 1000
 
 signal is_on_floor
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Monsters")
