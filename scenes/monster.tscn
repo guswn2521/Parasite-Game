@@ -198,7 +198,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nesoo")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 7.0
 }, {
@@ -212,7 +212,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6h0bv")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -652,9 +652,24 @@ script = ExtResource("1_1cbnp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -35)
 sprite_frames = SubResource("SpriteFrames_70tfl")
-animation = &"attack"
+animation = &"idle"
 autoplay = "walk"
+frame_progress = 0.339535
 flip_h = true
+
+[node name="RayCast2D_left" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(10, 0)
+
+[node name="RayCast2D_right" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(-10, 0)
+
+[node name="RayCast2D_bottom" type="RayCast2D" parent="."]
+position = Vector2(0, -7)
+target_position = Vector2(0, 6)
+
+[node name="HurtTimer" type="Timer" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -26)
@@ -697,6 +712,7 @@ disabled = true
 debug_color = Color(0.680998, 0.492926, 0.286693, 0.42)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 
 [editable path="HitboxPivot/WeaponHitbox"]
