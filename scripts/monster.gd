@@ -6,11 +6,13 @@ var gravity = 300
 var death = false
 
 @onready var player: CharacterBody2D = $"../../player"
-@onready var ray_cast_right: RayCast2D = $RayCast2D_right
-@onready var ray_cast_left: RayCast2D = $RayCast2D_left
+@onready var ray_cast_left: RayCast2D = $Area2D/RayCast2D_left
+@onready var ray_cast_right: RayCast2D = $Area2D/RayCast2D_right
+@onready var ray_cast_bottom: RayCast2D = $Area2D/RayCast2D_bottom
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
-@onready var ray_cast_bottom: RayCast2D = $RayCast2D_bottom
+
 
 signal is_on_floor
 

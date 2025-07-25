@@ -71,3 +71,10 @@ func start(pos):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		attack_state = false
+
+func hurt_effect():
+	animated_sprite.play("hurt")
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	print("맞음")
+	hurt_effect()
