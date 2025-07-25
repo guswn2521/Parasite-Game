@@ -6,6 +6,7 @@ var start_position: Vector2
 var animated_sprite: AnimatedSprite2D
 var monster: Node
 var hit = false
+var attack_power = 34
 
 func _ready() -> void:
 	z_index = 1
@@ -31,7 +32,8 @@ func set_left(is_left: int)-> void:
 func _on_area_entered(area: Area2D) -> void:
 	monster = area.get_parent()
 	if monster.is_in_group("Monsters"):
-		monster.death_motion()
+		print("HP: ", monster.HP)
+		monster.hurt_motion(direction)
 		hit = true
 		animated_sprite.play("explode")
 
