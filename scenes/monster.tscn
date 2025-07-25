@@ -646,15 +646,29 @@ _data = {
 radius = 10.0
 height = 42.0
 
+[sub_resource type="GDScript" id="GDScript_c47ug"]
+script/source = "extends TextureProgressBar
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Monster" type="Node2D"]
 script = ExtResource("1_1cbnp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -35)
 sprite_frames = SubResource("SpriteFrames_70tfl")
-animation = &"idle"
+animation = &"death"
 autoplay = "walk"
-frame_progress = 0.339535
+frame = 9
+frame_progress = 1.0
 flip_h = true
 
 [node name="RayCast2D_left" type="RayCast2D" parent="."]

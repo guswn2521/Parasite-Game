@@ -6,14 +6,14 @@ var start_position: Vector2
 var animated_sprite: AnimatedSprite2D
 var monster: Node
 var hit = false
-var attack_power = 34
+var attack_power = 340
 
 func _ready() -> void:
 	z_index = 1
 	animated_sprite = $AnimatedSprite2D
-
 	start_position = global_position
-	connect("area_entered", Callable(self, "_on_area_entered"))
+	if not is_connected("area_entered", Callable(self, "_on_area_entered")):
+		connect("area_entered", Callable(self, "_on_area_entered"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,8 +32,9 @@ func set_left(is_left: int)-> void:
 func _on_area_entered(area: Area2D) -> void:
 	monster = area.get_parent()
 	if monster.is_in_group("Monsters"):
-		print("HP: ", monster.HP)
-		monster.hurt_motion(direction)
+		print("HP: ", monster.currentHP)
+		monster.take_damage(direction, attack_power)
+		#monster.hurt_motion(direction)
 		hit = true
 		animated_sprite.play("explode")
 
