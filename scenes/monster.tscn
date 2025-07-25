@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dd61sgl40cawi"]
+[gd_scene load_steps=51 format=3 uid="uid://dd61sgl40cawi"]
 
 [ext_resource type="Script" uid="uid://u1mmd1ysyqdv" path="res://scripts/monster.gd" id="1_1cbnp"]
 [ext_resource type="Texture2D" uid="uid://flywivx5bpsa" path="res://assets/sprites/Bringer-of-Death-SpritSheet.png" id="1_uwnm8"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://be2g637swwhd" path="res://assets/Attack/Bringer-of-Death_Attack_9.png" id="10_opw4d"]
 [ext_resource type="Texture2D" uid="uid://bbyemv0mh3xsi" path="res://assets/Attack/Bringer-of-Death_Attack_10.png" id="11_ydrmy"]
 [ext_resource type="PackedScene" uid="uid://c1di2povlb8w6" path="res://scenes/hitbox.tscn" id="13_1v1i4"]
+[ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="14_n78d1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0ec1"]
 atlas = ExtResource("1_uwnm8")
@@ -653,8 +654,6 @@ position = Vector2(1, -35)
 sprite_frames = SubResource("SpriteFrames_70tfl")
 animation = &"death"
 autoplay = "walk"
-frame = 9
-frame_progress = 1.0
 frame = 1
 flip_h = true
 
@@ -706,6 +705,14 @@ position = Vector2(-3.8147e-06, 0)
 shape = SubResource("CapsuleShape2D_n78d1")
 disabled = true
 debug_color = Color(0.680998, 0.492926, 0.286693, 0.42)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -32.0
+offset_top = -69.0
+offset_right = 32.0
+offset_bottom = -29.0
+value = 100.0
+texture_progress = ExtResource("14_n78d1")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
