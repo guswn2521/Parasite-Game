@@ -29,7 +29,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_mi4h5")
 }],
-"loop": true,
+"loop": false,
 "name": &"explode",
 "speed": 10.0
 }, {
@@ -62,9 +62,9 @@ script = ExtResource("1_mi4h5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-10, -9)
 sprite_frames = SubResource("SpriteFrames_wyo3q")
-animation = &"fireball"
+animation = &"explode"
 autoplay = "fireball"
-frame = 3
+frame = 4
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -72,3 +72,4 @@ position = Vector2(2, -2)
 shape = SubResource("CircleShape2D_mi4h5")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
