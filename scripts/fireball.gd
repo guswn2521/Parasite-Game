@@ -11,9 +11,9 @@ var attack_power = 34
 func _ready() -> void:
 	z_index = 1
 	animated_sprite = $AnimatedSprite2D
-
 	start_position = global_position
-	connect("area_entered", Callable(self, "_on_area_entered"))
+	if not is_connected("area_entered", Callable(self, "_on_area_entered")):
+		connect("area_entered", Callable(self, "_on_area_entered"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
