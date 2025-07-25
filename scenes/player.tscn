@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6teo8gqu2gxs"]
+[gd_scene load_steps=22 format=3 uid="uid://b6teo8gqu2gxs"]
 
 [ext_resource type="Texture2D" uid="uid://ka077qt00kxj" path="res://assets/small_dragon/Idle1.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b6orhmotvc05e" path="res://assets/small_dragon/Attack1.png" id="1_a8ls1"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://cgjtucl2dhmle" path="res://assets/small_dragon/Walk2.png" id="14_ujl30"]
 [ext_resource type="Texture2D" uid="uid://cmrf001dkb668" path="res://assets/small_dragon/Walk3.png" id="15_31cv2"]
 [ext_resource type="Texture2D" uid="uid://doe2s5qu30viv" path="res://assets/small_dragon/Walk4.png" id="16_pf23h"]
-[ext_resource type="PackedScene" uid="uid://cmxlhnbkjgkbo" path="res://scenes/hurtbox.tscn" id="18_fulsm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
@@ -104,17 +103,14 @@ size = Vector2(36, 15)
 radius = 3.14737
 height = 20.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r5pv"]
-size = Vector2(54.75, 17.0625)
-
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_qfm1y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-7, -9)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"hurt"
-frame = 1
+animation = &"attack"
+frame = 2
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -130,14 +126,4 @@ position = Vector2(-38, -3)
 rotation = 1.15192
 shape = SubResource("CapsuleShape2D_qfm1y")
 
-[node name="Hurtbox" parent="." instance=ExtResource("18_fulsm")]
-
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-9.375, -5.46875)
-shape = SubResource("RectangleShape2D_4r5pv")
-debug_color = Color(0.632459, 0.517832, 0.301926, 0.42)
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-
-[editable path="Hurtbox"]

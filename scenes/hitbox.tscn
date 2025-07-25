@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c1di2povlb8w6"]
+[gd_scene load_steps=0 format=3 uid="uid://c1di2povlb8w6"]
 
 [node name="Hitbox" type="Area2D"]
 

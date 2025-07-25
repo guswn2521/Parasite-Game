@@ -20,7 +20,6 @@ var maxHP = 1000
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 
-@onready var ray_cast_bottom: RayCast2D = $RayCast2D_bottom
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
 
 signal is_on_floor
