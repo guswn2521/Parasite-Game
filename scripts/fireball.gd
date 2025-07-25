@@ -5,9 +5,10 @@ extends Area2D
 var start_position: Vector2
 var animated_sprite: AnimatedSprite2D
 var monster: Node
+var hit = false
 
 func _ready() -> void:
-	z_index = -1
+	z_index = 1
 	animated_sprite = $AnimatedSprite2D
 
 	start_position = global_position
@@ -15,8 +16,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x += speed * delta * direction
-
+	if not hit:
+		position.x += speed * delta * direction
 
 	
 func set_left(is_left: int)-> void:
@@ -31,4 +32,9 @@ func _on_area_entered(area: Area2D) -> void:
 	monster = area.get_parent()
 	if monster.is_in_group("Monsters"):
 		monster.death_motion()
-	
+		hit = true
+		animated_sprite.play("explode")
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite.animation == "explode":
+		queue_free()
