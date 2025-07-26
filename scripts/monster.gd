@@ -65,7 +65,7 @@ func apply_damage(base_damage:int) -> Array:
 	rng.randomize()
 	var ciritical_chance = 0.4
 	var is_critical = rng.randf() <= ciritical_chance
-	var damage = int(rng.randi_range(base_damage, base_damage+30))
+	var damage = rng.randi_range(base_damage, base_damage+30)
 	if is_critical:
 		damage *= 2
 	return [damage, is_critical]
