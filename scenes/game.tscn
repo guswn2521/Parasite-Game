@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://78ust3vythj4" path="res://scenes/tile_map.tscn" id="3_lnu2h"]
-[ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 
 [sub_resource type="Curve2D" id="Curve2D_lbhrr"]
