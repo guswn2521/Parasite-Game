@@ -18,7 +18,6 @@ mob_scene = ExtResource("4_lbhrr")
 
 [node name="player" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(-75, -97)
-collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(4, 4)

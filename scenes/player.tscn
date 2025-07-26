@@ -105,9 +105,10 @@ radius = 3.14737
 height = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r5pv"]
-size = Vector2(54.75, 17.0625)
+size = Vector2(45.75, 17.0625)
 
 [node name="player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_qfm1y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -133,7 +134,7 @@ shape = SubResource("CapsuleShape2D_qfm1y")
 [node name="Hurtbox" parent="." instance=ExtResource("18_fulsm")]
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-9.375, -5.46875)
+position = Vector2(-13.875, -5.46875)
 shape = SubResource("RectangleShape2D_4r5pv")
 debug_color = Color(0.632459, 0.517832, 0.301926, 0.42)
 
