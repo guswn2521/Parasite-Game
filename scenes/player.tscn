@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cgjtucl2dhmle" path="res://assets/small_dragon/Walk2.png" id="14_ujl30"]
 [ext_resource type="Texture2D" uid="uid://cmrf001dkb668" path="res://assets/small_dragon/Walk3.png" id="15_31cv2"]
 [ext_resource type="Texture2D" uid="uid://doe2s5qu30viv" path="res://assets/small_dragon/Walk4.png" id="16_pf23h"]
-[ext_resource type="PackedScene" uid="uid://cmxlhnbkjgkbo" path="res://scenes/hurtbox.tscn" id="18_fulsm"]
+[ext_resource type="PackedScene" path="res://scenes/hurtbox.tscn" id="18_fulsm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{

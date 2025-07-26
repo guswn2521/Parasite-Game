@@ -20,8 +20,10 @@ var maxHP = 1000
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
 
-
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
+
+var DAMAGE_NUMBER_SCENE = preload("res://scenes/damage_number.tscn")
+var rng = RandomNumberGenerator.new()
 
 signal is_on_floor
 
@@ -59,9 +61,27 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		player.hp = 0
 		player.is_dead = true
 
+func apply_damage(base_damage:int) -> Array:
+	rng.randomize()
+	var ciritical_chance = 0.4
+	var is_critical = rng.randf() <= ciritical_chance
+	var damage = int(rng.randi_range(base_damage, base_damage+30))
+	if is_critical:
+		damage *= 2
+	return [damage, is_critical]
+	
 func take_damage(direction:int, damage: int) -> void:
+	var result = apply_damage(damage)
+	damage = result[0]
+	var is_critical = result[1]
 	currentHP -= damage
 	monster_hp_bar.value = currentHP
+	
+	var damage_number = DAMAGE_NUMBER_SCENE.instantiate()
+	get_parent().add_child(damage_number)
+	# 머리 위에 damage_number
+	damage_number.global_position = global_position + Vector2(0, -75)
+	damage_number.show_damage(damage, is_critical)
 	if currentHP <= 0:
 		death_motion()
 	else:
