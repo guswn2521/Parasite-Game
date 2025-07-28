@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cmxlhnbkjgkbo" path="res://scenes/hurtbox.tscn" id="15_7han3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cbnp"]
-size = Vector2(16, 48)
+size = Vector2(17, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k0ec1"]
 animations = [{
@@ -499,7 +499,7 @@ script = ExtResource("1_1cbnp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 0
-position = Vector2(0, -27)
+position = Vector2(3.5, -27)
 shape = SubResource("RectangleShape2D_1cbnp")
 
 [node name="attack_right" type="AnimatedSprite2D" parent="."]
@@ -533,7 +533,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterArea"]
 light_mask = 2
-position = Vector2(0, -2)
+position = Vector2(-8, -2)
 shape = SubResource("RectangleShape2D_1cbnp")
 
 [node name="RayCast2D_left" type="RayCast2D" parent="MonsterArea"]
@@ -590,8 +590,7 @@ shape = SubResource("CapsuleShape2D_7han3")
 debug_color = Color(0.827645, 0.308568, 0.635789, 0.42)
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
+wait_time = 0.001
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 		
 	if in_chase:
 		var distance = player.position.x - position.x
-		if abs(distance) < 1:
+		if abs(distance) < 10:
 			velocity.x = 0
 		else:
 			if distance > 0:
@@ -171,6 +171,7 @@ func attack_animation(body):
 		attack_timer.start()
 
 func _on_attack_timer_timeout() -> void:
+	print("attack timer fin")
 	can_attack = true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -182,7 +183,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
 	print("attack ",monster_attack_damage)
-	if body.is_in_group("Players"):
 		
 	print("----------------", body.is_in_group("Players"))
 	var hit_object = body.get_parent()
