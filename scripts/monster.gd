@@ -6,6 +6,7 @@ var gravity = 300
 var death = false
 var is_hurt = false
 var on_attack = false
+var in_attack_zone = false
 var can_attack: bool = true
 var in_chase = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
@@ -44,6 +45,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if in_attack_zone and can_attack:
+		attack_animation()
+		can_attack = false
+		attack_timer.start()
+		
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
@@ -136,15 +142,21 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		in_chase = true
 
 func _on_hurtbox_body_exited(body: Node2D) -> void:
+	print("체이스 종료==========")
 	in_chase = false
 
 # MonsterArea 에 플레이어가 들어오면 Attack
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_monster_area_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		print("monster attack area")
-		attack_animation(body)
+		in_attack_zone = true
 
-func attack_animation(body):
+func _on_monster_area_body_exited(body: Node2D) -> void:
+	if body.name == "player":
+		print("player exit attack area")
+		in_attack_zone = false
+
+func attack_animation():
 	if not can_attack:
 		return
 	if animated_sprite.animation == "attack":
@@ -153,7 +165,7 @@ func attack_animation(body):
 		print("attack")
 		on_attack = true
 		animated_sprite.visible=false
-		if position.x - body.position.x > 0:
+		if position.x - player.position.x > 0:
 			# 플레이어가 왼쪽에서 다가옴
 			direction = -1
 			animated_sprite.flip_h = false
@@ -161,14 +173,12 @@ func attack_animation(body):
 			animation_player.play("AttackLeft")
 			animated_attack_left.play("attack")
 				
-		elif position.x - body.position.x < 0:
+		elif position.x - player.position.x < 0:
 			# 플레이어가 오른쪽에서 다가옴
 			direction = 1
 			animation_player.play("AttackRight")
 			animated_attack_right.visible = true
 			animated_attack_right.play("attack")
-		can_attack = false
-		attack_timer.start()
 
 func _on_attack_timer_timeout() -> void:
 	print("attack timer fin")
@@ -183,10 +193,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
 	print("attack ",monster_attack_damage)
-		
-	print("----------------", body.is_in_group("Players"))
-	var hit_object = body.get_parent()
-	print("=================++", hit_object.is_in_group("Players"))
-	
-	#if monster.is_in_group("Monsters"):
-	pass # Replace with function body.
+	if body.is_in_group("Players"):
+		body.take_damage(direction, monster_attack_damage)
