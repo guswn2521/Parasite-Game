@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://lw4uct7nsev5"]
+
+[ext_resource type="Script" uid="uid://8bh7h5qgshrq" path="res://scripts/item.gd" id="1_6muww"]
+[ext_resource type="Texture2D" uid="uid://dhn8iybqb8n8" path="res://assets/DNA.png" id="1_s8enn"]
+[ext_resource type="Texture2D" uid="uid://c1vuw86jpbc4x" path="res://assets/DNA2.png" id="2_6muww"]
+[ext_resource type="AudioStream" uid="uid://s6ui25okxwfx" path="res://assets/audio/coin.wav" id="4_vljjh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vljjh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s8enn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6muww")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8enn"]
+size = Vector2(80, 210)
+
+[sub_resource type="Animation" id="Animation_ro5b8"]
+resource_name = "pick_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_d265e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5vp5n"]
+_data = {
+&"RESET": SubResource("Animation_d265e"),
+&"pick_up": SubResource("Animation_ro5b8")
+}
+
+[node name="Item" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_6muww")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.0216016, 0.0273437)
+sprite_frames = SubResource("SpriteFrames_vljjh")
+autoplay = "default"
+frame_progress = 0.371045
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.19209e-07, 0.5)
+scale = Vector2(0.1, 0.1)
+shape = SubResource("RectangleShape2D_s8enn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vljjh")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5vp5n")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
