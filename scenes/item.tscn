@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://lw4uct7nsev5"]
+
+[ext_resource type="Script" uid="uid://8bh7h5qgshrq" path="res://scripts/item.gd" id="1_6muww"]
+[ext_resource type="Texture2D" uid="uid://dhn8iybqb8n8" path="res://assets/DNA.png" id="1_s8enn"]
+[ext_resource type="Texture2D" uid="uid://c1vuw86jpbc4x" path="res://assets/DNA2.png" id="2_6muww"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vljjh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s8enn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6muww")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8enn"]
+size = Vector2(80, 210)
+
+[node name="Item" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_6muww")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.0216016, 0.0273437)
+sprite_frames = SubResource("SpriteFrames_vljjh")
+autoplay = "default"
+frame_progress = 0.371045
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.19209e-07, 0.5)
+scale = Vector2(0.1, 0.1)
+shape = SubResource("RectangleShape2D_s8enn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
