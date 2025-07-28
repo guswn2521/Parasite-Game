@@ -18,7 +18,7 @@ var in_attack_zone = false
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var attack_timer: Timer = $AttackTimer
 
-@onready var player: CharacterBody2D = $"../../player"
+@onready var player: CharacterBody2D = $"../../Players/player"
 @onready var collision_shape: CollisionShape2D = $MonsterArea/CollisionShape2D
 @onready var ray_cast_left: RayCast2D = $MonsterArea/RayCast2D_left
 @onready var ray_cast_right: RayCast2D = $MonsterArea/RayCast2D_right
@@ -80,7 +80,7 @@ func apply_damage(base_damage:int) -> Array:
 	rng.randomize()
 	var ciritical_chance = 0.4
 	var is_critical = rng.randf() <= ciritical_chance
-	var damage = int(rng.randi_range(base_damage, base_damage+30))
+	var damage = rng.randi_range(base_damage, base_damage+30)
 	if is_critical:
 		damage *= 2
 	return [damage, is_critical]
