@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="14_n78d1"]
 [ext_resource type="PackedScene" uid="uid://cmxlhnbkjgkbo" path="res://scenes/hurtbox.tscn" id="15_7han3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cbnp"]
+size = Vector2(16, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0vn4"]
 atlas = ExtResource("1_uwnm8")
 region = Rect2(770, 302, 70, 70)
@@ -277,9 +280,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cbnp"]
-size = Vector2(16, 48)
-
 [sub_resource type="Animation" id="Animation_7han3"]
 resource_name = "AttackLeft"
 length = 0.5
@@ -385,38 +385,38 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AnimatedSprite2D:position")
+tracks/8/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
 tracks/8/interp = 1
-tracks/8/loop_wrap = true
+tracks/8/loop_wrap = false
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-36, -46)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = false
-tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.35, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -2), Vector2(0, -12), Vector2(-11, -17), Vector2(-4, -11), Vector2(-9, -6), Vector2(0, -6)]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("TextureProgressBar:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TextureProgressBar:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-32, -69), Vector2(-32, -69)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimatedSprite2D:offset")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36, -10)]
 }
 
 [sub_resource type="Animation" id="Animation_1v1i4"]
@@ -524,22 +524,10 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AnimatedSprite2D:position")
+tracks/8/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
 tracks/8/interp = 1
-tracks/8/loop_wrap = true
+tracks/8/loop_wrap = false
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(36, -46)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = false
-tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.35, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
@@ -551,43 +539,43 @@ length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("AnimatedSprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -35)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterArea:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -26)]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MonsterArea:position")
+tracks/2/path = NodePath("HitboxPivot:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -26)]
+"values": [Vector2(0, -10)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitboxPivot:position")
+tracks/3/path = NodePath("HitboxPivot/WeaponHitbox:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -599,62 +587,62 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitboxPivot/WeaponHitbox:position")
+tracks/4/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -10)]
+"values": [Vector2(0, -6)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
+tracks/5/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:radius")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -6)]
+"values": [10.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:radius")
+tracks/6/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:height")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [10.0]
+"values": [45.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:height")
+tracks/7/path = NodePath("AnimatedSprite2D:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [45.0]
+"update": 1,
+"values": [0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AnimatedSprite2D:frame")
+tracks/8/path = NodePath("AnimatedSprite2D:offset")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n78d1"]
@@ -671,15 +659,18 @@ height = 45.0
 radius = 8.0
 height = 80.0
 
-[node name="Monster" type="Node2D"]
+[node name="Monster" type="CharacterBody2D"]
 script = ExtResource("1_1cbnp")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_1cbnp")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -35)
+position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_70tfl")
-animation = &"walk"
+animation = &"death"
 autoplay = "walk"
-flip_h = true
 
 [node name="HurtTimer" type="Timer" parent="."]
 
@@ -689,7 +680,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterArea"]
-position = Vector2(0, -1)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_1cbnp")
 
 [node name="RayCast2D_left" type="RayCast2D" parent="MonsterArea"]
@@ -748,12 +739,9 @@ debug_color = Color(0.827645, 0.308568, 0.635789, 0.42)
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="body_entered" from="MonsterArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="MonsterArea" to="." method="_on_monster_area_body_exited"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_attack_finished"]
 [connection signal="body_entered" from="HitboxPivot/WeaponHitbox" to="." method="_on_weapon_hitbox_body_entered"]
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_area_player_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 
 [editable path="HitboxPivot/WeaponHitbox"]
 [editable path="Hurtbox"]

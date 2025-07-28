@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 var direction = 1
 var SPEED = 60
@@ -32,7 +32,6 @@ var in_attack_zone = false
 var DAMAGE_NUMBER_SCENE = preload("res://scenes/damage_number.tscn")
 var rng = RandomNumberGenerator.new()
 
-signal is_on_floor
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,7 +40,7 @@ func _ready() -> void:
 	monster_hp_bar.value = currentHP
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
@@ -49,8 +48,8 @@ func _process(delta: float) -> void:
 	if death:
 		return
 	
-	if not ray_cast_bottom.is_colliding():
-		position.y += gravity * delta
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 		
 	if ray_cast_left.is_colliding():
 		direction = -1
@@ -70,11 +69,12 @@ func _process(delta: float) -> void:
 			animated_sprite.flip_h = false
 	if player.hp <= 0:
 		player.is_dead = true
-	if on_attack:
-		animated_sprite.play("attack")
+	#if on_attack:
+		#animated_sprite.play("attack")
 	else:
 		animated_sprite.play("walk")
-		position.x += direction * SPEED * delta
+		velocity.x = direction * SPEED
+	move_and_slide()
 
 func apply_damage(base_damage:int) -> Array:
 	rng.randomize()
@@ -128,7 +128,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 # Hurtbox에 플레이어 들어오면 Chase
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	print("hurtbox area")
+	#print("hurtbox area")
 	if body is CharacterBody2D:
 		in_chase = true
 
@@ -137,7 +137,7 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 
 # MonsterArea 에 플레이어가 들어오면 Attack
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("monster area")
+	print("monster attack area")
 	if body is CharacterBody2D:
 		in_attack_zone = true
 		attack(body)
@@ -157,6 +157,7 @@ func damage_player():
 	print(player.hp)
 
 func attack(body):
+	print("df", animation_player.current_animation)
 	#on_attack = true
 	if position.x - body.position.x > 0:
 		# 플레이어가 왼쪽에서 다가옴
