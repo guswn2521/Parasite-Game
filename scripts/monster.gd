@@ -12,6 +12,7 @@ var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
 var maxHP = 1000
 var damage = 60
+var in_attack_zone = false
 
 @onready var currentHP: int = maxHP
 @onready var hurt_timer: Timer = $HurtTimer
@@ -67,7 +68,8 @@ func _process(delta: float) -> void:
 		else:
 			direction = -1
 			animated_sprite.flip_h = false
-
+	if player.hp <= 0:
+		player.is_dead = true
 	if on_attack:
 		animated_sprite.play("attack")
 	else:
@@ -124,47 +126,51 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "death":
 		queue_free()
 
-# Hurtbox에 플레이어 들어오면
+# Hurtbox에 플레이어 들어오면 Chase
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	print("hurtbox area")
 	if body is CharacterBody2D:
 		in_chase = true
-		print("chasing")
 
 func _on_hurtbox_body_exited(body: Node2D) -> void:
 	in_chase = false
-	print("chase 끝남")
 
-# MonsterArea 에 플레이어가 들어오면
+# MonsterArea 에 플레이어가 들어오면 Attack
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("monster area")
 	if body is CharacterBody2D:
-		on_attack=true
+		in_attack_zone = true
 		attack(body)
 
+func _on_monster_area_body_exited(body: Node2D) -> void:
+	in_attack_zone = false
+	attack_stopped()
+	print("attack 범위 벗어남. 사격중지")
+	
+func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		on_attack = true
+		damage_player()
+
+func damage_player():
+	player.hp -= damage
+	print(player.hp)
+
 func attack(body):
+	#on_attack = true
 	if position.x - body.position.x > 0:
-		print("플레이어가 왼쪽에서 다가옴")
+		# 플레이어가 왼쪽에서 다가옴
 		animation_player.play("AttackLeft")
 		direction = -1
 		animated_sprite.flip_h = false
 			
 	elif position.x - body.position.x < 0:
-		print("플레이어가 오른쪽에서 다가옴")
+		# 플레이어가 오른쪽에서 다가옴
 		animation_player.play("AttackRight")
 		direction = 1
 		animated_sprite.flip_h = true
-	player.hp -= damage
-	print(player.hp)
 
-func _on_attack_finished(anim_name: StringName) -> void:
-	## attack 애니메이션이었으면
-	if anim_name == "AttackRight" or anim_name == "AttackLeft":
-		## 플레이어가 죽었으면
-		if player.hp <= 0:
-			player.is_dead = true
-			on_attack = false
-			animation_player.play("RESET")
-			print("attack animation finished")
-		else:
-			attack(player)
+func attack_stopped():
+	on_attack = false
+	animation_player.play("RESET")
+	print("attack animation finished")
