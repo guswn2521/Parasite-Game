@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var mob_scene: PackedScene
-@onready var player: CharacterBody2D = $player
+@onready var player: CharacterBody2D = $Players/player
 @onready var start_timer: Timer = $Timers/StartTimer
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters

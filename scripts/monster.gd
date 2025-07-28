@@ -11,8 +11,7 @@ var knockback_power = 200 # 원하는 값으로 조정
 var maxHP = 1000
 @onready var currentHP: int = maxHP
 @onready var hurt_timer: Timer = $HurtTimer
-
-@onready var player: CharacterBody2D = $"../../player"
+@onready var player: CharacterBody2D = $"../../Players/player"
 @onready var ray_cast_left: RayCast2D = $Area2D/RayCast2D_left
 @onready var ray_cast_right: RayCast2D = $Area2D/RayCast2D_right
 @onready var ray_cast_bottom: RayCast2D = $Area2D/RayCast2D_bottom
