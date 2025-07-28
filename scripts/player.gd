@@ -2,14 +2,14 @@ extends CharacterBody2D
 
 class_name Player
 
-const SPEED = 130.0
+var SPEED = 130.0
 const JUMP_VELOCITY = -500.0
 var is_hurt = false
 var is_dead = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 1000
+var maxHP = 100000
 var attack_state = false
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
@@ -17,6 +17,7 @@ var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 
 
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hurt_timer: Timer = $HurtTimer
 
 signal player_died
 
@@ -31,6 +32,9 @@ func fire_ball() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_hurt:
+		position += knockback_velocity * delta
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -82,8 +86,33 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		attack_state = false
 
+func take_damage(direction:int, amount: int) -> void:
+	currentHP -= amount
+	print("player current HP: ", currentHP)
+	if currentHP <= 0:
+		death_motion()
+	else:
+		hurt_motion(direction)
+
 func hurt_effect():
 	animated_sprite.play("hurt")
+
+func hurt_motion(direction: int) -> void:
+	is_hurt = true
+	animated_sprite.play("hurt")
+	knockback_velocity = Vector2(direction,0) * knockback_power
+	hurt_timer.start(0.4)
+	
+func _on_hurt_timer_timeout() -> void:
+	if not is_dead:
+		is_hurt = false
+		knockback_velocity = Vector2.ZERO
+	
+func death_motion() -> void:
+	print("player death")
+	animated_sprite.play("death")
+	is_dead = true
+	SPEED = 0
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	print("맞음")
