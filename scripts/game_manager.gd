@@ -1,14 +1,14 @@
 extends Node
 
-var dna = 0
+signal dna_changed(new_dna)
 var players: Node2D = null
-#@onready var players = get_tree().root.get_node("Game/Players")
+
+var dna = 0
 
 func _ready() -> void:
 	players = get_tree().root.get_node("Game/Players")
 
 func add_item():
-	print("아이템 먹음")
 	if players == null or !is_instance_valid(players):
 		print("player가 null")
 		players = get_tree().root.get_node("Game/Players")

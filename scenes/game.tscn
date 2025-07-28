@@ -25,6 +25,10 @@ script = ExtResource("3_u5sy4")
 
 [node name="UI" parent="." instance=ExtResource("3_p57ef")]
 
+[node name="DNALabel" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Players" type="Node2D" parent="."]
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]

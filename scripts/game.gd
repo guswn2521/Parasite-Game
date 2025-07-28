@@ -8,6 +8,7 @@ extends Node2D
 @onready var mob_spawn_location: PathFollow2D = $MobPath/MobSpawnLocation
 
 func new_game():
+	GameManager.dna = 0
 	mob_timer.start()
 
 func _on_mob_timer_timeout() -> void:
