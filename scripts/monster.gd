@@ -1,29 +1,36 @@
-extends Node2D
+extends CharacterBody2D
 
 var direction = 1
 var SPEED = 60
 var gravity = 300
 var death = false
 var is_hurt = false
+var on_attack = false
+var in_chase = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
 var maxHP = 1000
+var damage = 60
+var in_attack_zone = false
+
 @onready var currentHP: int = maxHP
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var attack_timer: Timer = $AttackTimer
 
-@onready var player: CharacterBody2D = $"../../player"
-@onready var ray_cast_left: RayCast2D = $Area2D/RayCast2D_left
-@onready var ray_cast_right: RayCast2D = $Area2D/RayCast2D_right
-@onready var ray_cast_bottom: RayCast2D = $Area2D/RayCast2D_bottom
+@onready var player: CharacterBody2D = $"../../Players/player"
+@onready var collision_shape: CollisionShape2D = $MonsterArea/CollisionShape2D
+@onready var ray_cast_left: RayCast2D = $MonsterArea/RayCast2D_left
+@onready var ray_cast_right: RayCast2D = $MonsterArea/RayCast2D_right
+@onready var ray_cast_bottom: RayCast2D = $MonsterArea/RayCast2D_bottom
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape: CollisionShape2D = $Area2D/CollisionShape2D
-
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
 
-signal is_on_floor
+var DAMAGE_NUMBER_SCENE = preload("res://scenes/damage_number.tscn")
+var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,16 +40,17 @@ func _ready() -> void:
 	monster_hp_bar.value = currentHP
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
-		
-	if not ray_cast_bottom.is_colliding():
-		position.y += gravity * delta
-		
+	
 	if death:
 		return
+	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		
 	if ray_cast_left.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = false
@@ -51,17 +59,44 @@ func _process(delta: float) -> void:
 		direction = 1
 		animated_sprite.flip_h = true
 		
-	position.x += direction * SPEED * delta
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		player.hp = 0
+	if in_chase:
+		var distance = player.position.x - position.x
+		if distance > 0:
+			direction =  1
+			animated_sprite.flip_h = true
+		else:
+			direction = -1
+			animated_sprite.flip_h = false
+	if player.hp <= 0:
 		player.is_dead = true
+	#if on_attack:
+		#animated_sprite.play("attack")
+	else:
+		animated_sprite.play("walk")
+		velocity.x = direction * SPEED
+	move_and_slide()
 
+func apply_damage(base_damage:int) -> Array:
+	rng.randomize()
+	var ciritical_chance = 0.4
+	var is_critical = rng.randf() <= ciritical_chance
+	var damage = rng.randi_range(base_damage, base_damage+30)
+	if is_critical:
+		damage *= 2
+	return [damage, is_critical]
+	
 func take_damage(direction:int, damage: int) -> void:
+	var result = apply_damage(damage)
+	damage = result[0]
+	var is_critical = result[1]
 	currentHP -= damage
 	monster_hp_bar.value = currentHP
+	
+	var damage_number = DAMAGE_NUMBER_SCENE.instantiate()
+	get_parent().add_child(damage_number)
+	# 머리 위에 damage_number
+	damage_number.global_position = global_position + Vector2(0, -75)
+	damage_number.show_damage(damage, is_critical)
 	if currentHP <= 0:
 		death_motion()
 	else:
@@ -81,7 +116,6 @@ func _on_hurt_timer_timeout() -> void:
 		# 한 대 맞은거 끝나면 다시 걷기 실행.
 		animated_sprite.play("walk")
 
-
 func death_motion() -> void:
 	animated_sprite.play("death")
 	death = true
@@ -91,3 +125,53 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	print("death")
 	if animated_sprite.animation == "death":
 		queue_free()
+
+# Hurtbox에 플레이어 들어오면 Chase
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	#print("hurtbox area")
+	if body is CharacterBody2D:
+		in_chase = true
+
+func _on_hurtbox_body_exited(body: Node2D) -> void:
+	in_chase = false
+
+# MonsterArea 에 플레이어가 들어오면 Attack
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("monster attack area")
+	if body is CharacterBody2D:
+		in_attack_zone = true
+		attack(body)
+
+func _on_monster_area_body_exited(body: Node2D) -> void:
+	in_attack_zone = false
+	attack_stopped()
+	print("attack 범위 벗어남. 사격중지")
+	
+func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		on_attack = true
+		damage_player()
+
+func damage_player():
+	player.hp -= damage
+	print(player.hp)
+
+func attack(body):
+	print("df", animation_player.current_animation)
+	#on_attack = true
+	if position.x - body.position.x > 0:
+		# 플레이어가 왼쪽에서 다가옴
+		animation_player.play("AttackLeft")
+		direction = -1
+		animated_sprite.flip_h = false
+			
+	elif position.x - body.position.x < 0:
+		# 플레이어가 오른쪽에서 다가옴
+		animation_player.play("AttackRight")
+		direction = 1
+		animated_sprite.flip_h = true
+
+func attack_stopped():
+	on_attack = false
+	animation_player.play("RESET")
+	print("attack animation finished")

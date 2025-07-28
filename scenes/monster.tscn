@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dd61sgl40cawi"]
+[gd_scene load_steps=53 format=3 uid="uid://dd61sgl40cawi"]
 
 [ext_resource type="Script" uid="uid://u1mmd1ysyqdv" path="res://scripts/monster.gd" id="1_1cbnp"]
 [ext_resource type="Texture2D" uid="uid://flywivx5bpsa" path="res://assets/sprites/Bringer-of-Death-SpritSheet.png" id="1_uwnm8"]
@@ -14,122 +14,126 @@
 [ext_resource type="Texture2D" uid="uid://bbyemv0mh3xsi" path="res://assets/Attack/Bringer-of-Death_Attack_10.png" id="11_ydrmy"]
 [ext_resource type="PackedScene" uid="uid://c1di2povlb8w6" path="res://scenes/hitbox.tscn" id="13_1v1i4"]
 [ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="14_n78d1"]
+[ext_resource type="PackedScene" uid="uid://cmxlhnbkjgkbo" path="res://scenes/hurtbox.tscn" id="15_7han3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0ec1"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(770, 303, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4862"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(910, 303, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0iwja"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(1050, 303, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_opw4d"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(70, 396, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ydrmy"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(210, 396, 70, 70)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cbnp"]
+size = Vector2(16, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0vn4"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(350, 396, 70, 70)
+region = Rect2(770, 302, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1jio"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(490, 396, 70, 70)
+region = Rect2(910, 302, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmppe"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(630, 396, 70, 70)
+region = Rect2(1050, 302, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84d41"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(770, 396, 70, 70)
+region = Rect2(70, 394, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nesoo"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(910, 396, 70, 70)
+region = Rect2(210, 394, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqnb0"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(350, 304, 70, 70)
+region = Rect2(350, 394, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vivac"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(490, 304, 70, 70)
+region = Rect2(490, 394, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6h0bv"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(630, 304, 70, 70)
+region = Rect2(630, 394, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xprk"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(70, 25, 70, 70)
+region = Rect2(770, 394, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ix62"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(210, 25, 70, 70)
+region = Rect2(910, 394, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8luhx"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(350, 25, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_unfh5"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(490, 25, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5yx45"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(630, 25, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dnbe"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(770, 25, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3siw2"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(910, 25, 70, 70)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3fi0"]
-atlas = ExtResource("1_uwnm8")
-region = Rect2(1050, 25, 70, 70)
+region = Rect2(350, 302, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xt71w"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(70, 118, 70, 70)
+region = Rect2(490, 302, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok33r"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(210, 118, 70, 70)
+region = Rect2(630, 302, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n78d1"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(70, 23, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7han3"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(210, 23, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70tfl"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(350, 23, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0ec1"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(490, 23, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4862"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(630, 23, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iwja"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(770, 23, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opw4d"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(910, 23, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydrmy"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(1050, 23, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hejqc"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(350, 118, 70, 70)
+region = Rect2(70, 116, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tk6rn"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(490, 118, 70, 70)
+region = Rect2(210, 116, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6p6v"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(630, 118, 70, 70)
+region = Rect2(350, 116, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtsjp"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(770, 118, 70, 70)
+region = Rect2(490, 116, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kclhv"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(910, 118, 70, 70)
+region = Rect2(630, 116, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6cem0"]
 atlas = ExtResource("1_uwnm8")
-region = Rect2(1050, 118, 70, 70)
+region = Rect2(770, 116, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unfh5"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(910, 116, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yx45"]
+atlas = ExtResource("1_uwnm8")
+region = Rect2(1050, 116, 70, 70)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70tfl"]
 animations = [{
@@ -164,26 +168,11 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_ydrmy")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k0ec1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k4862")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0iwja")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_opw4d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ydrmy")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s0vn4")
 }, {
@@ -198,12 +187,7 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nesoo")
-}],
-"loop": false,
-"name": &"death",
-"speed": 7.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dqnb0")
 }, {
@@ -212,6 +196,26 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6h0bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xprk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ix62")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8luhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt71w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok33r")
 }],
 "loop": false,
 "name": &"hurt",
@@ -219,40 +223,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0xprk")
+"texture": SubResource("AtlasTexture_n78d1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ix62")
+"texture": SubResource("AtlasTexture_7han3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8luhx")
+"texture": SubResource("AtlasTexture_70tfl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_unfh5")
+"texture": SubResource("AtlasTexture_k0ec1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5yx45")
+"texture": SubResource("AtlasTexture_k4862")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7dnbe")
+"texture": SubResource("AtlasTexture_0iwja")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3siw2")
+"texture": SubResource("AtlasTexture_opw4d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y3fi0")
+"texture": SubResource("AtlasTexture_ydrmy")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xt71w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ok33r")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hejqc")
 }, {
@@ -270,19 +268,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6cem0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unfh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yx45")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cbnp"]
-size = Vector2(16, 50.75)
-
 [sub_resource type="Animation" id="Animation_7han3"]
 resource_name = "AttackLeft"
 length = 0.5
-loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -303,10 +303,10 @@ tracks/1/path = NodePath("HitboxPivot/WeaponHitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -10), Vector2(-58, -10)]
+"values": [Vector2(0, -10), Vector2(-3.8147e-06, -10), Vector2(-60, -10), Vector2(-45, -10), Vector2(0, -10)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -315,10 +315,10 @@ tracks/2/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:radius
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [10.0, 15.0]
+"values": [10.0, 21.0, 16.0, 10.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -327,46 +327,48 @@ tracks/3/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:height
 tracks/3/interp = 1
 tracks/3/loop_wrap = false
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [42.0, 50.0]
+"values": [45.0, 72.0, 60.0, 45.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitboxPivot:rotation")
+tracks/4/path = NodePath("HitboxPivot:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0, -10)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitboxPivot:position")
+tracks/5/path = NodePath("MonsterArea:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(38, 0)]
+"values": [Vector2(0, -26)]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Area2D:position")
+tracks/6/path = NodePath("HitboxPivot")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(38, -26)]
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -375,30 +377,51 @@ tracks/7/path = NodePath("AnimatedSprite2D:flip_h")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
-tracks/8/type = "method"
+tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("HitboxPivot")
+tracks/8/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
 tracks/8/interp = 1
-tracks/8/loop_wrap = true
+tracks/8/loop_wrap = false
 tracks/8/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.35, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, -12), Vector2(-11, -17), Vector2(-4, -11), Vector2(-9, -6), Vector2(0, -6)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TextureProgressBar:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-32, -69), Vector2(-32, -69)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AnimatedSprite2D:offset")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
+"update": 0,
+"values": [Vector2(-36, -10)]
 }
 
 [sub_resource type="Animation" id="Animation_1v1i4"]
 resource_name = "AttackRight"
 length = 0.5
-loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -419,10 +442,10 @@ tracks/1/path = NodePath("HitboxPivot/WeaponHitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -10), Vector2(60, -10)]
+"values": [Vector2(0, -10), Vector2(-3.8147e-06, -10), Vector2(60, -10), Vector2(45, -10), Vector2(0, -10)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -431,10 +454,10 @@ tracks/2/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:radius
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [10.0, 15.0]
+"values": [10.0, 21.0, 16.0, 10.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -443,54 +466,42 @@ tracks/3/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:height
 tracks/3/interp = 1
 tracks/3/loop_wrap = false
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [42.0, 50.0]
+"values": [45.0, 72.0, 60.0, 45.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitboxPivot:rotation")
+tracks/4/path = NodePath("HitboxPivot:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0, -10)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitboxPivot:position")
+tracks/5/path = NodePath("MonsterArea:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-36, 0)]
+"values": [Vector2(0, -26)]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Area2D:position")
+tracks/6/path = NodePath("HitboxPivot")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-36, -26)]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("HitboxPivot")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -498,142 +509,140 @@ tracks/7/keys = {
 "method": &"queue_free"
 }]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = false
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.35, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, -12), Vector2(11, -17), Vector2(4, -11), Vector2(9, -6), Vector2(0, -6)]
+}
 
 [sub_resource type="Animation" id="Animation_n78d1"]
-length = 0.001
+length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/path = NodePath("AnimatedSprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxPivot/WeaponHitbox:position")
+tracks/1/path = NodePath("MonsterArea:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -10)]
+"values": [Vector2(0, -26)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:radius")
+tracks/2/path = NodePath("HitboxPivot:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [10.0]
+"values": [Vector2(0, -10)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:height")
+tracks/3/path = NodePath("HitboxPivot/WeaponHitbox:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [42.0]
+"values": [Vector2(0, -10)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitboxPivot:rotation")
+tracks/4/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0, -6)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitboxPivot:position")
+tracks/5/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:radius")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(38, 0)]
+"values": [10.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/6/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:shape:height")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [45.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Area2D:position")
+tracks/7/path = NodePath("AnimatedSprite2D:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -26)]
+"update": 1,
+"values": [0]
 }
-tracks/8/type = "method"
+tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("HitboxPivot")
+tracks/8/path = NodePath("AnimatedSprite2D:offset")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("HitboxPivot/WeaponHitbox/CollisionShape2D:disabled")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n78d1"]
@@ -644,39 +653,45 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n78d1"]
-height = 42.0
+height = 45.0
 
-[node name="Monster" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7han3"]
+radius = 8.0
+height = 80.0
+
+[node name="Monster" type="CharacterBody2D"]
 script = ExtResource("1_1cbnp")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_1cbnp")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -35)
+position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_70tfl")
 animation = &"death"
 autoplay = "walk"
-frame = 1
-flip_h = true
 
 [node name="HurtTimer" type="Timer" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="MonsterArea" type="Area2D" parent="."]
 position = Vector2(0, -26)
 collision_layer = 7
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 0.375)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterArea"]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_1cbnp")
 
-[node name="RayCast2D_left" type="RayCast2D" parent="Area2D"]
+[node name="RayCast2D_left" type="RayCast2D" parent="MonsterArea"]
 position = Vector2(0, 17)
 target_position = Vector2(10, 0)
 
-[node name="RayCast2D_right" type="RayCast2D" parent="Area2D"]
+[node name="RayCast2D_right" type="RayCast2D" parent="MonsterArea"]
 position = Vector2(0, 17)
 target_position = Vector2(-10, 0)
 
-[node name="RayCast2D_bottom" type="RayCast2D" parent="Area2D"]
+[node name="RayCast2D_bottom" type="RayCast2D" parent="MonsterArea"]
 position = Vector2(0, 17)
 target_position = Vector2(0, 6)
 
@@ -687,16 +702,16 @@ libraries = {
 speed_scale = 0.4
 
 [node name="HitboxPivot" type="Marker2D" parent="."]
-position = Vector2(38, 0)
+position = Vector2(0, -10)
 gizmo_extents = 8.0
 
 [node name="WeaponHitbox" parent="HitboxPivot" instance=ExtResource("13_1v1i4")]
 position = Vector2(0, -10)
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitboxPivot/WeaponHitbox" index="0"]
-position = Vector2(-3.8147e-06, 0)
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_n78d1")
-disabled = true
 debug_color = Color(0.680998, 0.492926, 0.286693, 0.42)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
@@ -707,8 +722,26 @@ offset_bottom = -29.0
 value = 100.0
 texture_progress = ExtResource("14_n78d1")
 
+[node name="Hurtbox" parent="." instance=ExtResource("15_7han3")]
+position = Vector2(0, -28)
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 1)
+rotation = 1.5708
+scale = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_7han3")
+debug_color = Color(0.827645, 0.308568, 0.635789, 0.42)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="MonsterArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="MonsterArea" to="." method="_on_monster_area_body_exited"]
+[connection signal="body_entered" from="HitboxPivot/WeaponHitbox" to="." method="_on_weapon_hitbox_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 
 [editable path="HitboxPivot/WeaponHitbox"]
+[editable path="Hurtbox"]
