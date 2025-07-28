@@ -14,7 +14,7 @@ func _on_mob_timer_timeout() -> void:
 	print("monster 생성")
 	var mob = mob_scene.instantiate()
 	mob_spawn_location.progress_ratio = randf()
-	mob.position = mob_spawn_location.position
+	mob.position = Vector2(-200,20)
 	mob.position.y = -40
 	print("mob position : ")
 	print(mob.position)

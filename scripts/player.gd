@@ -1,18 +1,28 @@
 extends CharacterBody2D
 
+class_name Player
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -500.0
+var is_hurt = false
 var is_dead = false
+var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
+var knockback_velocity = Vector2.ZERO
+var knockback_power = 200 # 원하는 값으로 조정
+var maxHP = 1000
 var attack_state = false
-var hp = 100
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
+
+@onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 signal player_died
 
+func _ready() -> void:
+	add_to_group("Players")
+	
 func fire_ball() -> void:
 	var fireball_instance = FIREBALL_SCENE.instantiate()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
