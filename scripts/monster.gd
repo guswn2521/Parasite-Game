@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		
 	if in_chase:
 		var distance = player.position.x - position.x
-		if abs(distance) < 5:
+		if abs(distance) < 10:
 			velocity.x = 0
 		else:
 			if distance > 0:
@@ -142,6 +142,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		in_chase = true
 
 func _on_hurtbox_body_exited(body: Node2D) -> void:
+	print("체이스 종료==========")
 	in_chase = false
 
 # MonsterArea 에 플레이어가 들어오면 Attack

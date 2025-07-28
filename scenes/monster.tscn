@@ -541,11 +541,11 @@ shape = SubResource("RectangleShape2D_1cbnp")
 
 [node name="RayCast2D_left" type="RayCast2D" parent="MonsterArea"]
 position = Vector2(0, 17)
-target_position = Vector2(10, 0)
+target_position = Vector2(15, 0)
 
 [node name="RayCast2D_right" type="RayCast2D" parent="MonsterArea"]
 position = Vector2(0, 17)
-target_position = Vector2(-10, 0)
+target_position = Vector2(-11, 0)
 
 [node name="RayCast2D_bottom" type="RayCast2D" parent="MonsterArea"]
 position = Vector2(0, 17)
@@ -593,7 +593,6 @@ shape = SubResource("CapsuleShape2D_7han3")
 debug_color = Color(0.827645, 0.308568, 0.635789, 0.42)
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
