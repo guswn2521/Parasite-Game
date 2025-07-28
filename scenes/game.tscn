@@ -30,11 +30,13 @@ script = ExtResource("3_u5sy4")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+offset_left = -45.0
+offset_top = 24.0
+offset_right = -5.0
+offset_bottom = 64.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("5_0tnpc")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 
 [node name="Players" type="Node2D" parent="."]
 
