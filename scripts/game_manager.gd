@@ -3,7 +3,13 @@ extends Node
 signal dna_changed(new_dna)
 var players: Node2D = null
 
-var dna = 0
+var _dna: float = 0
+var dna:float:
+	get:
+		return _dna
+	set(value):
+		_dna = value
+		emit_signal("dna_changed", _dna)
 
 func _ready() -> void:
 	players = get_tree().root.get_node("Game/Players")
