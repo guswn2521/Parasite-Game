@@ -67,6 +67,8 @@ func _physics_process(delta: float) -> void:
 		attack_state=true
 	if attack_state:
 		return
+	if is_hurt:
+		return
 	if is_dead:
 		velocity.x = 0
 		if animated_sprite.animation != "death":

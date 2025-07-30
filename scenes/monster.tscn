@@ -510,6 +510,8 @@ visible = false
 position = Vector2(36, -50)
 sprite_frames = SubResource("SpriteFrames_k0ec1")
 animation = &"attack"
+frame = 9
+frame_progress = 1.0
 flip_h = true
 
 [node name="attack_left" type="AnimatedSprite2D" parent="."]
@@ -523,9 +525,10 @@ frame_progress = 1.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -38)
 sprite_frames = SubResource("SpriteFrames_70tfl")
-animation = &"idle"
+animation = &"hurt"
 autoplay = "walk"
-frame = 1
+frame = 2
+frame_progress = 1.0
 
 [node name="HurtTimer" type="Timer" parent="."]
 
