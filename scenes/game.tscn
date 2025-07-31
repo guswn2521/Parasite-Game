@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=13 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="6_vtaks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gee14"]
 size = Vector2(16, 48)
@@ -58,6 +59,15 @@ offset_right = 129.0
 offset_bottom = 79.0
 theme_override_fonts/font = ExtResource("5_0tnpc")
 theme_override_font_sizes/font_size = 32
+
+[node name="PlayerHP" type="TextureProgressBar" parent="UI"]
+offset_left = 7.0
+offset_top = 11.0
+offset_right = 161.0
+offset_bottom = 72.0
+scale = Vector2(6, 6)
+value = 100.0
+texture_progress = ExtResource("6_vtaks")
 
 [node name="Players" type="Node2D" parent="."]
 

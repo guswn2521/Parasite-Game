@@ -46,6 +46,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if death:
+		monster_hit_box.disabled = true
 		return
 	
 	if is_hurt:
@@ -116,6 +117,7 @@ func take_damage(direction:int, damage: int) -> void:
 	damage_number.global_position = global_position + Vector2(0, -75)
 	damage_number.show_damage(damage, is_critical)
 	if currentHP <= 0:
+		print("death start")
 		death_motion()
 	else:
 		hurt_motion(direction)
