@@ -45,6 +45,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if death:
+		return
+	
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
@@ -54,9 +57,6 @@ func _physics_process(delta: float) -> void:
 		can_attack = false
 		attack_timer.start()
 		
-	
-	if death:
-		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
@@ -90,6 +90,9 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.visible = true
 		animated_attack_left.visible = false
 		animated_attack_right.visible = false
+	if death:
+		if animated_sprite.animation != "death":
+			animated_sprite.play("death")
 
 func apply_damage(base_damage:int) -> Array:
 	rng.randomize()
