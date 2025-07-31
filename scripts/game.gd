@@ -6,19 +6,19 @@ extends Node2D
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters
 @onready var mob_spawn_location: PathFollow2D = $MobPath/MobSpawnLocation
+@onready var gameover: Control = $Gameover
+@onready var gameover_timer: Timer = $Gameover/GameoverTimer
 
 func new_game():
 	GameManager.dna = 0
 	mob_timer.start()
 
 func _on_mob_timer_timeout() -> void:
-	print("monster 생성")
 	var mob = mob_scene.instantiate()
 	mob_spawn_location.progress_ratio = randf()
 	mob.position = Vector2(-200,20)
 	mob.position.y = -40
-	print("mob position : ")
-	print(mob.position)
+	print("몬스터 생성", mob.position)
 	
 	
 	monsters.add_child(mob)
@@ -27,6 +27,11 @@ func game_over():
 	mob_timer.stop()
 	print("game_over")
 	start_timer.start()
+	gameover_timer.start()
+	
+
+func _on_gameover_timer_timeout() -> void:
+	gameover.visible = true
 
 func _on_start_timer_timeout() -> void:
 	get_tree().reload_current_scene()

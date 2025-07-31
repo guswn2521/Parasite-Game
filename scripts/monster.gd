@@ -31,6 +31,8 @@ var monster_attack_damage = 60
 @onready var animated_attack_right: AnimatedSprite2D = $attack_right
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var monster_hit_box: CollisionShape2D = $HitboxPivot/WeaponHitbox/CollisionShape2D
+@onready var hurtbox_collision_shape: CollisionShape2D = $Hurtbox/CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
 @export var item_scene: PackedScene
@@ -49,6 +51,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if death:
+		monster_hit_box.disabled = true
 		return
 	
 	if is_hurt:
@@ -119,6 +122,9 @@ func take_damage(direction:int, damage: int) -> void:
 	damage_number.global_position = global_position + Vector2(0, -75)
 	damage_number.show_damage(damage, is_critical)
 	if currentHP <= 0:
+		animated_sprite.visible = true
+		animated_attack_left.visible = false
+		animated_attack_right.visible = false
 		death_motion()
 	else:
 		hurt_motion(direction)
@@ -137,8 +143,6 @@ func _on_hurt_timer_timeout() -> void:
 		animated_sprite.play("walk")
 
 func death_motion() -> void:
-	monster_hit_box.disabled = true
-	#monster_area.disabled = true
 	animated_sprite.play("death")
 	death = true
 	SPEED = Vector2.ZERO

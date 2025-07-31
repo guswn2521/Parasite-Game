@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=15 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://78ust3vythj4" path="res://scenes/tile_map.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ctr6on1nu5b8d" path="res://scenes/ui.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://by65s2bwdp3hq" path="res://scripts/game_manager.gd" id="3_u5sy4"]
-[ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
+[ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://b6cp1rwj0m1ay" path="res://scenes/gameover.tscn" id="11_kvpfn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gee14"]
 size = Vector2(16, 48)
@@ -36,11 +37,12 @@ script = ExtResource("3_u5sy4")
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -217.0
-offset_top = -155.0
-offset_right = -36.0
-offset_bottom = -10.0
+offset_left = -161.0
+offset_top = -90.0
+offset_right = -41.0
+offset_bottom = -27.0
 grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
 
 [node name="DNALabel" type="Label" parent="UI"]
 anchors_preset = 1
@@ -55,10 +57,14 @@ theme_override_fonts/font = ExtResource("5_0tnpc")
 theme_override_font_sizes/font_size = 32
 
 [node name="PlayerNumbers" type="Label" parent="UI"]
-offset_left = 18.0
-offset_top = 10.0
-offset_right = 129.0
-offset_bottom = 79.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_top = 59.0
+offset_right = -25.0
+offset_bottom = 128.0
+grow_horizontal = 0
 theme_override_fonts/font = ExtResource("5_0tnpc")
 theme_override_font_sizes/font_size = 32
 
@@ -86,7 +92,7 @@ layer_0/tile_data = PackedInt32Array(196598, 0, 0, 196599, 0, 0, 196600, 0, 0, 1
 [node name="Timers" type="Node" parent="."]
 
 [node name="StartTimer" type="Timer" parent="Timers"]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 
 [node name="MobTimer" type="Timer" parent="Timers"]
@@ -124,9 +130,14 @@ collision_mask = 4
 position = Vector2(0, 70)
 shape = SubResource("WorldBoundaryShape2D_kvpfn")
 
+[node name="Gameover" parent="." instance=ExtResource("11_kvpfn")]
+visible = false
+
 [connection signal="timeout" from="Timers/StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
+[connection signal="timeout" from="Gameover/GameoverTimer" to="." method="_on_gameover_timer_timeout"]
 
 [editable path="UI"]
 [editable path="Killzone"]
+[editable path="Gameover"]

@@ -9,7 +9,7 @@ var is_dead = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 10000
+var maxHP = 100
 var attack_state = false
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
@@ -32,6 +32,8 @@ func fire_ball() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
@@ -69,11 +71,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if is_hurt:
 		return
-	if is_dead:
-		velocity.x = 0
-		if animated_sprite.animation != "death":
-			emit_signal("player_died")
-			animated_sprite.play("death")
+	#if is_dead:
+		#velocity.x = 0
+		#if animated_sprite.animation != "death":
+			#emit_signal("player_died")
+			#animated_sprite.play("death")
 	elif is_on_floor():
 		if not Input.is_anything_pressed() and direction == 0:
 			animated_sprite.play("idle")
@@ -87,12 +89,17 @@ func start(pos):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		attack_state = false
+	if animated_sprite.animation == "death":
+		print("player death fin")
 
 func take_damage(direction:int, amount: int) -> void:
+	if is_dead:
+		return
 	currentHP -= amount
 	print("player current HP: ", currentHP)
 	if currentHP <= 0:
 		death_motion()
+		emit_signal("player_died")
 	else:
 		hurt_motion(direction)
 
