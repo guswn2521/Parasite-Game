@@ -96,9 +96,6 @@ func take_damage(direction:int, amount: int) -> void:
 	else:
 		hurt_motion(direction)
 
-func hurt_effect():
-	animated_sprite.play("hurt")
-
 func hurt_motion(direction: int) -> void:
 	is_hurt = true
 	animated_sprite.play("hurt")
@@ -116,6 +113,6 @@ func death_motion() -> void:
 	is_dead = true
 	SPEED = 0
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("맞음")
-	hurt_effect()
+#func _on_hurtbox_area_entered(area: Area2D) -> void:
+	#print("맞음")
+	#hurt_effect()
