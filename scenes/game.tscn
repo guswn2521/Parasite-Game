@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=14 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -10,7 +10,6 @@
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
-[ext_resource type="Script" uid="uid://cpcj1xtwfcyth" path="res://scripts/killzone.gd" id="11_kvpfn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gee14"]
 size = Vector2(16, 48)
@@ -102,7 +101,6 @@ position = Vector2(652, -28)
 
 [node name="Killzone" parent="." instance=ExtResource("10_vtaks")]
 collision_mask = 4
-script = ExtResource("11_kvpfn")
 
 [node name="CollisionShape2D" parent="Killzone" index="0"]
 position = Vector2(0, 70)

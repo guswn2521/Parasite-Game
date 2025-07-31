@@ -1,7 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://dd61sgl40cawi"]
+[gd_scene load_steps=57 format=3 uid="uid://dd61sgl40cawi"]
 
 [ext_resource type="Script" uid="uid://u1mmd1ysyqdv" path="res://scripts/monster.gd" id="1_1cbnp"]
 [ext_resource type="Texture2D" uid="uid://flywivx5bpsa" path="res://assets/sprites/Bringer-of-Death-SpritSheet.png" id="1_uwnm8"]
+[ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="2_70tfl"]
 [ext_resource type="Texture2D" uid="uid://bb6m8fxdjg6sn" path="res://assets/Attack/Bringer-of-Death_Attack_1.png" id="2_ei7v0"]
 [ext_resource type="Texture2D" uid="uid://yvimuiop2tod" path="res://assets/Attack/Bringer-of-Death_Attack_2.png" id="3_1v1i4"]
 [ext_resource type="Texture2D" uid="uid://ktoxmihedrul" path="res://assets/Attack/Bringer-of-Death_Attack_3.png" id="4_n78d1"]
@@ -499,6 +500,7 @@ height = 80.0
 position = Vector2(0, 30)
 collision_layer = 2
 script = ExtResource("1_1cbnp")
+item_scene = ExtResource("2_70tfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 0

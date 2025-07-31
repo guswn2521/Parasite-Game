@@ -12,7 +12,7 @@ var in_chase = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 1000
+var maxHP = 300
 var monster_attack_damage = 60
 #var in_attack_zone = false
 @onready var currentHP: int = maxHP
@@ -20,6 +20,7 @@ var monster_attack_damage = 60
 @onready var attack_timer: Timer = $AttackTimer
 
 @onready var player: CharacterBody2D = $"../../Players/player"
+@onready var monster_area: Area2D = $MonsterArea
 @onready var collision_shape: CollisionShape2D = $MonsterArea/CollisionShape2D
 @onready var ray_cast_left: RayCast2D = $MonsterArea/RayCast2D_left
 @onready var ray_cast_right: RayCast2D = $MonsterArea/RayCast2D_right
@@ -32,6 +33,8 @@ var monster_attack_damage = 60
 @onready var monster_hit_box: CollisionShape2D = $HitboxPivot/WeaponHitbox/CollisionShape2D
 
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
+@export var item_scene: PackedScene
+
 
 var DAMAGE_NUMBER_SCENE = preload("res://scenes/damage_number.tscn")
 var rng = RandomNumberGenerator.new()
@@ -45,6 +48,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if death:
+		return
+		
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
@@ -55,8 +61,7 @@ func _physics_process(delta: float) -> void:
 		attack_timer.start()
 		
 	
-	if death:
-		return
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
@@ -131,6 +136,8 @@ func _on_hurt_timer_timeout() -> void:
 		animated_sprite.play("walk")
 
 func death_motion() -> void:
+	monster_hit_box.disabled = true
+	#monster_area.disabled = true
 	animated_sprite.play("death")
 	death = true
 	SPEED = Vector2.ZERO
@@ -138,7 +145,13 @@ func death_motion() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "death":
 		print("death")
+		drop_item()
 		queue_free()
+
+func drop_item():
+	var item = item_scene.instantiate()
+	item.position = position + Vector2(0,-20)
+	get_tree().root.add_child(item)
 
 # Hurtbox에 플레이어 들어오면 Chase
 func _on_hurtbox_body_entered(body: Node2D) -> void:
@@ -167,7 +180,6 @@ func attack_animation():
 	if animated_sprite.animation == "attack":
 		return
 	if not animation_player.current_animation in ["AttackLeft","AttackRight"]:
-		print("attack")
 		on_attack = true
 		animated_sprite.visible=false
 		if position.x - player.position.x > 0:
