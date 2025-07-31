@@ -53,10 +53,16 @@ theme_override_fonts/font = ExtResource("5_0tnpc")
 theme_override_font_sizes/font_size = 32
 
 [node name="PlayerNumbers" type="Label" parent="UI"]
-offset_left = 18.0
-offset_top = 10.0
-offset_right = 129.0
-offset_bottom = 79.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = -34.5
+offset_bottom = 34.5
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_0tnpc")
 theme_override_font_sizes/font_size = 32
 
@@ -65,9 +71,19 @@ offset_left = 7.0
 offset_top = 11.0
 offset_right = 161.0
 offset_bottom = 72.0
-scale = Vector2(6, 6)
+scale = Vector2(8.5, 8.5)
 value = 100.0
 texture_progress = ExtResource("6_vtaks")
+
+[node name="PlayerHPPoints" type="Label" parent="UI/PlayerHP"]
+layout_mode = 0
+offset_left = 24.7059
+offset_top = 2.23529
+offset_right = 86.7059
+offset_bottom = 51.2353
+scale = Vector2(0.25, 0.25)
+text = "100/100
+"
 
 [node name="Players" type="Node2D" parent="."]
 
