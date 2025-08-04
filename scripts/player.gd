@@ -9,7 +9,7 @@ var is_dead = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 100
+var maxHP = 1000
 var attack_state = false
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
@@ -18,11 +18,24 @@ var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
+@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
 
 signal player_died
 
 func _ready() -> void:
 	add_to_group("Players")
+	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
+	var currentHPs = 0
+	var player_count = 0
+	# player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
+	for child in players_node.get_children():
+		if child is Player:
+			currentHPs += child.currentHP
+			player_count += 1
+	player_hp.max_value = maxHP*player_count
+	player_hp.value = currentHPs
+	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
 	
 func fire_ball() -> void:
 	var fireball_instance = FIREBALL_SCENE.instantiate()
@@ -96,8 +109,10 @@ func take_damage(direction:int, amount: int) -> void:
 	if is_dead:
 		return
 	currentHP -= amount
-	print("player current HP: ", currentHP)
-	if currentHP <= 0:
+	player_hp.value -= amount
+	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
+	print("player current HP: ", player_hp.value)
+	if player_hp.value <= 0:
 		death_motion()
 		emit_signal("player_died")
 	else:

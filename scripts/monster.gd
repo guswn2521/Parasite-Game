@@ -125,6 +125,7 @@ func take_damage(direction:int, damage: int) -> void:
 		animated_sprite.visible = true
 		animated_attack_left.visible = false
 		animated_attack_right.visible = false
+		print("death start")
 		death_motion()
 	else:
 		hurt_motion(direction)

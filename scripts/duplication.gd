@@ -12,13 +12,18 @@ func _ready() -> void:
 func duplicate_player() -> void:
 	var origin_player = null
 	var children = players_parent.get_children()
+	var players_count = 0
+	for child in players_parent.get_children():
+		if child is Player:
+			players_count += 1
+	print("복제 전 모체 수 :",players_count)
 	if children.size() > 0:
 		origin_player = children[0]
 	else:
 		print("No origin player!")
 		return
 	
-	if GameManager.dna > 0:
+	if GameManager.dna > 0 and players_count <= 4:
 		GameManager.use_item()
 		# 새 플레이어 인스턴스 생성
 		var new_player = PLAYER_SCENE.instantiate()
@@ -28,6 +33,6 @@ func duplicate_player() -> void:
 		players_parent.add_child(new_player)
 		print("플레이어수",players_parent.get_child_count())
 	else:
-		print("dna 가 부족합니다.")
+		print("dna 가 부족하거나, 최대 복제 수 5에 도달했습니다.")
 		
 	
