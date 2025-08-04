@@ -15,6 +15,10 @@ const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 
+@export var face_collision_shape: FaceCollisionShape
+@export var body_collision_shape : BodyCollisionShape
+@export var tail_collision_shape : TailCollisionShape
+
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt_timer: Timer = $HurtTimer
@@ -33,6 +37,7 @@ func _ready() -> void:
 		if child is Player:
 			currentHPs += child.currentHP
 			player_count += 1
+	
 	player_hp.max_value = maxHP*player_count
 	player_hp.value = currentHPs
 	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
@@ -43,6 +48,17 @@ func fire_ball() -> void:
 	fireball_instance.global_position = global_position + FIREBALL_OFFSET
 	fireball_instance.set_left(animated_sprite.flip_h)
 
+func player_collision_shape_fliph(facing_left: bool):
+	if facing_left:
+		face_collision_shape.position = face_collision_shape.facing_left_position
+		body_collision_shape.position = body_collision_shape.facing_left_position
+		tail_collision_shape.position = tail_collision_shape.facing_left_position
+		tail_collision_shape.rotation_degrees = tail_collision_shape.facing_left_rotation
+	else:
+		face_collision_shape.position = face_collision_shape.facing_right_position
+		body_collision_shape.position = body_collision_shape.facing_right_position
+		tail_collision_shape.position = tail_collision_shape.facing_right_position
+		tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -67,6 +83,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.flip_h = true
 		elif direction == 1:
 			animated_sprite.flip_h = false
+	player_collision_shape_fliph(animated_sprite.flip_h) 
 	
 	# Apply Movement
 	if direction:
