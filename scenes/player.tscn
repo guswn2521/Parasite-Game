@@ -116,32 +116,31 @@ body_collision_shape = NodePath("CollisionShape2D2")
 tail_collision_shape = NodePath("CollisionShape2D3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-7, -9)
+position = Vector2(-13.3333, -8.33333)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 animation = &"walk"
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -9)
+position = Vector2(-5, -10)
 shape = SubResource("CircleShape2D_a8ls1")
 script = ExtResource("18_fulsm")
-facing_left_position = Vector2(-13, -10)
-facing_right_position = Vector2(1, -9)
+facing_left_position = Vector2(-20, -10)
+facing_right_position = Vector2(-5, -10)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(7, 0)
+position = Vector2(-26.6667, -5)
 shape = SubResource("RectangleShape2D_qfm1y")
 script = ExtResource("19_4r5pv")
-facing_left_position = Vector2(7, -5)
-facing_right_position = Vector2(-20, -5)
+facing_left_position = Vector2(0, -5)
+facing_right_position = Vector2(-26.667, -5)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-40, -3)
+position = Vector2(-48.3333, -1.66667)
 rotation = 1.15192
 shape = SubResource("CapsuleShape2D_qfm1y")
 script = ExtResource("20_60mlk")
-facing_left_position = Vector2(27, -3)
-facing_right_position = Vector2(-40, -3)
+facing_left_position = Vector2(21.667, -1.667)
+facing_right_position = Vector2(-48.333, -1.667)
 facing_left_rotation = -66.0
 facing_right_rotation = 66.0
 

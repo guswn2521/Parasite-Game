@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://xaf6h0y72agg"]
+
+[sub_resource type="Curve" id="Curve_pmlu6"]
+_data = [Vector2(0, 0.766467), 0.0, 0.0, 0, 0, Vector2(0.496124, 0.325349), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_u4il2"]
+curve = SubResource("Curve_pmlu6")
+
+[sub_resource type="Gradient" id="Gradient_ujk32"]
+offsets = PackedFloat32Array(0.627451, 0.877451, 0.980392)
+colors = PackedColorArray(0.996078, 0.988235, 0.67451, 1, 1, 1, 1, 1, 0.903509, 0.903509, 0.903509, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p85m3"]
+gradient = SubResource("Gradient_ujk32")
+
+[sub_resource type="Curve" id="Curve_ohxo8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pmlu6"]
+curve = SubResource("Curve_ohxo8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ohxo8"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(27, 1, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+inherit_velocity_ratio = 10.0
+gravity = Vector3(0, 900, 0)
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_pmlu6")
+color = Color(0.988235, 0.921569, 0.639216, 1)
+color_ramp = SubResource("GradientTexture1D_p85m3")
+alpha_curve = SubResource("CurveTexture_u4il2")
+
+[sub_resource type="Environment" id="Environment_3rqin"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 0
+glow_hdr_threshold = 0.5
+glow_map_strength = 0.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 5
+emitting = false
+amount = 3000
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_ohxo8")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3rqin")
