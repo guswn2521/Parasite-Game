@@ -2,6 +2,7 @@ extends Node2D
 
 @export var mob_scene: PackedScene
 @onready var player: CharacterBody2D = $Players/player
+@onready var evolved_player: CharacterBody2D = $Players/evolved_player
 @onready var start_timer: Timer = $Timers/StartTimer
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters
@@ -38,7 +39,11 @@ func _on_start_timer_timeout() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player.connect("player_died", Callable(self, "game_over"))
+	if player != null:
+		player.connect("player_died", Callable(self, "game_over"))
+	if evolved_player != null:
+		evolved_player.connect("player_died", Callable(self, "game_over"))
+	
 	new_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

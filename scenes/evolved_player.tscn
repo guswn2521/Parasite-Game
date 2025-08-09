@@ -1,0 +1,145 @@
+[gd_scene load_steps=25 format=3 uid="uid://crvbmejm3rmr4"]
+
+[ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="1_3er0w"]
+[ext_resource type="Script" uid="uid://6a3kpqn6uobo" path="res://scripts/evolved_player.gd" id="1_i0nw2"]
+[ext_resource type="Texture2D" uid="uid://c038gy7q8dkbg" path="res://assets/sprites/dragon/Attack2.png" id="2_i0nw2"]
+[ext_resource type="Texture2D" uid="uid://cm4qym8xw3lur" path="res://assets/sprites/dragon/Attack3.png" id="3_4m3gi"]
+[ext_resource type="Texture2D" uid="uid://cyb38ygnx3krb" path="res://assets/sprites/dragon/Attack4.png" id="4_vr1ig"]
+[ext_resource type="Texture2D" uid="uid://bdwuyghfsq34d" path="res://assets/sprites/dragon/Death1.png" id="5_dyl3c"]
+[ext_resource type="Texture2D" uid="uid://b5qqomc2s84p8" path="res://assets/sprites/dragon/Death2.png" id="6_uvk2a"]
+[ext_resource type="Texture2D" uid="uid://dd82h4jvsimie" path="res://assets/sprites/dragon/Death3.png" id="7_tfbb3"]
+[ext_resource type="Texture2D" uid="uid://45j5ptqg2j4d" path="res://assets/sprites/dragon/Death4.png" id="8_vlp6c"]
+[ext_resource type="Texture2D" uid="uid://b7ajes3hlfsu7" path="res://assets/sprites/dragon/Death5.png" id="9_3mhw5"]
+[ext_resource type="Texture2D" uid="uid://ckr3h44eyavja" path="res://assets/sprites/dragon/Hurt1.png" id="10_0q41i"]
+[ext_resource type="Texture2D" uid="uid://h1afqr5n8ab3" path="res://assets/sprites/dragon/Hurt2.png" id="11_cfq8f"]
+[ext_resource type="Texture2D" uid="uid://dhagcy4nj1aa3" path="res://assets/sprites/dragon/Idle1.png" id="12_m40sd"]
+[ext_resource type="Texture2D" uid="uid://da5mkkdinrvro" path="res://assets/sprites/dragon/Idle2.png" id="13_t0tfx"]
+[ext_resource type="Texture2D" uid="uid://3col7r3564r6" path="res://assets/sprites/dragon/Idle3.png" id="14_jr7x4"]
+[ext_resource type="Texture2D" uid="uid://ch7k0uchxx1a1" path="res://assets/sprites/dragon/Walk1.png" id="15_nb0ao"]
+[ext_resource type="Texture2D" uid="uid://cd0s7xx3ukupx" path="res://assets/sprites/dragon/Walk2.png" id="16_4k828"]
+[ext_resource type="Texture2D" uid="uid://5jvvrxhqdfn2" path="res://assets/sprites/dragon/Walk3.png" id="17_r3e5w"]
+[ext_resource type="Texture2D" uid="uid://cpfhbdunpdmhw" path="res://assets/sprites/dragon/Walk4.png" id="18_laey2"]
+[ext_resource type="Texture2D" uid="uid://n0nkxjxhahlp" path="res://assets/sprites/dragon/Walk5.png" id="19_8yq1o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_echix"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3er0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i0nw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4m3gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vr1ig")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dyl3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uvk2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tfbb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vlp6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3mhw5")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_0q41i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cfq8f")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_m40sd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t0tfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_jr7x4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_nb0ao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4k828")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_r3e5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_laey2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8yq1o")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i0nw2"]
+radius = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0nw2"]
+size = Vector2(62, 19)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4m3gi"]
+radius = 8.0
+
+[node name="evolved_player" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_i0nw2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -62)
+sprite_frames = SubResource("SpriteFrames_echix")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(54, -42)
+shape = SubResource("CircleShape2D_i0nw2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(18, -31)
+shape = SubResource("RectangleShape2D_i0nw2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-10, -16)
+shape = SubResource("CapsuleShape2D_4m3gi")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+z_index = 6
+position = Vector2(41, -15)
+shape = SubResource("CapsuleShape2D_4m3gi")
+
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 0.4
