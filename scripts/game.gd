@@ -1,28 +1,29 @@
 extends Node2D
 
 @export var mob_scene: PackedScene
+
 @onready var player: CharacterBody2D = $Players/player
 @onready var start_timer: Timer = $Timers/StartTimer
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters
-@onready var mob_spawn_location: PathFollow2D = $MobPath/MobSpawnLocation
-@onready var gameover: Control = $Gameover
-@onready var gameover_timer: Timer = $Gameover/GameoverTimer
+@onready var gameover: Control = $Players/player/Camera2D/Gameover
+@onready var gameover_timer: Timer = $Players/player/Camera2D/Gameover/GameoverTimer
+
+#@onready var gameover: Control = $Gameover
+#@onready var gameover_timer: Timer = $Gameover/GameoverTimer
 
 func new_game():
+	gameover.visible = false
 	GameManager.dna = 0
 	mob_timer.start()
 
 func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()
-	mob_spawn_location.progress_ratio = randf()
 	mob.position = Vector2(-200,20)
 	mob.position.y = -40
 	print("몬스터 생성", mob.position)
-	
-	
 	monsters.add_child(mob)
-	
+
 func game_over():
 	mob_timer.stop()
 	print("game_over")

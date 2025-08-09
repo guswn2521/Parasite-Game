@@ -9,7 +9,7 @@ var is_dead = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 1000
+var maxHP = 100
 var attack_state = false
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
@@ -61,8 +61,8 @@ func player_collision_shape_fliph(facing_left: bool):
 		tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
 
 func _physics_process(delta: float) -> void:
-	if is_dead:
-		return
+	#if is_dead:
+		#return
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
@@ -101,11 +101,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if is_hurt:
 		return
-	#if is_dead:
-		#velocity.x = 0
-		#if animated_sprite.animation != "death":
-			#emit_signal("player_died")
-			#animated_sprite.play("death")
+	if is_dead:
+		velocity.x = 0
+		if animated_sprite.animation != "death":
+			emit_signal("player_died")
+			animated_sprite.play("death")
 	elif is_on_floor():
 		if not Input.is_anything_pressed() and direction == 0:
 			animated_sprite.play("idle")
