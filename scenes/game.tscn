@@ -89,11 +89,11 @@ text = "100/100
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 z_index = 2
-position = Vector2(-75, -97)
+position = Vector2(-914, -97)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 position = Vector2(0, -7)
-zoom = Vector2(7, 7)
+zoom = Vector2(4, 4)
 
 [node name="Fireballs" type="Node" parent="."]
 script = ExtResource("4_iywne")
@@ -123,7 +123,7 @@ rotation = 0.000812348
 position = Vector2(116, -28)
 
 [node name="Item2" parent="Items" instance=ExtResource("6_p57ef")]
-position = Vector2(180, -28)
+position = Vector2(180, -67)
 
 [node name="Item3" parent="Items" instance=ExtResource("6_p57ef")]
 position = Vector2(298, -28)
