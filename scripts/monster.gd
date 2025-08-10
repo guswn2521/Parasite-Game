@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
+# 왼쪽: -1, 오른쪽: 1
 var direction = 1
-var SPEED = 60
+var SPEED = 80
 var gravity = 300
 var death = false
 var is_hurt = false
@@ -50,6 +51,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	
 	if death:
 		monster_hit_box.disabled = true
 		return
@@ -63,16 +65,14 @@ func _physics_process(delta: float) -> void:
 		can_attack = false
 		attack_timer.start()
 		
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-		
 	if ray_cast_left.is_colliding():
-		direction = -1
-		animated_sprite.flip_h = false
+		flip_player()
 		
 	if ray_cast_right.is_colliding():
-		direction = 1
-		animated_sprite.flip_h = true
+		flip_player()
+	
+	if not ray_cast_bottom.is_colliding():
+		flip_player()
 		
 	if in_chase:
 		var distance = player.position.x - position.x
@@ -89,6 +89,10 @@ func _physics_process(delta: float) -> void:
 	if on_attack:
 		velocity.x = 0
 	move_and_slide()
+	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
 	# Play Animation
 	if not on_attack:
 		animated_sprite.play("walk")
@@ -99,6 +103,17 @@ func _physics_process(delta: float) -> void:
 	if death:
 		if animated_sprite.animation != "death":
 			animated_sprite.play("death")
+
+func flip_player():
+	direction *= -1
+	animated_sprite.flip_h = not animated_sprite.flip_h
+	change_raycast_bottom_position()
+
+func change_raycast_bottom_position():
+	if direction == 1:
+		ray_cast_bottom.position = Vector2(15.0, 17.0)
+	elif direction == -1:
+		ray_cast_bottom.position = Vector2(-13.0, 17.0)
 
 func apply_damage(base_damage:int) -> Array:
 	rng.randomize()
@@ -125,7 +140,7 @@ func take_damage(direction:int, damage: int) -> void:
 		animated_sprite.visible = true
 		animated_attack_left.visible = false
 		animated_attack_right.visible = false
-		print("death start")
+		print("==========몬스터 죽음======================")
 		death_motion()
 	else:
 		hurt_motion(direction)

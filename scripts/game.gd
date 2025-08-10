@@ -9,20 +9,39 @@ extends Node2D
 @onready var gameover: Control = $Players/player/Camera2D/Gameover
 @onready var gameover_timer: Timer = $Players/player/Camera2D/Gameover/GameoverTimer
 
+var monsters_position = [
+	Vector2(612.0, -40.0),
+	Vector2(4297.0, -40.0),
+	Vector2(10349.0, -40.0),
+	Vector2(24273.0, 0.0),
+	Vector2(32207.0, -100.0),
+	Vector2(42775.0, -40.0),
+	Vector2(47036.0, -40.0),
+	Vector2(54923.0, -40.0),
+	Vector2(59240.0, -40.0)
+]
+
 #@onready var gameover: Control = $Gameover
 #@onready var gameover_timer: Timer = $Gameover/GameoverTimer
 
+func get_monster_positions():
+	var positions = []
+	for monster in monsters.get_children():
+		positions.append(monster.global_position)
+	print(positions)
+
 func new_game():
+	get_monster_positions()
 	gameover.visible = false
 	GameManager.dna = 0
 	mob_timer.start()
 
 func _on_mob_timer_timeout() -> void:
-	var mob = mob_scene.instantiate()
-	mob.position = Vector2(-200,20)
-	mob.position.y = -40
-	print("몬스터 생성", mob.position)
-	monsters.add_child(mob)
+	for position in monsters_position:
+		var mob = mob_scene.instantiate()
+		mob.global_position = position
+		print("몬스터 생성", mob.global_position)
+		monsters.add_child(mob)
 
 func game_over():
 	mob_timer.stop()

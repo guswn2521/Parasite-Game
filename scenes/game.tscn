@@ -83,10 +83,10 @@ text = "100/100
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 z_index = 2
-position = Vector2(-885, -105)
+position = Vector2(-900, -130)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
-position = Vector2(0, -7)
+position = Vector2(0, -167.667)
 zoom = Vector2(4, 4)
 
 [node name="Gameover" parent="Players/player/Camera2D" instance=ExtResource("11_kvpfn")]
@@ -114,7 +114,7 @@ one_shot = true
 [node name="Items" type="Node" parent="."]
 
 [node name="Item" parent="Items" instance=ExtResource("6_p57ef")]
-position = Vector2(-821, 18)
+position = Vector2(-849, 18)
 
 [node name="Killzone" parent="." instance=ExtResource("10_vtaks")]
 position = Vector2(-1623, 324)
