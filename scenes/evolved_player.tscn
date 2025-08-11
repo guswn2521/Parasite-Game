@@ -122,7 +122,9 @@ script = ExtResource("1_i0nw2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -62)
 sprite_frames = SubResource("SpriteFrames_echix")
-animation = &"idle"
+animation = &"attack"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(54, -42)
@@ -143,3 +145,7 @@ shape = SubResource("CapsuleShape2D_4m3gi")
 
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -7)
+zoom = Vector2(7, 7)

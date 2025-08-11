@@ -2,17 +2,17 @@ extends CharacterBody2D
 
 class_name EvolvedPlayer
 
-var SPEED = 130.0
+var SPEED = 150.0
 const JUMP_VELOCITY = -500.0
 var is_hurt = false
 var is_dead = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 1000
+var maxHP = 10000
 var attack_state = false
-#const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
-#const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
+const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
+const FIRE_OFFSET: Vector2 = Vector2(110, -50)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 
 #@export var face_collision_shape: FaceCollisionShape
@@ -24,29 +24,38 @@ var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
 @onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
+@onready var attack_timer: Timer = $AttackTimer
 
 signal player_died
 
 func _ready() -> void:
 	add_to_group("Players")
 	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
-	var currentHPs = 0
-	var player_count = 0
-	# player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
-	for child in players_node.get_children():
-		if child is Player:
-			currentHPs += child.currentHP
-			player_count += 1
-	
-	player_hp.max_value = maxHP*player_count
+	var currentHPs = maxHP
+	player_hp.max_value = maxHP # maxHP*player_count
 	player_hp.value = currentHPs
 	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
 	
-#func fire_ball() -> void:
-	#var fireball_instance = FIREBALL_SCENE.instantiate()
-	#get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
-	#fireball_instance.global_position = global_position + FIREBALL_OFFSET
-	#fireball_instance.set_left(animated_sprite.flip_h)
+	# link signal
+	animated_sprite.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
+	hurt_timer.timeout.connect(_on_hurt_timer_timeout)
+	#var player_count = 0
+	## player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
+	#for child in players_node.get_children():
+		#if child is Player:
+			#currentHPs += child.currentHP
+			#player_count += 1
+	
+	
+func fire_breath() -> void:
+	var fire_instance = FIRE_SCENE.instantiate()
+	get_tree().get_nodes_in_group("Fireballs").front().add_child(fire_instance)
+	fire_instance.global_position = global_position + FIRE_OFFSET
+	fire_instance.set_left(animated_sprite.flip_h)
+	await get_tree().create_timer(0.45).timeout
+	fire_instance.queue_free()
+	attack_state=false
+	
 
 #func player_collision_shape_fliph(facing_left: bool):
 	#if facing_left:
@@ -94,9 +103,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Play Animations
 	if Input.is_action_just_pressed("attack") and not attack_state:
-		animated_sprite.play("attack")
-		#fire_ball()
 		attack_state=true
+		animated_sprite.play("attack")
+		fire_breath()
 	if attack_state:
 		return
 	if is_hurt:
@@ -106,9 +115,6 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.play("idle")
 		else:
 			animated_sprite.play("walk")
-		
-func start(pos):
-	position = pos
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
@@ -136,6 +142,7 @@ func hurt_motion(direction: int) -> void:
 	hurt_timer.start(0.4)
 	
 func _on_hurt_timer_timeout() -> void:
+	print("hurt 타이머 종료", is_hurt, attack_state)
 	if not is_dead:
 		is_hurt = false
 		knockback_velocity = Vector2.ZERO

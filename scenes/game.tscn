@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=15 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -9,7 +9,6 @@
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="6_vtaks"]
-[ext_resource type="PackedScene" uid="uid://crvbmejm3rmr4" path="res://scenes/evolved_player.tscn" id="7_kvuet"]
 [ext_resource type="PackedScene" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
 [ext_resource type="PackedScene" path="res://scenes/gameover.tscn" id="11_kvpfn"]
@@ -100,14 +99,6 @@ z_index = 2
 position = Vector2(-75, -97)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
-position = Vector2(0, -7)
-zoom = Vector2(7, 7)
-
-[node name="evolved_player" parent="Players" instance=ExtResource("7_kvuet")]
-z_index = 6
-position = Vector2(-107, -55)
-
-[node name="Camera2D" type="Camera2D" parent="Players/evolved_player"]
 position = Vector2(0, -7)
 zoom = Vector2(7, 7)
 

@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpnk8daiq2hs2"]
+
+[ext_resource type="Script" uid="uid://y2wghgxfjwiw" path="res://scripts/firebreath.gd" id="1_ijwog"]
+[ext_resource type="Texture2D" uid="uid://hp0pmwsmeys7" path="res://assets/sprites/dragon/Fire_Attack1.png" id="1_xmxks"]
+[ext_resource type="Texture2D" uid="uid://dmsnu55gv66pc" path="res://assets/sprites/dragon/Fire_Attack2.png" id="2_ijwog"]
+[ext_resource type="Texture2D" uid="uid://bws7xs1kicvy" path="res://assets/sprites/dragon/Fire_Attack3.png" id="3_3andr"]
+[ext_resource type="Texture2D" uid="uid://xpkrufv6hgr3" path="res://assets/sprites/dragon/Fire_Attack4.png" id="4_6fgoq"]
+[ext_resource type="Texture2D" uid="uid://5qrqajmob4oa" path="res://assets/sprites/dragon/Fire_Attack5.png" id="5_gphsm"]
+[ext_resource type="Texture2D" uid="uid://sqbe7wno3wr8" path="res://assets/sprites/dragon/Fire_Attack6.png" id="6_b8yfu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3q32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xmxks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ijwog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3andr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6fgoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gphsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b8yfu")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmxks"]
+radius = 54.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijwog"]
+size = Vector2(107, 106)
+
+[node name="firebreath" type="Area2D"]
+script = ExtResource("1_ijwog")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m3q32")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 3)
+shape = SubResource("CircleShape2D_xmxks")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 52)
+shape = SubResource("RectangleShape2D_ijwog")
