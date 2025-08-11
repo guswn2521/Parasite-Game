@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctr6on1nu5b8d"]
+[gd_scene load_steps=4 format=3 uid="uid://ctr6on1nu5b8d"]
 
 [ext_resource type="Script" uid="uid://b84xd5oqeuuay" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://b2ggh8uc2stfs" path="res://scripts/duplication.gd" id="2_x4jx1"]
+[ext_resource type="Script" uid="uid://duv7kv5x7jruu" path="res://scripts/evolution.gd" id="3_yev5y"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nt7q6")
@@ -22,4 +23,21 @@ theme_override_font_sizes/font_size = 100
 text = "복제"
 script = ExtResource("2_x4jx1")
 
+[node name="Evolution" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_top = -183.0
+offset_right = -114.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 100
+text = "진화"
+script = ExtResource("3_yev5y")
+
 [connection signal="pressed" from="Duplication" to="." method="_on_duplication_pressed"]
+[connection signal="pressed" from="Evolution" to="." method="_on_duplication_pressed"]
