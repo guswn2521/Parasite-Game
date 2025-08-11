@@ -3,7 +3,7 @@ extends Button
 @onready var players_parent: Node2D = $"../../Players"
 var PLAYER_SCENE = preload("res://scenes/player.tscn")
 var duplicate_effect = preload("res://scenes/duplicate_effect.tscn")
-
+signal no_duplication
 
 func _ready() -> void:
 	# 포커스 받으면, 엔터, 스페이스바 눌러도 눌려서, 포커스 안받게
@@ -25,10 +25,7 @@ func spawn_duplicate_effect(player_position:Vector2) -> void:
 func duplicate_player() -> void:
 	var origin_player = null
 	var children = players_parent.get_children()
-	var players_count = 0
-	for child in players_parent.get_children():
-		if child is Player:
-			players_count += 1
+	var players_count = GameManager.player_nums
 	print("복제 전 모체 수 :",players_count)
 	if children.size() > 0:
 		origin_player = children[0]
@@ -50,6 +47,7 @@ func duplicate_player() -> void:
 		players_parent.add_child(new_player)
 		print("복제 성공! 모체 수: ",players_parent.get_child_count())
 	else:
+		emit_signal("no_duplication")
 		print("dna 가 부족하거나, 최대 복제 수 5에 도달했습니다.")
 		
 	
