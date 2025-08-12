@@ -10,11 +10,12 @@ var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
 var maxHP = 100
+var recover_amount = 2
 var attack_state = false
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
-
+var recover_timer: Timer
 @export var face_collision_shape: FaceCollisionShape
 @export var body_collision_shape : BodyCollisionShape
 @export var tail_collision_shape : TailCollisionShape
@@ -41,7 +42,26 @@ func _ready() -> void:
 	player_hp.max_value = maxHP*player_count
 	player_hp.value = currentHPs
 	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
-	
+	recover_timer_on()
+
+func recover_timer_on():
+	print("타이머 온")
+	recover_timer = Timer.new()
+	recover_timer.autostart = true
+	recover_timer.one_shot = false
+	recover_timer.wait_time = 1.0
+	add_child(recover_timer)
+	recover_timer.timeout.connect(Callable(self, "recover_timer_timeout"))
+	recover_timer.start()
+
+func recover_timer_timeout():
+	if currentHP < maxHP:
+		currentHP += recover_amount
+		currentHP = min(currentHP, maxHP)
+		player_hp.value = currentHP
+		player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
+		print("HP 회복! 현재 HP:", currentHP)
+
 func fire_ball() -> void:
 	var fireball_instance = FIREBALL_SCENE.instantiate()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
