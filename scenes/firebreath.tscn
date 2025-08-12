@@ -41,6 +41,8 @@ radius = 54.0
 size = Vector2(107, 106)
 
 [node name="firebreath" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_ijwog")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
