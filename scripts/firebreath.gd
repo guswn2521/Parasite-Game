@@ -6,7 +6,7 @@ var start_position: Vector2
 var animated_sprite: AnimatedSprite2D
 var monster: Node
 var hit = false
-var attack_power = 100
+var attack_power = 1000
 
 func _ready() -> void:
 	z_index = 1
@@ -36,5 +36,4 @@ func _on_area_entered(area: Area2D) -> void:
 	if monster.is_in_group("Monsters"):
 		print("HP: ", monster.currentHP)
 		monster.take_damage(direction, attack_power)
-		#monster.hurt_motion(direction)
 		hit = true

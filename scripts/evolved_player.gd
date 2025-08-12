@@ -15,9 +15,10 @@ const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
 const FIRE_OFFSET: Vector2 = Vector2(110, -50)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 
-#@export var face_collision_shape: FaceCollisionShape
-#@export var body_collision_shape : BodyCollisionShape
-#@export var tail_collision_shape : TailCollisionShape
+@onready var face_collision_shape: CollisionShape2D = $FaceCollisionShape
+@onready var body_collision_shape: CollisionShape2D = $BodyCollisionShape
+@onready var front_collision_shape: CollisionShape2D = $FrontCollisionShape
+@onready var back_collision_shape: CollisionShape2D = $BackCollisionShape
 
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -56,18 +57,17 @@ func fire_breath() -> void:
 	fire_instance.queue_free()
 	attack_state=false
 	
-
-#func player_collision_shape_fliph(facing_left: bool):
-	#if facing_left:
-		#face_collision_shape.position = face_collision_shape.facing_left_position
-		#body_collision_shape.position = body_collision_shape.facing_left_position
-		#tail_collision_shape.position = tail_collision_shape.facing_left_position
-		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_left_rotation
-	#else:
-		#face_collision_shape.position = face_collision_shape.facing_right_position
-		#body_collision_shape.position = body_collision_shape.facing_right_position
-		#tail_collision_shape.position = tail_collision_shape.facing_right_position
-		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
+func player_collision_shape_fliph(facing_left:bool) -> void:
+	if facing_left:
+		face_collision_shape.position = face_collision_shape.left_collision_shape
+		body_collision_shape.position = body_collision_shape.left_collision_shape
+		front_collision_shape.position = front_collision_shape.left_collision_shape
+		back_collision_shape.position = back_collision_shape.left_collision_shape
+	else:
+		face_collision_shape.position = face_collision_shape.right_collision_shape
+		body_collision_shape.position = body_collision_shape.right_collision_shape
+		front_collision_shape.position = front_collision_shape.right_collision_shape
+		back_collision_shape.position = back_collision_shape.right_collision_shape
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite.flip_h = true
 		elif direction == 1:
 			animated_sprite.flip_h = false
-	#player_collision_shape_fliph(animated_sprite.flip_h) 
+	player_collision_shape_fliph(animated_sprite.flip_h) 
 	
 	# Apply Movement
 	if direction:

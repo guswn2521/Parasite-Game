@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://crvbmejm3rmr4"]
+[gd_scene load_steps=30 format=3 uid="uid://crvbmejm3rmr4"]
 
 [ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="1_3er0w"]
 [ext_resource type="Script" uid="uid://6a3kpqn6uobo" path="res://scripts/evolved_player.gd" id="1_i0nw2"]
@@ -20,6 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://5jvvrxhqdfn2" path="res://assets/sprites/dragon/Walk3.png" id="17_r3e5w"]
 [ext_resource type="Texture2D" uid="uid://cpfhbdunpdmhw" path="res://assets/sprites/dragon/Walk4.png" id="18_laey2"]
 [ext_resource type="Texture2D" uid="uid://n0nkxjxhahlp" path="res://assets/sprites/dragon/Walk5.png" id="19_8yq1o"]
+[ext_resource type="PackedScene" path="res://scenes/gameover.tscn" id="21_4m3gi"]
+[ext_resource type="Script" uid="uid://cmgnyjdke7abe" path="res://scripts/face_collision_shape.gd" id="21_vr1ig"]
+[ext_resource type="Script" uid="uid://dqg32oodm5mh3" path="res://scripts/body_collision_shape.gd" id="22_dyl3c"]
+[ext_resource type="Script" uid="uid://m8dkv4r2ryc4" path="res://scripts/front_collision_shape.gd" id="23_uvk2a"]
+[ext_resource type="Script" uid="uid://csa3nlpf28f8f" path="res://scripts/back_collision_shape.gd" id="24_tfbb3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_echix"]
 animations = [{
@@ -122,30 +127,50 @@ script = ExtResource("1_i0nw2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -62)
 sprite_frames = SubResource("SpriteFrames_echix")
-animation = &"attack"
-frame = 3
-frame_progress = 1.0
+animation = &"idle"
+flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(54, -42)
+[node name="FaceCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-46, -42)
 shape = SubResource("CircleShape2D_i0nw2")
+script = ExtResource("21_vr1ig")
+right_collision_shape = Vector2(54, -42)
+left_collision_shape = Vector2(-46, -42)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(18, -31)
+[node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-10, -31)
 shape = SubResource("RectangleShape2D_i0nw2")
+script = ExtResource("22_dyl3c")
+right_collision_shape = Vector2(18, -31)
+left_collision_shape = Vector2(-10, -31)
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-10, -16)
-shape = SubResource("CapsuleShape2D_4m3gi")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+[node name="FrontCollisionShape" type="CollisionShape2D" parent="."]
 z_index = 6
-position = Vector2(41, -15)
+position = Vector2(-33, -17)
 shape = SubResource("CapsuleShape2D_4m3gi")
+script = ExtResource("23_uvk2a")
+right_collision_shape = Vector2(41, -15)
+left_collision_shape = Vector2(-33, -17)
+
+[node name="BackCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(21, -20)
+shape = SubResource("CapsuleShape2D_4m3gi")
+script = ExtResource("24_tfbb3")
+right_collision_shape = Vector2(-10, -16)
+left_collision_shape = Vector2(21, -20)
 
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.4
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -7)
-zoom = Vector2(7, 7)
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(0, -167.667)
+zoom = Vector2(4, 4)
+
+[node name="Gameover" parent="Camera2D2" instance=ExtResource("21_4m3gi")]
+visible = false
+
+[node name="Label" parent="Camera2D2/Gameover" index="0"]
+z_index = 1
+theme_override_font_sizes/font_size = 80
+
+[editable path="Camera2D2/Gameover"]
