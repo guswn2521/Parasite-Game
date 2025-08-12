@@ -2,6 +2,7 @@ extends CanvasLayer
 @onready var dna_label: Label = $DNALabel
 @onready var player_numbers: Label = $PlayerNumbers
 @onready var duplication: Button = $Duplication
+@onready var evolution: Button = $Evolution
 
 var flash_on = false
 var max_flash = 3
@@ -16,7 +17,7 @@ func _ready() -> void:
 	GameManager.connect("dna_changed", Callable(self, "_on_dna_changed"))
 	GameManager.connect("player_nums_changed", Callable(self, "_on_player_nums_changed"))
 	duplication.connect("no_duplication", Callable(self, "_on_no_duplication"))
-
+	evolution.connect("no_evolution", Callable(self, "_on_no_evolution"))
 func flash_timer_on(label):
 	if is_flashing:
 		return
@@ -55,11 +56,12 @@ func _on_player_nums_changed(player_nums: int) -> void:
 	player_numbers.text = "모체 수 : %d" % player_nums
 
 func _on_no_duplication():
-
 	if GameManager.player_nums > 4:
 		print("이미 5마리.")
 		flash_timer_on(player_numbers)
 	elif int(GameManager.dna) == 0:
 		print("dna 가 0개")
 		flash_timer_on(dna_label)
-	
+
+func _on_no_evolution():
+	flash_timer_on(player_numbers)
