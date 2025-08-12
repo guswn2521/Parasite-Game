@@ -86,6 +86,17 @@ scale = Vector2(0.25, 0.25)
 text = "100/100
 "
 
+[node name="Gameover" parent="UI" instance=ExtResource("11_kvpfn")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Label" parent="UI/Gameover" index="0"]
+z_index = 1
+theme_override_font_sizes/font_size = 96
+
 [node name="Players" type="Node2D" parent="."]
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
@@ -95,13 +106,6 @@ position = Vector2(-900, -130)
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 position = Vector2(0, -167.667)
 zoom = Vector2(4, 4)
-
-[node name="Gameover" parent="Players/player/Camera2D" instance=ExtResource("11_kvpfn")]
-visible = false
-
-[node name="Label" parent="Players/player/Camera2D/Gameover" index="0"]
-z_index = 1
-theme_override_font_sizes/font_size = 80
 
 [node name="Fireballs" type="Node" parent="."]
 script = ExtResource("4_iywne")
@@ -132,11 +136,11 @@ shape = SubResource("WorldBoundaryShape2D_kvpfn")
 
 [node name="Tiles" parent="." instance=ExtResource("11_dinhu")]
 
-[connection signal="timeout" from="Players/player/Camera2D/Gameover/GameoverTimer" to="." method="_on_gameover_timer_timeout"]
+[connection signal="timeout" from="UI/Gameover/GameoverTimer" to="." method="_on_gameover_timer_timeout"]
 [connection signal="timeout" from="Timers/StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
 
 [editable path="UI"]
-[editable path="Players/player/Camera2D/Gameover"]
+[editable path="UI/Gameover"]
 [editable path="Killzone"]

@@ -7,8 +7,8 @@ extends Node2D
 @onready var start_timer: Timer = $Timers/StartTimer
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters
-@onready var gameover: Control = $Players/player/Camera2D/Gameover
-@onready var gameover_timer: Timer = $Players/player/Camera2D/Gameover/GameoverTimer
+@onready var gameover: Control = $UI/Gameover
+@onready var gameover_timer: Timer = $UI/Gameover/GameoverTimer
 
 var monsters_position = [
 	Vector2(612.0, -40.0),
@@ -21,9 +21,6 @@ var monsters_position = [
 	Vector2(54923.0, -40.0),
 	Vector2(59240.0, -40.0)
 ]
-
-#@onready var gameover: Control = $Gameover
-#@onready var gameover_timer: Timer = $Gameover/GameoverTimer
 
 func get_monster_positions():
 	var positions = []

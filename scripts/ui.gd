@@ -55,7 +55,6 @@ func _on_player_nums_changed(player_nums: int) -> void:
 	player_numbers.text = "모체 수 : %d" % player_nums
 
 func _on_no_duplication():
-
 	if GameManager.player_nums > 4:
 		print("이미 5마리.")
 		flash_timer_on(player_numbers)
