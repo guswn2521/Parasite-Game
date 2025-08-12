@@ -6,6 +6,7 @@ extends CanvasLayer
 var flash_on = false
 var max_flash = 3
 var flash_count = 0
+var is_flashing = false
 
 func _ready() -> void:
 	var cnt_dna = int(GameManager.dna)
@@ -17,6 +18,10 @@ func _ready() -> void:
 	duplication.connect("no_duplication", Callable(self, "_on_no_duplication"))
 
 func flash_timer_on(label):
+	if is_flashing:
+		return
+	
+	is_flashing = true
 	var flash_timer = Timer.new()
 	flash_timer.name = "flash_timer"
 	flash_timer.autostart = true
@@ -37,6 +42,7 @@ func on_flash_timer_timeout(label):
 	if flash_count > max_flash:
 		flash_count = 0
 		flash_on = false
+		is_flashing = false
 		get_node("flash_timer").stop()
 		get_node("flash_timer").queue_free()
 		# 색깔 원상복구
@@ -49,6 +55,7 @@ func _on_player_nums_changed(player_nums: int) -> void:
 	player_numbers.text = "모체 수 : %d" % player_nums
 
 func _on_no_duplication():
+
 	if GameManager.player_nums > 4:
 		print("이미 5마리.")
 		flash_timer_on(player_numbers)
