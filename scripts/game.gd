@@ -9,6 +9,9 @@ extends Node2D
 @onready var monsters: Node = $Monsters
 @onready var gameover: Control = $UI/Gameover
 @onready var gameover_timer: Timer = $UI/Gameover/GameoverTimer
+@onready var true_ending: Control = $UI/TrueEnding
+var is_true_ending : bool = false
+var true_ending_triggered : bool = false
 
 var monsters_position = [
 	Vector2(612.0, -40.0),
@@ -60,9 +63,25 @@ func _ready() -> void:
 		player.connect("player_died", Callable(self, "game_over"))
 	if evolved_player != null:
 		evolved_player.connect("player_died", Callable(self, "game_over"))
-	
 	new_game()
+	player.player_arrived.connect(decide_true_ending)
+	#true_ending.connect("player_arrived", Callable(self, "decide_true_ending"))
+	
+
+func decide_true_ending():
+	if true_ending_triggered:
+		return
+	print("is_true_ending = true")
+	is_true_ending = true
+	
+
+func show_true_ending_ui():
+	true_ending.show_true_ending()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if is_true_ending and !true_ending_triggered:
+		show_true_ending_ui()
+		true_ending_triggered = true
+		

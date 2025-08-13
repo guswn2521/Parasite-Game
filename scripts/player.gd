@@ -16,6 +16,7 @@ const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 var recover_timer: Timer
+var ending_position = 64301
 @export var face_collision_shape: FaceCollisionShape
 @export var body_collision_shape : BodyCollisionShape
 @export var tail_collision_shape : TailCollisionShape
@@ -27,6 +28,7 @@ var recover_timer: Timer
 @onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
 
 signal player_died
+signal player_arrived
 
 func _ready() -> void:
 	add_to_group("Players")
@@ -45,7 +47,6 @@ func _ready() -> void:
 	recover_timer_on()
 
 func recover_timer_on():
-	print("타이머 온")
 	recover_timer = Timer.new()
 	recover_timer.autostart = true
 	recover_timer.one_shot = false
@@ -81,6 +82,8 @@ func player_collision_shape_fliph(facing_left: bool):
 		tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
 
 func _physics_process(delta: float) -> void:
+	if position.x >= ending_position:
+		emit_signal("player_arrived")
 	#if is_dead:
 		#return
 	if is_hurt:
