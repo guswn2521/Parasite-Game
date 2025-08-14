@@ -162,15 +162,15 @@ left_collision_shape = Vector2(21, -20)
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.4
 
-[node name="Camera2D2" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -167.667)
 zoom = Vector2(4, 4)
 
-[node name="Gameover" parent="Camera2D2" instance=ExtResource("21_4m3gi")]
+[node name="Gameover" parent="Camera2D" instance=ExtResource("21_4m3gi")]
 visible = false
 
-[node name="Label" parent="Camera2D2/Gameover" index="0"]
+[node name="Label" parent="Camera2D/Gameover" index="0"]
 z_index = 1
 theme_override_font_sizes/font_size = 80
 
-[editable path="Camera2D2/Gameover"]
+[editable path="Camera2D/Gameover"]

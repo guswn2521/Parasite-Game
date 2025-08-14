@@ -1,0 +1,31 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="VFX 3D_RPG_Pack (FREE)"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[filesystem]
+
+import/fbx/enabled=false
+
+[gui]
+
+theme/custom="res://Scenes/Player/GUI/Default.tres"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
