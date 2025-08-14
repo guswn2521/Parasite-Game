@@ -289,7 +289,7 @@ color = Color(4, 3, 1, 1)
 color_ramp = SubResource("Gradient_cteoc")
 
 [node name="LevelUP" type="CPUParticles3D" parent="."]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.0387006, 1.36775, 0.103217)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.0387006, 1.13799, 0.103217)
 material_override = SubResource("StandardMaterial3D_q3pcb")
 emitting = false
 amount = 1
@@ -305,8 +305,8 @@ initial_velocity_min = 2.5
 initial_velocity_max = 2.5
 damping_min = 0.8
 damping_max = 1.0
-scale_amount_min = 2.0
-scale_amount_max = 2.0
+scale_amount_min = 1.5
+scale_amount_max = 1.5
 scale_amount_curve = SubResource("Curve_3v0uh")
 color_ramp = SubResource("Gradient_cteoc")
 

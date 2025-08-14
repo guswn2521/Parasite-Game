@@ -1,93 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl7rkxnnswdwj"]
+[gd_scene load_steps=3 format=3 uid="uid://bl7rkxnnswdwj"]
 
 [ext_resource type="PackedScene" uid="uid://8kixxt5f435q" path="res://VFX/Scenes/VFX_Level_up.tscn" id="1_dfyad"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_dfyad"]
 viewport_path = NodePath("SubViewport")
-
-[sub_resource type="Animation" id="Animation_q3j26"]
-resource_name = "init"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AuraCirce1:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AuraCircle2:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LittleParticles:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Glow:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("LevelUP:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_cfe0v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LevelUP:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqtlh"]
-_data = {
-&"RESET": SubResource("Animation_cfe0v"),
-&"evolution": SubResource("Animation_q3j26")
-}
 
 [node name="evolution" type="Sprite2D"]
 z_index = 6
@@ -98,12 +14,6 @@ texture = SubResource("ViewportTexture_dfyad")
 
 [node name="VFX_Level_UP" parent="SubViewport" instance=ExtResource("1_dfyad")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-
-[node name="AnimationPlayerTest" type="AnimationPlayer" parent="SubViewport/VFX_Level_UP"]
-libraries = {
-&"": SubResource("AnimationLibrary_rqtlh")
-}
-autoplay = "evolution"
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/VFX_Level_UP"]
 transform = Transform3D(3.33265, 0.0248078, -0.0627362, -0.0249916, 3.33323, -0.00953656, 0.0626632, 0.010005, 3.33273, -0.0132032, 0.366733, 6.42947)
