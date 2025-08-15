@@ -42,9 +42,9 @@ theme_override_font_sizes/font_size = 40
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -299.0
+offset_left = -301.0
 offset_top = -88.0
-offset_right = -179.0
+offset_right = -181.0
 offset_bottom = -25.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 40
@@ -58,6 +58,7 @@ offset_top = -341.0
 offset_right = 540.0
 offset_bottom = -21.0
 grow_vertical = 0
+scale = Vector2(0.961703, 0.99337)
 
 [node name="DNALabel" type="Label" parent="UI"]
 anchors_preset = 1
