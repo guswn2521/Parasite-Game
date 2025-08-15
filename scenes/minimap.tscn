@@ -7,12 +7,12 @@
 
 [node name="Minimap" type="TextureRect"]
 z_index = 6
-custom_minimum_size = Vector2(500, 300)
+custom_minimum_size = Vector2(600, 400)
 anchors_preset = -1
-offset_left = -232.0
+offset_left = -279.0
 offset_top = -212.0
-offset_right = 268.0
-offset_bottom = 108.0
+offset_right = 321.0
+offset_bottom = 188.0
 scale = Vector2(0.961703, 0.99337)
 texture = ExtResource("1_o13pn")
 script = ExtResource("1_4v8nv")
@@ -21,10 +21,10 @@ script = ExtResource("1_4v8nv")
 custom_minimum_size = Vector2(500, 300)
 layout_mode = 1
 anchors_preset = -1
-offset_left = 1.03983
-offset_top = -4.02672
-offset_right = 501.04
-offset_bottom = 423.973
+offset_left = 49.9114
+offset_top = 34.2269
+offset_right = 549.911
+offset_bottom = 462.227
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
@@ -34,16 +34,16 @@ render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 z_index = 6
-position = Vector2(240.199, 216.435)
+position = Vector2(239.159, 181.201)
 zoom = Vector2(0.25, 0.15)
 
 [node name="MinimapOutline" type="Sprite2D" parent="."]
 z_index = 6
-position = Vector2(249.557, 157.041)
+position = Vector2(296.349, 189.255)
 scale = Vector2(1.85, 1.2)
 texture = ExtResource("3_dsx0k")
 
 [node name="PlayerDot" type="Sprite2D" parent="."]
 z_index = 6
-position = Vector2(241.239, 215.428)
+position = Vector2(286.991, 213.415)
 texture = ExtResource("1_lj7mc")

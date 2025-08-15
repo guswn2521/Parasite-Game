@@ -20,4 +20,4 @@ func _process(delta: float) -> void:
 	var children = players_parent.get_children()
 	if children.size() > 0:
 		player = children[0]
-	camera_2d.position = player.position + Vector2(0,-160)
+	camera_2d.position = player.position + Vector2(0,100)
