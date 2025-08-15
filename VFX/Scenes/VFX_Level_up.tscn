@@ -156,6 +156,21 @@ proximity_fade_enabled = true
 _data = [Vector2(0, 0), 0.0, 16.8336, 0, 0, Vector2(0.151899, 1), 0.0, 0.0, 0, 0, Vector2(0.643761, 1), 0.0, 0.0, 0, 0, Vector2(0.869801, 0), -0.182816, 0.0, 0, 0]
 point_count = 4
 
+[sub_resource type="Animation" id="Animation_cfe0v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelUP:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_q3j26"]
 resource_name = "init"
 tracks/0/type = "value"
@@ -217,21 +232,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_cfe0v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LevelUP:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqtlh"]

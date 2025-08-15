@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=16 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -9,7 +9,8 @@
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="6_vtaks"]
-[ext_resource type="PackedScene" uid="uid://vnph6tnndcb3" path="res://scenes/true_ending.tscn" id="8_kvuet"]
+[ext_resource type="PackedScene" path="res://scenes/true_ending.tscn" id="8_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cxd3lfglnovxd" path="res://scenes/minimap.tscn" id="9_trtic"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
 [ext_resource type="PackedScene" path="res://scenes/gameover.tscn" id="11_kvpfn"]
@@ -47,6 +48,16 @@ offset_right = -179.0
 offset_bottom = -25.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 40
+
+[node name="Minimap" parent="UI" instance=ExtResource("9_trtic")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -341.0
+offset_right = 540.0
+offset_bottom = -21.0
+grow_vertical = 0
 
 [node name="DNALabel" type="Label" parent="UI"]
 anchors_preset = 1
@@ -155,6 +166,7 @@ collision_mask = 4
 shape = SubResource("WorldBoundaryShape2D_kvpfn")
 
 [node name="Tiles" parent="." instance=ExtResource("11_dinhu")]
+position = Vector2(40, -7)
 
 [connection signal="timeout" from="UI/Gameover/GameoverTimer" to="." method="_on_gameover_timer_timeout"]
 [connection signal="timeout" from="Timers/StartTimer" to="." method="_on_start_timer_timeout"]
