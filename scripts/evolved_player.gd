@@ -46,12 +46,10 @@ func _ready() -> void:
 	# link signal
 	animated_sprite.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	hurt_timer.timeout.connect(_on_hurt_timer_timeout)
-	#var player_count = 0
-	## player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
-	#for child in players_node.get_children():
-		#if child is Player:
-			#currentHPs += child.currentHP
-			#player_count += 1
+	
+	# visibility layer 조절 (미니맵에 보이게 하기 위해)
+	set_visibility_layer_bit(0, false) # 1번 Visibility Layer 끄기
+	set_visibility_layer_bit(2, true) # 3번 Visibility Layer 끄기
 	
 	
 func fire_breath() -> void:

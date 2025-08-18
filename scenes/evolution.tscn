@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl7rkxnnswdwj"]
+
+[ext_resource type="PackedScene" uid="uid://8kixxt5f435q" path="res://VFX/Scenes/VFX_Level_up.tscn" id="1_dfyad"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dfyad"]
+viewport_path = NodePath("SubViewport")
+
+[node name="evolution" type="Sprite2D"]
+z_index = 6
+position = Vector2(-1, -2)
+texture = SubResource("ViewportTexture_dfyad")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="VFX_Level_UP" parent="SubViewport" instance=ExtResource("1_dfyad")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/VFX_Level_UP"]
+transform = Transform3D(3.33265, 0.0248078, -0.0627362, -0.0249916, 3.33323, -0.00953656, 0.0626632, 0.010005, 3.33273, -0.0132032, 0.366733, 6.42947)
+fov = 93.8451

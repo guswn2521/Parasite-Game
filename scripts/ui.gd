@@ -17,7 +17,7 @@ func _ready() -> void:
 	GameManager.connect("dna_changed", Callable(self, "_on_dna_changed"))
 	GameManager.connect("player_nums_changed", Callable(self, "_on_player_nums_changed"))
 	duplication.connect("no_duplication", Callable(self, "_on_no_duplication"))
-
+	evolution.connect("no_evolution", Callable(self, "_on_no_evolution"))
 func flash_timer_on(label):
 	if is_flashing:
 		return
@@ -62,4 +62,6 @@ func _on_no_duplication():
 	elif int(GameManager.dna) == 0:
 		print("dna 가 0개")
 		flash_timer_on(dna_label)
-	
+
+func _on_no_evolution():
+	flash_timer_on(player_numbers)

@@ -1,15 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=16 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ctr6on1nu5b8d" path="res://scenes/ui.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://by65s2bwdp3hq" path="res://scripts/game_manager.gd" id="3_u5sy4"]
-[ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="6_vtaks"]
+[ext_resource type="PackedScene" path="res://scenes/true_ending.tscn" id="8_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cxd3lfglnovxd" path="res://scenes/minimap.tscn" id="9_trtic"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
+[ext_resource type="PackedScene" path="res://scenes/gameover.tscn" id="11_kvpfn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kvpfn"]
 
@@ -22,6 +26,39 @@ unique_name_in_owner = true
 script = ExtResource("3_u5sy4")
 
 [node name="UI" parent="." instance=ExtResource("3_p57ef")]
+
+[node name="Duplication" parent="UI" index="0"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_top = -90.0
+offset_right = -41.0
+offset_bottom = -27.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Evolution" parent="UI" index="1"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -301.0
+offset_top = -88.0
+offset_right = -181.0
+offset_bottom = -25.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 40
+
+[node name="Minimap" parent="UI" instance=ExtResource("9_trtic")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -341.0
+offset_right = 540.0
+offset_bottom = -21.0
+grow_vertical = 0
+scale = Vector2(0.961703, 0.99337)
 
 [node name="DNALabel" type="Label" parent="UI"]
 anchors_preset = 1
@@ -86,6 +123,7 @@ collision_mask = 4
 shape = SubResource("WorldBoundaryShape2D_kvpfn")
 
 [node name="Tiles" parent="." instance=ExtResource("11_dinhu")]
+position = Vector2(40, -7)
 
 [connection signal="pressed" from="UI/Control/duplication" to="UI/Control/duplication" method="_on_pressed"]
 [connection signal="timeout" from="UI/Gameover/GameoverTimer" to="." method="_on_gameover_timer_timeout"]
