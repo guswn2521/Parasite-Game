@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://pmc5yca80oo2"]
+
+[ext_resource type="Texture2D" uid="uid://deric5bvhwqkt" path="res://assets/themes/ValueBar_128x16.png" id="2_br5d3"]
+[ext_resource type="Texture2D" uid="uid://b4ql0v28i676u" path="res://assets/themes/ValueRed_120x8.png" id="3_g5xc6"]
+
+[node name="PlayerHP" type="TextureProgressBar"]
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 36.0
+scale = Vector2(3.2, 3.2)
+value = 100.0
+texture_over = ExtResource("2_br5d3")
+texture_progress = ExtResource("3_g5xc6")
+texture_progress_offset = Vector2(4, 4)
+
+[node name="PlayerHPPoints" type="Label" parent="."]
+layout_mode = 0
+offset_left = 53.2941
+offset_top = 4.70588
+offset_right = 115.294
+offset_bottom = 53.7059
+scale = Vector2(0.25, 0.25)
+text = "100/100
+"

@@ -1,6 +1,6 @@
 extends Button
 
-@onready var players_parent: Node2D = $"../../Players"
+@onready var players_parent: Node2D = $"../../../Players"
 var PLAYER_SCENE = preload("res://scenes/player.tscn")
 var duplicate_effect = preload("res://scenes/duplicate_effect.tscn")
 signal no_duplication

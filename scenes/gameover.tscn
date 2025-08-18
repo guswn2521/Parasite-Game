@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6cp1rwj0m1ay"]
+[gd_scene load_steps=3 format=3 uid="uid://b6cp1rwj0m1ay"]
 
+[ext_resource type="Theme" uid="uid://b47lgkm1ie1fj" path="res://game_themes.tres" id="1_dy3ie"]
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_ncp31"]
 
 [node name="Gameover" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_dy3ie")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

@@ -1,6 +1,6 @@
 extends Button
-
-@onready var players_parent: Node2D = $"../../Players"
+@onready var game: Node2D = get_node("/root/Game")
+@onready var players_parent: Node2D = $"../../../Players"
 var EVOLVED_PLAYER_SCENE = preload("res://scenes/evolved_player.tscn")
 #var duplicate_effect = preload("res://scenes/duplicate_effect.tscn")
 
@@ -43,6 +43,8 @@ func evolve_player() -> void:
 		#await get_tree().create_timer(0.3).timeout
 		# 부모 노드(Players)에 새 노드 추가
 		players_parent.add_child(new_player)
+		new_player.connect("player_arrived", Callable(game, "decide_true_ending"))
+		new_player.connect("player_died", Callable(game, "game_over"))
 		print("진화 성공!")
 	else:
 		print("진화 실패!")

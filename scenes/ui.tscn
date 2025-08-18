@@ -1,43 +1,124 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctr6on1nu5b8d"]
+[gd_scene load_steps=10 format=3 uid="uid://ctr6on1nu5b8d"]
 
 [ext_resource type="Script" uid="uid://b84xd5oqeuuay" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://b2ggh8uc2stfs" path="res://scripts/duplication.gd" id="2_x4jx1"]
 [ext_resource type="Script" uid="uid://duv7kv5x7jruu" path="res://scripts/evolution.gd" id="3_yev5y"]
+[ext_resource type="Theme" uid="uid://b47lgkm1ie1fj" path="res://game_themes.tres" id="4_gdt2y"]
+[ext_resource type="PackedScene" uid="uid://pmc5yca80oo2" path="res://scenes/player_hp.tscn" id="5_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://dqnd658d8ox4c" path="res://assets/themes/BlackBigCircleBoxWithBorder_27x27.png" id="6_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://cbn2nr5nmok2c" path="res://assets/themes/HeartIcons_32x32.png" id="7_ktti3"]
+[ext_resource type="PackedScene" uid="uid://vnph6tnndcb3" path="res://scenes/true_ending.tscn" id="8_cgfq5"]
+[ext_resource type="PackedScene" uid="uid://b6cp1rwj0m1ay" path="res://scenes/gameover.tscn" id="9_7dvkv"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nt7q6")
 
-[node name="Duplication" type="Button" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -91.0
-offset_top = -183.0
-offset_right = 90.0
-offset_bottom = -38.0
 grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_gdt2y")
+
+[node name="duplication" type="MenuButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -148.0
+offset_right = -2.0
+offset_bottom = 2.0
+grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 100
+toggle_mode = false
 text = "복제"
+flat = false
 script = ExtResource("2_x4jx1")
 
-[node name="Evolution" type="Button" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="Evolution" type="MenuButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -295.0
-offset_top = -183.0
-offset_right = -114.0
-offset_bottom = -38.0
-grow_horizontal = 2
+offset_left = -302.0
+offset_top = -148.0
+offset_right = -152.0
+offset_bottom = 2.0
+grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 100
 text = "진화"
+flat = false
 script = ExtResource("3_yev5y")
 
-[connection signal="pressed" from="Duplication" to="." method="_on_duplication_pressed"]
-[connection signal="pressed" from="Evolution" to="." method="_on_duplication_pressed"]
+[node name="HpBox" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 610.0
+offset_bottom = 150.0
+theme = ExtResource("4_gdt2y")
+
+[node name="Panel" type="Panel" parent="HpBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHP" parent="HpBox/Panel" instance=ExtResource("5_wm3ai")]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 17.0
+offset_right = 260.0
+offset_bottom = 33.0
+
+[node name="PlayerHP2" parent="HpBox/Panel" instance=ExtResource("5_wm3ai")]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 71.0
+offset_right = 260.0
+offset_bottom = 87.0
+
+[node name="HeartCircle" type="TextureRect" parent="HpBox/Panel"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = -5.0
+offset_right = 139.0
+offset_bottom = 145.0
+texture = ExtResource("6_p7vwb")
+
+[node name="TextureRect" type="TextureRect" parent="HpBox/Panel/HeartCircle"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -55.0
+offset_right = 55.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ktti3")
+
+[node name="TrueEnding" parent="." instance=ExtResource("8_cgfq5")]
+visible = false
+
+[node name="Gameover" parent="." instance=ExtResource("9_7dvkv")]
+visible = false
+
+[connection signal="pressed" from="Control/Evolution" to="." method="_on_duplication_pressed"]
+
+[editable path="HpBox/Panel/PlayerHP"]
+[editable path="TrueEnding"]
+[editable path="Gameover"]

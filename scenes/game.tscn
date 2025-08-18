@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=12 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -8,11 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
-[ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="6_vtaks"]
-[ext_resource type="PackedScene" uid="uid://vnph6tnndcb3" path="res://scenes/true_ending.tscn" id="8_kvuet"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
-[ext_resource type="PackedScene" uid="uid://b6cp1rwj0m1ay" path="res://scenes/gameover.tscn" id="11_kvpfn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kvpfn"]
 
@@ -26,24 +23,6 @@ script = ExtResource("3_u5sy4")
 
 [node name="UI" parent="." instance=ExtResource("3_p57ef")]
 
-[node name="Duplication" parent="UI" index="0"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -161.0
-offset_top = -90.0
-offset_right = -41.0
-offset_bottom = -27.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 40
-
-[node name="Evolution" parent="UI" index="1"]
-offset_left = 281.0
-offset_top = -91.0
-offset_right = 401.0
-offset_bottom = -28.0
-theme_override_font_sizes/font_size = 40
-
 [node name="DNALabel" type="Label" parent="UI"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -55,6 +34,7 @@ offset_bottom = 47.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("5_0tnpc")
 theme_override_font_sizes/font_size = 32
+text = "DNA"
 
 [node name="PlayerNumbers" type="Label" parent="UI"]
 anchors_preset = 1
@@ -67,51 +47,6 @@ offset_bottom = 128.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("5_0tnpc")
 theme_override_font_sizes/font_size = 32
-
-[node name="PlayerHP" type="TextureProgressBar" parent="UI"]
-offset_left = 7.0
-offset_top = 11.0
-offset_right = 161.0
-offset_bottom = 72.0
-scale = Vector2(8.5, 8.5)
-value = 100.0
-texture_progress = ExtResource("6_vtaks")
-
-[node name="PlayerHPPoints" type="Label" parent="UI/PlayerHP"]
-layout_mode = 0
-offset_left = 24.7059
-offset_top = 2.23529
-offset_right = 86.7059
-offset_bottom = 51.2353
-scale = Vector2(0.25, 0.25)
-text = "100/100
-"
-
-[node name="Gameover" parent="UI" instance=ExtResource("11_kvpfn")]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-
-[node name="Label" parent="UI/Gameover" index="0"]
-z_index = 1
-theme_override_font_sizes/font_size = 120
-
-[node name="TrueEnding" parent="UI" instance=ExtResource("8_kvuet")]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -152,11 +87,14 @@ shape = SubResource("WorldBoundaryShape2D_kvpfn")
 
 [node name="Tiles" parent="." instance=ExtResource("11_dinhu")]
 
+[connection signal="pressed" from="UI/Control/duplication" to="UI/Control/duplication" method="_on_pressed"]
 [connection signal="timeout" from="UI/Gameover/GameoverTimer" to="." method="_on_gameover_timer_timeout"]
 [connection signal="timeout" from="Timers/StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
 
 [editable path="UI"]
+[editable path="UI/HpBox/Panel/PlayerHP"]
+[editable path="UI/TrueEnding"]
 [editable path="UI/Gameover"]
 [editable path="Killzone"]

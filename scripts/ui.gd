@@ -1,7 +1,8 @@
 extends CanvasLayer
 @onready var dna_label: Label = $DNALabel
 @onready var player_numbers: Label = $PlayerNumbers
-@onready var duplication: Button = $Duplication
+#@onready var duplication: Button = $Duplication
+@onready var duplication: MenuButton = $Control/duplication
 
 var flash_on = false
 var max_flash = 3

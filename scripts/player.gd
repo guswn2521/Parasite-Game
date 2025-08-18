@@ -24,8 +24,10 @@ var ending_position = 64301
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt_timer: Timer = $HurtTimer
-@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
-@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
+#@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
+#@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
+@onready var player_hp: TextureProgressBar = $"../../UI/HpBox/Panel/PlayerHP"
+@onready var player_hp_points: Label = $"../../UI/HpBox/Panel/PlayerHP/PlayerHPPoints"
 
 signal player_died
 signal player_arrived

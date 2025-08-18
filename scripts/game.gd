@@ -61,10 +61,12 @@ func _on_start_timer_timeout() -> void:
 func _ready() -> void:
 	if player != null:
 		player.connect("player_died", Callable(self, "game_over"))
-	if evolved_player != null:
-		evolved_player.connect("player_died", Callable(self, "game_over"))
+		player.player_arrived.connect(decide_true_ending)
+	#if evolved_player != null:
+		
+		#evolved_player.player_arrived.connect(decide_true_ending)
+		#print("evolved_player 있음")
 	new_game()
-	player.player_arrived.connect(decide_true_ending)
 	#true_ending.connect("player_arrived", Callable(self, "decide_true_ending"))
 	
 

@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://5jvvrxhqdfn2" path="res://assets/sprites/dragon/Walk3.png" id="17_r3e5w"]
 [ext_resource type="Texture2D" uid="uid://cpfhbdunpdmhw" path="res://assets/sprites/dragon/Walk4.png" id="18_laey2"]
 [ext_resource type="Texture2D" uid="uid://n0nkxjxhahlp" path="res://assets/sprites/dragon/Walk5.png" id="19_8yq1o"]
-[ext_resource type="PackedScene" path="res://scenes/gameover.tscn" id="21_4m3gi"]
+[ext_resource type="PackedScene" uid="uid://b6cp1rwj0m1ay" path="res://scenes/gameover.tscn" id="21_4m3gi"]
 [ext_resource type="Script" uid="uid://cmgnyjdke7abe" path="res://scripts/face_collision_shape.gd" id="21_vr1ig"]
 [ext_resource type="Script" uid="uid://dqg32oodm5mh3" path="res://scripts/body_collision_shape.gd" id="22_dyl3c"]
 [ext_resource type="Script" uid="uid://m8dkv4r2ryc4" path="res://scripts/front_collision_shape.gd" id="23_uvk2a"]

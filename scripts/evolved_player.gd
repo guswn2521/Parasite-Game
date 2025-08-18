@@ -14,6 +14,7 @@ var attack_state = false
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
 const FIRE_OFFSET: Vector2 = Vector2(110, -50)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
+var ending_position = 64301
 
 @onready var face_collision_shape: CollisionShape2D = $FaceCollisionShape
 @onready var body_collision_shape: CollisionShape2D = $BodyCollisionShape
@@ -23,16 +24,21 @@ var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt_timer: Timer = $HurtTimer
-@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
-@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
+#@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
+#@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
 @onready var attack_timer: Timer = $AttackTimer
+#@onready var player_hp: TextureProgressBar = $HpBox/Panel/PlayerHP
+@onready var player_hp: TextureProgressBar = get_node("/root/Game/UI/HpBox/Panel/PlayerHP")
+@onready var player_hp_points: Label = get_node("/root/Game/UI/HpBox/Panel/PlayerHP/PlayerHPPoints")
 
 signal player_died
+signal player_arrived
 
 func _ready() -> void:
 	add_to_group("Players")
 	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
 	var currentHPs = maxHP
+	
 	player_hp.max_value = maxHP # maxHP*player_count
 	player_hp.value = currentHPs
 	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
@@ -70,6 +76,8 @@ func player_collision_shape_fliph(facing_left:bool) -> void:
 		back_collision_shape.position = back_collision_shape.right_collision_shape
 
 func _physics_process(delta: float) -> void:
+	if position.x >= ending_position:
+		emit_signal("player_arrived")
 	if is_dead:
 		return
 	if is_hurt:

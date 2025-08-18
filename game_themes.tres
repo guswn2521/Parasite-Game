@@ -1,0 +1,84 @@
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://b47lgkm1ie1fj"]
+
+[ext_resource type="Texture2D" uid="uid://cokf3ldu65nb3" path="res://assets/themes/Button_52x14.png" id="1_4ebhf"]
+[ext_resource type="Texture2D" uid="uid://blgwiatwyl4xb" path="res://assets/themes/MenusBox_34x34.png" id="2_s3ksd"]
+[ext_resource type="Texture2D" uid="uid://deric5bvhwqkt" path="res://assets/themes/ValueBar_128x16.png" id="3_5rv8c"]
+[ext_resource type="Texture2D" uid="uid://cyq6runydh4mn" path="res://assets/themes/RectangleBox_96x96.png" id="3_s3ksd"]
+[ext_resource type="Texture2D" uid="uid://b4ql0v28i676u" path="res://assets/themes/ValueRed_120x8.png" id="4_s3ksd"]
+[ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_sehwq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s3ksd"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+texture = ExtResource("1_4ebhf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sehwq"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+texture = ExtResource("1_4ebhf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ns1jk"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+texture = ExtResource("1_4ebhf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5rv8c"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+texture = ExtResource("1_4ebhf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3wojp"]
+texture = ExtResource("2_s3ksd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_48l6a"]
+texture = ExtResource("2_s3ksd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebuxi"]
+texture = ExtResource("2_s3ksd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bk0ff"]
+texture = ExtResource("2_s3ksd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ebhf"]
+content_margin_left = 50.0
+content_margin_top = 30.0
+content_margin_right = 50.0
+content_margin_bottom = 30.0
+texture = ExtResource("3_s3ksd")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q2i1g"]
+texture = ExtResource("3_5rv8c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q2o68"]
+texture = ExtResource("4_s3ksd")
+
+[resource]
+default_font = ExtResource("6_sehwq")
+default_font_size = 20
+Button/font_sizes/font_size = 35
+Button/styles/disabled = null
+Button/styles/focus = SubResource("StyleBoxTexture_s3ksd")
+Button/styles/hover = SubResource("StyleBoxTexture_sehwq")
+Button/styles/normal = SubResource("StyleBoxTexture_ns1jk")
+Button/styles/pressed = SubResource("StyleBoxTexture_5rv8c")
+Label/constants/line_spacing = 10
+MenuButton/font_sizes/font_size = 40
+MenuButton/styles/focus = SubResource("StyleBoxTexture_3wojp")
+MenuButton/styles/hover = SubResource("StyleBoxTexture_48l6a")
+MenuButton/styles/normal = SubResource("StyleBoxTexture_ebuxi")
+MenuButton/styles/pressed = SubResource("StyleBoxTexture_bk0ff")
+Panel/styles/panel = SubResource("StyleBoxTexture_4ebhf")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_q2i1g")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_q2o68")
