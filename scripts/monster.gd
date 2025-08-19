@@ -85,13 +85,14 @@ func _physics_process(delta: float) -> void:
 			else:
 				direction = -1
 				animated_sprite.flip_h = false
+	# Default Velocity
 	velocity.x = direction * SPEED
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	if on_attack:
 		velocity.x = 0
 	move_and_slide()
 	
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 	
 	# Play Animation
 	if not on_attack:
