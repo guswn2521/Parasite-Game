@@ -494,7 +494,7 @@ height = 45.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7han3"]
 radius = 8.0
-height = 80.0
+height = 76.0
 
 [node name="Monster" type="CharacterBody2D"]
 position = Vector2(0, 30)

@@ -79,11 +79,11 @@ func _physics_process(delta: float) -> void:
 		if abs(distance) < 10:
 			velocity.x = 0
 		else:
-			if distance > 0:
+			if distance > 0: # 플레이어가 오른쪽에 있을때
 				direction =  1
 				animated_sprite.flip_h = true
-			else:
-				direction = -1
+			else: # 플레이어가 왼쪽에 있을때
+				direction = -1 
 				animated_sprite.flip_h = false
 	# Default Velocity
 	velocity.x = direction * SPEED
@@ -177,8 +177,8 @@ func drop_item():
 
 # Hurtbox에 플레이어 들어오면 Chase
 func _on_hurtbox_body_entered(body: Node2D) -> void:
-	if body.name == "player":
-		print("chase")
+	if "player" in body.name:
+		print("chase", body.name)
 		in_chase = true
 
 func _on_hurtbox_body_exited(body: Node2D) -> void:
@@ -187,12 +187,12 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 
 # MonsterArea 에 플레이어가 들어오면 Attack
 func _on_monster_area_body_entered(body: Node2D) -> void:
-	if body.name == "player":
+	if "player" in body.name:
 		print("monster attack area")
 		in_attack_zone = true
 
 func _on_monster_area_body_exited(body: Node2D) -> void:
-	if body.name == "player":
+	if "player" in body.name:
 		print("player exit attack area")
 		in_attack_zone = false
 
