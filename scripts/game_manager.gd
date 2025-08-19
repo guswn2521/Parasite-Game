@@ -22,6 +22,17 @@ var player_nums: int:
 
 func _ready() -> void:
 	players = get_tree().root.get_node("Game/Players")
+	# 게임 창 크기
+	var window_size = Vector2i(3000, 1200)
+	# 화면 전체 크기
+	var screen_size = DisplayServer.screen_get_size(DisplayServer.window_get_current_screen())
+	# 화면에서 위치 계산
+	var center_pos = (screen_size - window_size) / 2
+	var custom_pos = center_pos - Vector2i(0, 1000)
+	# 창 위치 설정
+	DisplayServer.window_set_position(custom_pos)
+	# 창 크기 원하는 크기로 변경
+	DisplayServer.window_set_size(window_size)
 
 func add_item():
 	if players == null or !is_instance_valid(players):
