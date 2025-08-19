@@ -118,7 +118,7 @@ tail_collision_shape = NodePath("CollisionShape2D3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13.3333, -8.33333)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"walk"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, -10)

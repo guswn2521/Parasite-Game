@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=17 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
+[ext_resource type="PackedScene" path="res://scenes/gameover.tscn" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://bgkj1yq7jxrk" path="res://scenes/mushroom.tscn" id="12_ir15t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kvpfn"]
 
@@ -36,6 +38,9 @@ zoom = Vector2(4, 4)
 script = ExtResource("4_iywne")
 
 [node name="Monsters" type="Node" parent="."]
+
+[node name="mushroom" parent="Monsters" instance=ExtResource("12_ir15t")]
+position = Vector2(63846, 90)
 
 [node name="Timers" type="Node" parent="."]
 
