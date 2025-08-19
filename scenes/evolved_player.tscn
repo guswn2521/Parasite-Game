@@ -164,7 +164,7 @@ wait_time = 0.4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -167.667)
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [node name="Gameover" parent="Camera2D" instance=ExtResource("21_4m3gi")]
 visible = false

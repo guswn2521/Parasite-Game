@@ -1,14 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctr6on1nu5b8d"]
+[gd_scene load_steps=14 format=3 uid="uid://ctr6on1nu5b8d"]
 
 [ext_resource type="Script" uid="uid://b84xd5oqeuuay" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://b2ggh8uc2stfs" path="res://scripts/duplication.gd" id="2_x4jx1"]
 [ext_resource type="Script" uid="uid://duv7kv5x7jruu" path="res://scripts/evolution.gd" id="3_yev5y"]
 [ext_resource type="Theme" uid="uid://b47lgkm1ie1fj" path="res://game_themes.tres" id="4_gdt2y"]
 [ext_resource type="PackedScene" uid="uid://pmc5yca80oo2" path="res://scenes/player_hp.tscn" id="5_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://bd0lqgcylihtc" path="res://assets/themes/ValueBlue_120x8.png" id="6_7dvkv"]
 [ext_resource type="Texture2D" uid="uid://dqnd658d8ox4c" path="res://assets/themes/BlackBigCircleBoxWithBorder_27x27.png" id="6_p7vwb"]
 [ext_resource type="Texture2D" uid="uid://cbn2nr5nmok2c" path="res://assets/themes/HeartIcons_32x32.png" id="7_ktti3"]
 [ext_resource type="PackedScene" uid="uid://vnph6tnndcb3" path="res://scenes/true_ending.tscn" id="8_cgfq5"]
 [ext_resource type="PackedScene" uid="uid://b6cp1rwj0m1ay" path="res://scenes/gameover.tscn" id="9_7dvkv"]
+[ext_resource type="Texture2D" uid="uid://b6mfmpjv4fa3g" path="res://assets/themes/CornerKnot_14x14.png" id="9_vdcm2"]
+[ext_resource type="PackedScene" uid="uid://bnqj5jx51puj6" path="res://scenes/minimap.tscn" id="12_6rmj2"]
+[ext_resource type="Texture2D" uid="uid://cyq6runydh4mn" path="res://assets/themes/RectangleBox_96x96.png" id="12_vsj0x"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nt7q6")
@@ -60,10 +64,10 @@ script = ExtResource("3_yev5y")
 [node name="HpBox" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 610.0
-offset_bottom = 150.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 620.0
+offset_bottom = 160.0
 theme = ExtResource("4_gdt2y")
 
 [node name="Panel" type="Panel" parent="HpBox"]
@@ -87,8 +91,10 @@ offset_left = 132.0
 offset_top = 71.0
 offset_right = 260.0
 offset_bottom = 87.0
+texture_progress = ExtResource("6_7dvkv")
 
 [node name="HeartCircle" type="TextureRect" parent="HpBox/Panel"]
+z_index = 1
 layout_mode = 0
 offset_left = -11.0
 offset_top = -5.0
@@ -103,19 +109,110 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -55.0
+offset_left = -60.0
 offset_top = -55.0
-offset_right = 55.0
-offset_bottom = 55.0
+offset_right = 60.0
+offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_ktti3")
+
+[node name="TextureRect" type="TextureRect" parent="HpBox"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -10.0
+offset_right = 38.0
+offset_bottom = 30.0
+texture = ExtResource("9_vdcm2")
+
+[node name="TextureRect2" type="TextureRect" parent="HpBox"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = -10.0
+offset_right = 610.0
+offset_bottom = 30.0
+texture = ExtResource("9_vdcm2")
+
+[node name="TextureRect3" type="TextureRect" parent="HpBox"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 110.0
+offset_right = 610.0
+offset_bottom = 150.0
+texture = ExtResource("9_vdcm2")
+
+[node name="TextureRect4" type="TextureRect" parent="HpBox"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 110.0
+offset_right = 34.0
+offset_bottom = 150.0
+texture = ExtResource("9_vdcm2")
 
 [node name="TrueEnding" parent="." instance=ExtResource("8_cgfq5")]
 visible = false
 
 [node name="Gameover" parent="." instance=ExtResource("9_7dvkv")]
 visible = false
+
+[node name="Labels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -390.0
+offset_right = 10.0
+offset_bottom = 200.0
+grow_horizontal = 0
+theme = ExtResource("4_gdt2y")
+
+[node name="TextureRect" type="TextureRect" parent="Labels"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -370.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 160.0
+grow_horizontal = 0
+texture = ExtResource("12_vsj0x")
+
+[node name="DNALabel" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -146.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 82.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "dna"
+
+[node name="PlayerNumbers" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -252.0
+offset_top = 94.0
+offset_right = -36.0
+offset_bottom = 126.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "players"
+
+[node name="Minimap" parent="." instance=ExtResource("12_6rmj2")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -470.0
+offset_right = 590.0
+offset_bottom = 0.0
+grow_vertical = 0
 
 [connection signal="pressed" from="Control/Evolution" to="." method="_on_duplication_pressed"]
 

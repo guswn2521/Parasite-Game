@@ -1,8 +1,10 @@
-extends TextureRect
+extends Control
 
 @onready var sub_viewport: SubViewport = $SubViewportContainer/SubViewport
 @onready var camera_2d: Camera2D = $SubViewportContainer/SubViewport/Camera2D
 @onready var players_parent: Node2D = $"../../Players"
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,4 +22,4 @@ func _process(delta: float) -> void:
 	var children = players_parent.get_children()
 	if children.size() > 0:
 		player = children[0]
-	camera_2d.position = player.position + Vector2(0,100)
+	camera_2d.position = player.position + Vector2(0,200)

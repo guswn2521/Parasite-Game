@@ -1,29 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxd3lfglnovxd"]
+[gd_scene load_steps=5 format=3 uid="uid://bnqj5jx51puj6"]
 
 [ext_resource type="Script" uid="uid://bhavyqo8axncx" path="res://scripts/minimap.gd" id="1_4v8nv"]
 [ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="1_lj7mc"]
 [ext_resource type="Texture2D" uid="uid://c83r70tki2f1n" path="res://assets/mini_map_in.png" id="1_o13pn"]
-[ext_resource type="Texture2D" uid="uid://clv0b222akro5" path="res://assets/mini_map_out.png" id="3_dsx0k"]
+[ext_resource type="Theme" uid="uid://b47lgkm1ie1fj" path="res://game_themes.tres" id="1_w8tna"]
 
-[node name="Minimap" type="TextureRect"]
+[node name="Minimap" type="Control"]
 z_index = 6
-custom_minimum_size = Vector2(600, 400)
-offset_left = -279.0
-offset_top = -212.0
-offset_right = 321.0
-offset_bottom = 188.0
-scale = Vector2(0.961703, 0.99337)
-texture = ExtResource("1_o13pn")
+layout_mode = 3
+anchors_preset = 0
+offset_right = 570.0
+offset_bottom = 470.0
+theme = ExtResource("1_w8tna")
 script = ExtResource("1_4v8nv")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 570.0
+offset_bottom = 470.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(282, 235)
+scale = Vector2(1.97, 1.566)
+texture = ExtResource("1_o13pn")
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-custom_minimum_size = Vector2(500, 300)
-layout_mode = 1
-anchors_preset = -1
-offset_left = 49.9114
-offset_top = 34.2269
-offset_right = 549.911
-offset_bottom = 462.227
+z_index = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 116.0
+offset_right = 532.0
+offset_bottom = 516.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
@@ -33,14 +40,8 @@ render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 z_index = 6
-position = Vector2(239.159, 181.201)
-zoom = Vector2(0.25, 0.15)
-
-[node name="MinimapOutline" type="Sprite2D" parent="."]
-z_index = 6
-position = Vector2(296.349, 189.255)
-scale = Vector2(1.85, 1.2)
-texture = ExtResource("3_dsx0k")
+position = Vector2(253, 79)
+zoom = Vector2(0.8, 0.48)
 
 [node name="PlayerDot" type="Sprite2D" parent="."]
 z_index = 6
