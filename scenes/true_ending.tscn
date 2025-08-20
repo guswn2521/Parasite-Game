@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://vnph6tnndcb3"]
 
 [ext_resource type="Script" uid="uid://bptnnct4liqva" path="res://scripts/true_ending.gd" id="1_rtkb0"]
-[ext_resource type="Theme" uid="uid://b47lgkm1ie1fj" path="res://game_themes.tres" id="1_x7qn2"]
+[ext_resource type="Theme" uid="uid://bdla7c4dxxok8" path="res://game_themes.tres" id="1_x7qn2"]
 [ext_resource type="Texture2D" uid="uid://dvuavt2ufsq3a" path="res://assets/themes/TopPatternPanel_02_33x15.png" id="3_t6tfx"]
 [ext_resource type="Texture2D" uid="uid://4omavltjklky" path="res://assets/themes/BottomPatternPanel_119x17.png" id="4_x7qn2"]
 [ext_resource type="Texture2D" uid="uid://b6mfmpjv4fa3g" path="res://assets/themes/CornerKnot_14x14.png" id="5_x7qn2"]
-[ext_resource type="AudioStream" uid="uid://b2uo7hfs7kq" path="res://assets/sounds/Fantasy_UI (21).wav" id="6_y3la3"]
+[ext_resource type="AudioStream" uid="uid://b2uo7hfs7kq" path="res://assets/sfx/Fantasy_UI (21).wav" id="6_y3la3"]
 
 [node name="TrueEnding" type="Control"]
 layout_mode = 3

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://8bh7h5qgshrq" path="res://scripts/item.gd" id="1_6muww"]
 [ext_resource type="Texture2D" uid="uid://dhn8iybqb8n8" path="res://assets/DNA.png" id="1_s8enn"]
 [ext_resource type="Texture2D" uid="uid://c1vuw86jpbc4x" path="res://assets/DNA2.png" id="2_6muww"]
-[ext_resource type="AudioStream" uid="uid://s6ui25okxwfx" path="res://assets/audio/coin.wav" id="4_vljjh"]
+[ext_resource type="AudioStream" uid="uid://s6ui25okxwfx" path="res://assets/sounds/coin.wav" id="4_vljjh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vljjh"]
 animations = [{

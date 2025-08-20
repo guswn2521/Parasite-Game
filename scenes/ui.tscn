@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b84xd5oqeuuay" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://b2ggh8uc2stfs" path="res://scripts/duplication.gd" id="2_x4jx1"]
 [ext_resource type="Script" uid="uid://duv7kv5x7jruu" path="res://scripts/evolution.gd" id="3_yev5y"]
-[ext_resource type="Theme" uid="uid://b47lgkm1ie1fj" path="res://game_themes.tres" id="4_gdt2y"]
+[ext_resource type="Theme" uid="uid://bdla7c4dxxok8" path="res://game_themes.tres" id="4_gdt2y"]
 [ext_resource type="PackedScene" uid="uid://pmc5yca80oo2" path="res://scenes/player_hp.tscn" id="5_wm3ai"]
 [ext_resource type="Texture2D" uid="uid://bd0lqgcylihtc" path="res://assets/themes/ValueBlue_120x8.png" id="6_7dvkv"]
 [ext_resource type="Texture2D" uid="uid://dqnd658d8ox4c" path="res://assets/themes/BlackBigCircleBoxWithBorder_27x27.png" id="6_p7vwb"]

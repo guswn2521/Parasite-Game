@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://p60jqg6edcym"
+path="res://.godot/imported/1_Evening Harmony.ogg-65b1dc14e65776fa4d2b86f71b41912c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/1_Evening Harmony.ogg"
+dest_files=["res://.godot/imported/1_Evening Harmony.ogg-65b1dc14e65776fa4d2b86f71b41912c.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
