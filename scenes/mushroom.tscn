@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bgkj1yq7jxrk"]
+[gd_scene load_steps=64 format=3 uid="uid://bgkj1yq7jxrk"]
 
 [ext_resource type="Script" uid="uid://bkh12i8qkoky4" path="res://scripts/mushroom.gd" id="1_jekqn"]
 [ext_resource type="Texture2D" uid="uid://dipstp8i2mtqm" path="res://assets/sprites/Mushroom with VFX/Mushroom-Attack.png" id="2_6rddh"]
@@ -383,11 +383,98 @@ size = Vector2(70, 19)
 
 [sub_resource type="Animation" id="Animation_jekqn"]
 resource_name = "attack_right"
+length = 0.90001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8.99997, 9.00003), Vector2(-7.00002, -3.99997), Vector2(-6.08265e-05, -17), Vector2(-6.27041e-05, -17), Vector2(-10.9999, 17), Vector2(8.00013, 37), Vector2(8.00013, 37), Vector2(8.00014, 40), Vector2(-7.99991, 25), Vector2(-9.99997, 9.00004)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.3927, 1.12929, 1.31276, -0.37952, -1.83307, -1.96373, -1.75805, -0.764789, 0.0086249]
+}
+
+[sub_resource type="Animation" id="Animation_6rddh"]
+length = 0.90001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.90001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-8.99997, 9.00003), Vector2(-6.99992, 22), Vector2(-0.999877, 34), Vector2(-0.999877, 34), Vector2(-8.99999, 2.00003), Vector2(5.99993, -19), Vector2(5.99993, -19), Vector2(-7.00002, -5.99998), Vector2(-5.99997, 9.00002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.90001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.00126252, -0.349066, -1.39626, -1.0472, 0.174533, 1.5708, 1.5708, 0.785437, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2v15d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8.99997, 9.00003), Vector2(-9.99997, 9.00004)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0449671, 0.00821962]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6rddh"]
 _data = {
-&"attack_right": SubResource("Animation_jekqn")
+&"RESET": SubResource("Animation_2v15d"),
+&"attack_left": SubResource("Animation_jekqn"),
+&"attack_right": SubResource("Animation_6rddh")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6rddh"]
+radius = 5.96409
+height = 21.8564
 
 [node name="mushroom" type="CharacterBody2D"]
 script = ExtResource("1_jekqn")
@@ -397,8 +484,8 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_kghvd")
 animation = &"attack"
 autoplay = "idle"
-frame = 5
-frame_progress = 0.819594
+frame = 9
+frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -424,6 +511,8 @@ shape = SubResource("CapsuleShape2D_jekqn")
 debug_color = Color(0.860794, 0.334719, 0.365255, 0.42)
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(0, -9.5)
@@ -436,3 +525,15 @@ debug_color = Color(0.282953, 0.537555, 0.875954, 0.42)
 libraries = {
 &"": SubResource("AnimationLibrary_6rddh")
 }
+autoplay = "attack_left"
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(9, -15)
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-8.99997, 9.00003)
+rotation = 0.0449671
+shape = SubResource("CapsuleShape2D_6rddh")
