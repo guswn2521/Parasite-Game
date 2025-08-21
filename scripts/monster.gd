@@ -5,12 +5,12 @@ var direction = 1
 var SPEED = 80
 var gravity = 300
 var death = false
-var is_hurt = false
 var on_attack = false
 var in_attack_zone = false
 var can_attack: bool = true
 var in_chase = false
 var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
+var is_hurt = false
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
 var maxHP = 300
@@ -59,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
+		return
 	
 	if in_attack_zone and can_attack:
 		attack_animation()
@@ -93,7 +94,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 	move_and_slide()
 	
-	
 	# Play Animation
 	if not on_attack:
 		animated_sprite.play("walk")
@@ -115,6 +115,26 @@ func change_raycast_bottom_position():
 		ray_cast_bottom.position = Vector2(15.0, 17.0)
 	elif direction == -1:
 		ray_cast_bottom.position = Vector2(-13.0, 17.0)
+
+		
+func hurt_motion(direction: int) -> void:
+	is_hurt = true
+	print("hurt 모션 실행")
+	animated_sprite.play("hurt")
+	knockback_velocity = Vector2(direction,0) * knockback_power
+	hurt_timer.start(0.4)
+
+func _on_hurt_timer_timeout() -> void:
+	if not death:
+		is_hurt = false
+		knockback_velocity = Vector2.ZERO
+		# 한 대 맞은거 끝나면 다시 걷기 실행.
+		animated_sprite.play("walk")
+
+func death_motion() -> void:
+	animated_sprite.play("death")
+	death = true
+	SPEED = Vector2.ZERO
 
 func apply_damage(base_damage:int) -> Array:
 	rng.randomize()
@@ -144,24 +164,6 @@ func take_damage(direction:int, damage: int) -> void:
 		death_motion()
 	else:
 		hurt_motion(direction)
-		
-func hurt_motion(direction: int) -> void:
-	is_hurt = true
-	animated_sprite.play("hurt")
-	knockback_velocity = Vector2(direction,0) * knockback_power
-	hurt_timer.start(0.4)
-
-func _on_hurt_timer_timeout() -> void:
-	if not death:
-		is_hurt = false
-		knockback_velocity = Vector2.ZERO
-		# 한 대 맞은거 끝나면 다시 걷기 실행.
-		animated_sprite.play("walk")
-
-func death_motion() -> void:
-	animated_sprite.play("death")
-	death = true
-	SPEED = Vector2.ZERO
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "death":

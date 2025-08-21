@@ -38,8 +38,11 @@ script = ExtResource("4_iywne")
 
 [node name="Monsters" type="Node" parent="."]
 
+[node name="Monster" parent="Monsters" instance=ExtResource("4_lbhrr")]
+position = Vector2(63642, 94)
+
 [node name="mushroom" parent="Monsters" instance=ExtResource("12_ir15t")]
-position = Vector2(63846, 90)
+position = Vector2(64002, 122)
 
 [node name="Timers" type="Node" parent="."]
 
