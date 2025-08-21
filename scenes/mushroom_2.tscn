@@ -7,3 +7,5 @@ collision_layer = 2
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 animation = &"hurt"
+frame = 17
+frame_progress = 1.0

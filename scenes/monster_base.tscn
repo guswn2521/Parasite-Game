@@ -598,8 +598,10 @@ shape = SubResource("RectangleShape2D_fn2c4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_mes6e")
-animation = &"death"
+animation = &"hurt2"
 autoplay = "idle"
+frame = 4
+frame_progress = 1.0
 flip_h = true
 
 [node name="MonsterArea" type="Area2D" parent="."]
