@@ -12,7 +12,7 @@ var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
 var death = false
 var maxHP = 300
-var monster_attack_damage = 60
+var monster_attack_damage = 5
 
 var DAMAGE_NUMBER_SCENE = preload("res://scenes/damage_number.tscn")
 var rng = RandomNumberGenerator.new()
@@ -23,10 +23,10 @@ var rng = RandomNumberGenerator.new()
 @onready var players_parent: Node2D = $"../../Players"
 @onready var chase_area: Area2D = $ChaseArea
 @onready var attack_area: Area2D = $AttackArea
-@onready var attack_area_collisionshape: CollisionShape2D = $AttackArea/CollisionShape2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var animation_player: AnimationPlayer = $AttackAnimation
 @onready var hit_box: Area2D = $HitBox
+@onready var hit_box_collisionshape: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var currentHP: int = maxHP
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
@@ -43,6 +43,7 @@ func _ready() -> void:
 	hit_box.body_entered.connect(_on_hitbox_body_entered)
 	attack_timer.timeout.connect(_on_attack_timeout)
 	hurt_timer.timeout.connect(_on_hurt_timer_timeout)
+	animated_sprite.animation_finished.connect(_on_animation_finished)
 	
 	monster_hp_bar.max_value = maxHP
 	monster_hp_bar.value = currentHP
@@ -56,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Death
 	if death:
-		attack_area_collisionshape.disabled = true
+		hit_box_collisionshape.disabled = true # 죽으면 공격 불가능하게
 		return
 		
 	# Hurt
@@ -156,7 +157,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		print("Mushroom Attack success")
-		#body.take_damage(direction, monster_attack_damage)
+		body.take_damage(direction, monster_attack_damage)
+		
 func _on_attack_timeout() -> void:
 	print("attack timer fin")
 	can_attack = true
@@ -204,3 +206,9 @@ func take_damage(direction:int, damage: int) -> void:
 		death_motion()
 	else:
 		hurt_motion(direction)
+
+func _on_animation_finished() -> void:
+	if animated_sprite.animation == "death":
+		print("death")
+		queue_free()
+	
