@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
 		return
-	
+	 
 	# Attack
 	if in_attack_area and can_attack:
 		attack_animation()
