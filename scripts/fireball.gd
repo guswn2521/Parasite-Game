@@ -6,7 +6,7 @@ var start_position: Vector2
 var animated_sprite: AnimatedSprite2D
 var monster: Node
 var hit = false
-var attack_power = 100
+var attack_power = 10
 
 func _ready() -> void:
 	z_index = 1
@@ -31,10 +31,10 @@ func set_left(is_left: int)-> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	monster = area.get_parent()
-	if monster.is_in_group("Monsters"):
-		print("HP: ", monster.currentHP)
+	# 몬스터가 hit 된 동안 중복 데미지가 들어가서 not hit 조건문 추가
+	if monster.is_in_group("Monsters") and not hit:
+		print("FireBall -> monster HP: ", monster.currentHP)
 		monster.take_damage(direction, attack_power)
-		#monster.hurt_motion(direction)
 		hit = true
 		animated_sprite.play("explode")
 

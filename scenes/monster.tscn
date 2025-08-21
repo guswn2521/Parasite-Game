@@ -504,7 +504,7 @@ item_scene = ExtResource("2_70tfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 0
-position = Vector2(3, -30.5)
+position = Vector2(0, -30.5)
 shape = SubResource("RectangleShape2D_7han3")
 
 [node name="attack_right" type="AnimatedSprite2D" parent="."]

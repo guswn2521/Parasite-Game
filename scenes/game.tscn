@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://dre0dpbjxfn4t" path="res://scenes/mushroom_2.tscn" id="8_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
 [ext_resource type="PackedScene" uid="uid://bgkj1yq7jxrk" path="res://scenes/mushroom.tscn" id="12_ir15t"]
@@ -42,7 +43,13 @@ script = ExtResource("4_iywne")
 [node name="Monsters" type="Node" parent="."]
 
 [node name="mushroom" parent="Monsters" instance=ExtResource("12_ir15t")]
-position = Vector2(63846, 90)
+position = Vector2(63864, 128)
+
+[node name="Monster" parent="Monsters" instance=ExtResource("4_lbhrr")]
+position = Vector2(63642, 94)
+
+[node name="Mushroom2" parent="Monsters" instance=ExtResource("8_kvpfn")]
+position = Vector2(64282, 130)
 
 [node name="Timers" type="Node" parent="."]
 
