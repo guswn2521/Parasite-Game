@@ -62,6 +62,7 @@ func _ready() -> void:
 	if player != null:
 		player.connect("player_died", Callable(self, "game_over"))
 		player.player_arrived.connect(decide_true_ending)
+		
 	#if evolved_player != null:
 		
 		#evolved_player.player_arrived.connect(decide_true_ending)

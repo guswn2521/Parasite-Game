@@ -1,12 +1,101 @@
-[gd_scene load_steps=3 format=3 uid="uid://wnq0abf5qiww"]
+[gd_scene load_steps=14 format=3 uid="uid://wnq0abf5qiww"]
 
 [ext_resource type="Script" uid="uid://c5im8smw0n3e2" path="res://scripts/bgm_manager.gd" id="1_w426a"]
 [ext_resource type="AudioStream" uid="uid://p60jqg6edcym" path="res://assets/sounds/1_Evening Harmony.ogg" id="2_pf0ca"]
+[ext_resource type="AudioStream" uid="uid://wknpfxswcqin" path="res://assets/sounds/2_Strange Worlds.ogg" id="3_f7vq7"]
+[ext_resource type="AudioStream" uid="uid://ctg2htw0crc4q" path="res://assets/sounds/3_Sunlight Through Leaves.ogg" id="4_1roc7"]
+[ext_resource type="AudioStream" uid="uid://7n3yex20l5n5" path="res://assets/sounds/4_Cuddle Clouds.ogg" id="5_7kxtk"]
+[ext_resource type="AudioStream" uid="uid://dh2j0fm5r7sb" path="res://assets/sounds/5_Floating Dream.ogg" id="6_h5hj7"]
+[ext_resource type="AudioStream" uid="uid://da0nstxx6fovy" path="res://assets/sounds/6_Whispering Woods.ogg" id="7_ud006"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecr01"]
+size = Vector2(1660, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf0ca"]
+size = Vector2(19740, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnu0b"]
+size = Vector2(20180, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elo27"]
+size = Vector2(19870, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acusr"]
+size = Vector2(2950, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7vq7"]
+size = Vector2(2650, 3000)
 
 [node name="BGMManager" type="Node"]
 script = ExtResource("1_w426a")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Area1audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_pf0ca")
-autoplay = true
 bus = &"BGM"
+
+[node name="Area1" type="Area2D" parent="Area1audio" groups=["bgm_areas"]]
+position = Vector2(-670, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area1audio/Area1"]
+shape = SubResource("RectangleShape2D_ecr01")
+
+[node name="Area2audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_f7vq7")
+bus = &"BGM"
+
+[node name="Area2" type="Area2D" parent="Area2audio" groups=["bgm_areas"]]
+position = Vector2(10030, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2audio/Area2"]
+shape = SubResource("RectangleShape2D_pf0ca")
+debug_color = Color(0.615855, 0.528218, 0.266876, 0.42)
+
+[node name="Area3audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1roc7")
+bus = &"BGM"
+
+[node name="Area3" type="Area2D" parent="Area3audio" groups=["bgm_areas"]]
+position = Vector2(29990, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area3audio/Area3"]
+shape = SubResource("RectangleShape2D_vnu0b")
+debug_color = Color(0.851134, 0.309944, 0.535068, 0.42)
+
+[node name="Area4audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7kxtk")
+bus = &"BGM"
+
+[node name="Area4" type="Area2D" parent="Area4audio" groups=["bgm_areas"]]
+position = Vector2(50015, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area4audio/Area4"]
+shape = SubResource("RectangleShape2D_elo27")
+debug_color = Color(0.285555, 0.618246, 0.361578, 0.42)
+
+[node name="Area5audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_h5hj7")
+bus = &"BGM"
+
+[node name="Area5" type="Area2D" parent="Area5audio" groups=["bgm_areas"]]
+position = Vector2(61425, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area5audio/Area5"]
+shape = SubResource("RectangleShape2D_acusr")
+debug_color = Color(0.788839, 0.422537, 0.221951, 0.42)
+
+[node name="Area6audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ud006")
+bus = &"BGM"
+
+[node name="Area6" type="Area2D" parent="Area6audio" groups=["bgm_areas"]]
+position = Vector2(64225, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area6audio/Area6"]
+shape = SubResource("RectangleShape2D_f7vq7")
+debug_color = Color(0.578015, 0.420531, 0.91814, 0.42)
