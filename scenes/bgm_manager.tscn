@@ -42,6 +42,8 @@ shape = SubResource("RectangleShape2D_ecr01")
 
 [node name="Area2audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_f7vq7")
+max_distance = 20000.0
+attenuation = 1e-05
 bus = &"BGM"
 
 [node name="Area2" type="Area2D" parent="Area2audio" groups=["bgm_areas"]]
@@ -54,6 +56,8 @@ debug_color = Color(0.615855, 0.528218, 0.266876, 0.42)
 
 [node name="Area3audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_1roc7")
+max_distance = 20180.0
+attenuation = 1e-05
 bus = &"BGM"
 
 [node name="Area3" type="Area2D" parent="Area3audio" groups=["bgm_areas"]]
@@ -66,6 +70,8 @@ debug_color = Color(0.851134, 0.309944, 0.535068, 0.42)
 
 [node name="Area4audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_7kxtk")
+max_distance = 20000.0
+attenuation = 1e-05
 bus = &"BGM"
 
 [node name="Area4" type="Area2D" parent="Area4audio" groups=["bgm_areas"]]
@@ -78,6 +84,8 @@ debug_color = Color(0.285555, 0.618246, 0.361578, 0.42)
 
 [node name="Area5audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_h5hj7")
+max_distance = 3000.0
+attenuation = 1e-05
 bus = &"BGM"
 
 [node name="Area5" type="Area2D" parent="Area5audio" groups=["bgm_areas"]]
@@ -90,6 +98,8 @@ debug_color = Color(0.788839, 0.422537, 0.221951, 0.42)
 
 [node name="Area6audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_ud006")
+max_distance = 3000.0
+attenuation = 1e-05
 bus = &"BGM"
 
 [node name="Area6" type="Area2D" parent="Area6audio" groups=["bgm_areas"]]

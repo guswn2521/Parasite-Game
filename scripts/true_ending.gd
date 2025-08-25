@@ -1,7 +1,7 @@
 extends Control
 @onready var restart_button: Button = $Panel/RestartButton
-
 @onready var button_clicked: AudioStreamPlayer = $ButtonClicked
+@onready var true_ending_bgm: AudioStreamPlayer = $TrueEndingBGM
 
 
 # Called when the node enters the scene tree for the first time.
@@ -9,8 +9,6 @@ func _ready() -> void:
 	visible = false
 	restart_button.pressed.connect(restart_button_pressed)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
@@ -24,6 +22,7 @@ func show_true_ending():
 
 func timer_timeout():
 	visible = true
+	true_ending_bgm.play()
 
 
 func restart_button_pressed():
