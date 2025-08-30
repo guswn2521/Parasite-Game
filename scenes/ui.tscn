@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctr6on1nu5b8d"]
+[gd_scene load_steps=24 format=3 uid="uid://ctr6on1nu5b8d"]
 
 [ext_resource type="Script" uid="uid://b84xd5oqeuuay" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://b2ggh8uc2stfs" path="res://scripts/duplication.gd" id="2_x4jx1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bd0lqgcylihtc" path="res://assets/themes/ValueBlue_120x8.png" id="6_7dvkv"]
 [ext_resource type="AudioStream" uid="uid://du2wsst4q6l01" path="res://assets/sfx/Fantasy_UI (51).wav" id="6_catpy"]
 [ext_resource type="Texture2D" uid="uid://dqnd658d8ox4c" path="res://assets/themes/BlackBigCircleBoxWithBorder_27x27.png" id="6_p7vwb"]
+[ext_resource type="AudioStream" uid="uid://dsu44eb1oabjm" path="res://assets/sfx/back_style_3_001.wav" id="7_catpy"]
 [ext_resource type="Texture2D" uid="uid://cbn2nr5nmok2c" path="res://assets/themes/HeartIcons_32x32.png" id="7_ktti3"]
 [ext_resource type="PackedScene" uid="uid://vnph6tnndcb3" path="res://scenes/true_ending.tscn" id="8_cgfq5"]
 [ext_resource type="PackedScene" uid="uid://b6cp1rwj0m1ay" path="res://scenes/gameover.tscn" id="9_7dvkv"]
@@ -76,6 +77,10 @@ bus = &"SFX"
 
 [node name="DuplicationSFX" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("6_catpy")
+bus = &"SFX"
+
+[node name="FailedSFX" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("7_catpy")
 bus = &"SFX"
 
 [node name="HpBox" type="Control" parent="."]

@@ -71,7 +71,7 @@ func _on_start_timer_timeout() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_viewport().canvas_cull_mask &= ~2  # 1번 비트 끄기
-	print(get_viewport().canvas_cull_mask)
+	
 	if player != null:
 		player.connect("player_died", Callable(self, "game_over"))
 		player.player_arrived.connect(decide_true_ending)

@@ -71,7 +71,7 @@ func on_area_body_entered(body, area):
 			fade_in(area_5_audio)
 		if area == area_6:
 			player_in = true
-			fade_out(area_6_audio)
+			fade_in(area_6_audio)
 		
 func on_area_body_exited(body, area):
 	if body.is_in_group("Players"):

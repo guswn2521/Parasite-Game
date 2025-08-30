@@ -35,6 +35,10 @@ var monster_attack_damage = 60
 @onready var hurtbox_collision_shape: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
+@onready var chase_sfx: AudioStreamPlayer2D = $ChaseSFX
+@onready var dead_sfx: AudioStreamPlayer2D = $DeadSFX
+@onready var hurt_sfx: AudioStreamPlayer2D = $HurtSFX
+
 @onready var enemy_dot: Sprite2D = $Enemy_dot
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
 @export var item_scene: PackedScene
@@ -127,6 +131,7 @@ func hurt_motion(direction: int) -> void:
 	animated_sprite.play("hurt")
 	knockback_velocity = Vector2(direction,0) * knockback_power
 	hurt_timer.start(0.4)
+	hurt_sfx.play()
 
 func _on_hurt_timer_timeout() -> void:
 	if not death:
@@ -137,6 +142,7 @@ func _on_hurt_timer_timeout() -> void:
 
 func death_motion() -> void:
 	animated_sprite.play("death")
+	dead_sfx.play()
 	death = true
 	SPEED = Vector2.ZERO
 
@@ -165,8 +171,12 @@ func take_damage(direction:int, damage: int) -> void:
 		animated_sprite.visible = true
 		animated_attack_left.visible = false
 		animated_attack_right.visible = false
+		
+		#await get_tree().create_timer(0.5).timeout
+		#dead_sfx.play()
 		death_motion()
 	else:
+		hurt_sfx.play()
 		hurt_motion(direction)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -185,20 +195,21 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if "player" in body.name:
 		print("chase", body.name)
 		in_chase = true
+		chase_sfx.play()
 
 func _on_hurtbox_body_exited(body: Node2D) -> void:
-	print("체이스 종료==========")
+	#print("체이스 종료==========")
 	in_chase = false
 
 # MonsterArea 에 플레이어가 들어오면 Attack
 func _on_monster_area_body_entered(body: Node2D) -> void:
 	if "player" in body.name:
-		print("monster attack area")
+		#print("monster attack area")
 		in_attack_zone = true
 
 func _on_monster_area_body_exited(body: Node2D) -> void:
 	if "player" in body.name:
-		print("player exit attack area")
+		#print("player exit attack area")
 		in_attack_zone = false
 
 func attack_animation():
@@ -226,7 +237,7 @@ func attack_animation():
 				animated_attack_right.play("attack")
 
 func _on_attack_timer_timeout() -> void:
-	print("attack timer fin")
+	#print("attack timer fin")
 	can_attack = true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

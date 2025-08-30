@@ -128,7 +128,7 @@ script = ExtResource("1_i0nw2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -62)
 sprite_frames = SubResource("SpriteFrames_echix")
-animation = &"idle"
+animation = &"walk"
 flip_h = true
 
 [node name="FaceCollisionShape" type="CollisionShape2D" parent="."]

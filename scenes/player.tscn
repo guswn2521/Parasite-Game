@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6teo8gqu2gxs"]
+[gd_scene load_steps=51 format=3 uid="uid://b6teo8gqu2gxs"]
 
 [ext_resource type="Texture2D" uid="uid://ka077qt00kxj" path="res://assets/small_dragon/Idle1.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b6orhmotvc05e" path="res://assets/small_dragon/Attack1.png" id="1_a8ls1"]
@@ -21,6 +21,30 @@
 [ext_resource type="Script" uid="uid://c27wjug3mjim4" path="res://scripts/collision_shape_2d_2.gd" id="19_4r5pv"]
 [ext_resource type="Script" uid="uid://ck5u12q0mlxcq" path="res://scripts/collision_shape_2d_3.gd" id="20_60mlk"]
 [ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="21_i4ail"]
+[ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="22_cs1tg"]
+[ext_resource type="Texture2D" uid="uid://c038gy7q8dkbg" path="res://assets/sprites/dragon/Attack2.png" id="23_2dvfe"]
+[ext_resource type="Texture2D" uid="uid://cm4qym8xw3lur" path="res://assets/sprites/dragon/Attack3.png" id="24_giy8y"]
+[ext_resource type="Texture2D" uid="uid://cyb38ygnx3krb" path="res://assets/sprites/dragon/Attack4.png" id="25_fdfoy"]
+[ext_resource type="Texture2D" uid="uid://bdwuyghfsq34d" path="res://assets/sprites/dragon/Death1.png" id="26_hhpqf"]
+[ext_resource type="Texture2D" uid="uid://b5qqomc2s84p8" path="res://assets/sprites/dragon/Death2.png" id="27_g5jhy"]
+[ext_resource type="Texture2D" uid="uid://dd82h4jvsimie" path="res://assets/sprites/dragon/Death3.png" id="28_holxr"]
+[ext_resource type="Texture2D" uid="uid://45j5ptqg2j4d" path="res://assets/sprites/dragon/Death4.png" id="29_mx1m4"]
+[ext_resource type="Texture2D" uid="uid://b7ajes3hlfsu7" path="res://assets/sprites/dragon/Death5.png" id="30_4gjji"]
+[ext_resource type="Texture2D" uid="uid://ckr3h44eyavja" path="res://assets/sprites/dragon/Hurt1.png" id="31_u2ulf"]
+[ext_resource type="Texture2D" uid="uid://h1afqr5n8ab3" path="res://assets/sprites/dragon/Hurt2.png" id="32_6e8lb"]
+[ext_resource type="Texture2D" uid="uid://dhagcy4nj1aa3" path="res://assets/sprites/dragon/Idle1.png" id="33_2gdjj"]
+[ext_resource type="Texture2D" uid="uid://da5mkkdinrvro" path="res://assets/sprites/dragon/Idle2.png" id="34_sc3ue"]
+[ext_resource type="Texture2D" uid="uid://3col7r3564r6" path="res://assets/sprites/dragon/Idle3.png" id="35_lxlsd"]
+[ext_resource type="Texture2D" uid="uid://ch7k0uchxx1a1" path="res://assets/sprites/dragon/Walk1.png" id="36_ha2mi"]
+[ext_resource type="Texture2D" uid="uid://cd0s7xx3ukupx" path="res://assets/sprites/dragon/Walk2.png" id="37_apa73"]
+[ext_resource type="Texture2D" uid="uid://5jvvrxhqdfn2" path="res://assets/sprites/dragon/Walk3.png" id="38_74r1k"]
+[ext_resource type="Texture2D" uid="uid://cpfhbdunpdmhw" path="res://assets/sprites/dragon/Walk4.png" id="39_8svfe"]
+[ext_resource type="Texture2D" uid="uid://n0nkxjxhahlp" path="res://assets/sprites/dragon/Walk5.png" id="40_2a3c5"]
+[ext_resource type="AudioStream" uid="uid://m46nqmvya24t" path="res://assets/sfx/03_Step_grass_03.wav" id="41_2dvfe"]
+[ext_resource type="AudioStream" uid="uid://xoo4ldg50sr" path="res://assets/sfx/30_Jump_03.wav" id="42_giy8y"]
+[ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
+[ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
+[ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
@@ -98,6 +122,91 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_42b1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_cs1tg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_2dvfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_giy8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_fdfoy")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_hhpqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_g5jhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_holxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_mx1m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_4gjji")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_u2ulf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_6e8lb")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_2gdjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_sc3ue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_lxlsd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_ha2mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_apa73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_74r1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_8svfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_2a3c5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_a8ls1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfm1y"]
@@ -120,6 +229,13 @@ tail_collision_shape = NodePath("CollisionShape2D3")
 position = Vector2(-13.3333, -8.33333)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 animation = &"attack"
+
+[node name="EvolvedAnimatedSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(4, -55)
+sprite_frames = SubResource("SpriteFrames_42b1b")
+animation = &"walk"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, -10)
@@ -156,6 +272,31 @@ z_index = 4
 position = Vector2(-13.333, -25)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("21_i4ail")
+
+[node name="WalkSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("41_2dvfe")
+bus = &"SFX"
+playback_type = 1
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("42_giy8y")
+bus = &"SFX"
+playback_type = 1
+
+[node name="HurtSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("43_fdfoy")
+bus = &"SFX"
+playback_type = 1
+
+[node name="DeadSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_hhpqf")
+bus = &"SFX"
+playback_type = 1
+
+[node name="AttackSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("45_g5jhy")
+bus = &"SFX"
+playback_type = 1
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

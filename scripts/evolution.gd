@@ -6,6 +6,7 @@ extends Button
 var EVOLVED_PLAYER_SCENE = preload("res://scenes/evolved_player.tscn")
 var evolution_effect = preload("res://scenes/evolution.tscn")
 signal no_evolution
+signal evolved
 
 func _ready() -> void:
 	# 포커스 받으면, 엔터, 스페이스바 눌러도 눌려서, 포커스 안받게
@@ -40,23 +41,28 @@ func evolve_player() -> void:
 	var players_count = GameManager.player_nums
 	
 	if players_count==1:
+		
 		# 기존 진화 전 플레이어 삭제
 		for child in players_parent.get_children():
 			if child is Player:
-				child.queue_free()
+				#child.animated_sprite.visible = false
+				#child.evolved_animated_sprite.visible = true
+				spawn_evolution_effect(child.position)
+				emit_signal("evolved")
+				#child.queue_free()
 		# 새 플레이어 인스턴스 생성
-		var new_player = EVOLVED_PLAYER_SCENE.instantiate()
+		#var new_player = EVOLVED_PLAYER_SCENE.instantiate()
 		# 첫 번쨰 플레이어 위치 복사
-		new_player.position = origin_player.position + Vector2(0,-30)
-		new_player.z_index = 5
+		#new_player.position = origin_player.position + Vector2(0,-30)
+		#new_player.z_index = 5
 		# 진화 이펙트 실행
-		spawn_evolution_effect(new_player.position)
-		# 부모 노드(Players)에 새 노드 추가
-		players_parent.add_child(new_player)
-		new_player.connect("player_arrived", Callable(game, "decide_true_ending"))
-		new_player.connect("player_died", Callable(game, "game_over"))
+		
 		evolution_sfx.play()
 		print("진화 성공!")
+		# 부모 노드(Players)에 새 노드 추가
+		#players_parent.add_child(new_player)
+		#new_player.connect("player_arrived", Callable(game, "decide_true_ending"))
+		#new_player.connect("player_died", Callable(game, "game_over"))
 	else:
 		emit_signal("no_evolution")
 		print("진화 실패!")
