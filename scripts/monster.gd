@@ -35,23 +35,26 @@ var monster_attack_damage = 60
 @onready var hurtbox_collision_shape: CollisionShape2D = $Hurtbox/CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
+@onready var enemy_dot: Sprite2D = $Enemy_dot
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
 @export var item_scene: PackedScene
-
 
 var DAMAGE_NUMBER_SCENE = preload("res://scenes/damage_number.tscn")
 var rng = RandomNumberGenerator.new()
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("Monsters")
 	monster_hp_bar.max_value = maxHP
 	monster_hp_bar.value = currentHP
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+	enemy_dot.set_visibility_layer_bit(0, false) # 1번 끔
+	enemy_dot.set_visibility_layer_bit(1, true) # 2번 켬
+	animated_sprite.set_visibility_layer_bit(0, false) # 1번 끔
+	animated_sprite.set_visibility_layer_bit(2, true) # 3번 켬
+	monster_hp_bar.set_visibility_layer_bit(0, false) # 1번 끔
+	monster_hp_bar.set_visibility_layer_bit(2, false) # 3번 켬
 	
+
+func _physics_process(delta: float) -> void:
 	if death:
 		monster_hit_box.disabled = true
 		return

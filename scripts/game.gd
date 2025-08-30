@@ -10,6 +10,7 @@ extends Node2D
 @onready var gameover: Control = $UI/Gameover
 @onready var gameover_timer: Timer = $UI/Gameover/GameoverTimer
 @onready var true_ending: Control = $UI/TrueEnding
+@onready var sub_viewport: SubViewport = $SubViewport
 var is_true_ending : bool = false
 var true_ending_triggered : bool = false
 
@@ -42,6 +43,16 @@ func _on_mob_timer_timeout() -> void:
 		var mob = mob_scene.instantiate()
 		mob.global_position = position
 		print("몬스터 생성", mob.global_position)
+
+		#var minimap_dot = Sprite2D.new()
+		#minimap_dot.name = "EnemyDot"
+		#minimap_dot.texture = preload("res://assets/red_dot.png")
+		#minimap_dot.scale = Vector2(2.5, 2.5)
+		#minimap_dot.set_visibility_layer_bit(0, false) # 1 off
+		#minimap_dot.set_visibility_layer_bit(1, true) # 2 on
+		#minimap_dot.z_index = 4
+		#print("minimap", minimap_dot.visibility_layer)
+		#mob.add_child(minimap_dot)
 		monsters.add_child(mob)
 
 func game_over():
@@ -59,6 +70,8 @@ func _on_start_timer_timeout() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_viewport().canvas_cull_mask &= ~2  # 1번 비트 끄기
+	print(get_viewport().canvas_cull_mask)
 	if player != null:
 		player.connect("player_died", Callable(self, "game_over"))
 		player.player_arrived.connect(decide_true_ending)

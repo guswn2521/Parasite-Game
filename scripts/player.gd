@@ -20,6 +20,7 @@ var ending_position = 64301
 @export var face_collision_shape: FaceCollisionShape
 @export var body_collision_shape : BodyCollisionShape
 @export var tail_collision_shape : TailCollisionShape
+@onready var player_dot: Sprite2D = $PlayerDot
 
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -48,8 +49,11 @@ func _ready() -> void:
 	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
 	recover_timer_on()
 	# visibility layer 조절 (미니맵에 보이게 하기 위해)
-	set_visibility_layer_bit(0, false) # 1번 Visibility Layer 끄기
-	set_visibility_layer_bit(2, true) # 3번 Visibility Layer 끄기
+	animated_sprite.set_visibility_layer_bit(0, false) # 1번 Visibility Layer 끄기
+	animated_sprite.set_visibility_layer_bit(2, true) # 3번 Visibility Layer 켜기
+	player_dot.set_visibility_layer_bit(0,false) # 1번 끄기
+	player_dot.set_visibility_layer_bit(1,true) #2번 켜기
+	
 
 func recover_timer_on():
 	recover_timer = Timer.new()

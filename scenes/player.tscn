@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6teo8gqu2gxs"]
+[gd_scene load_steps=26 format=3 uid="uid://b6teo8gqu2gxs"]
 
 [ext_resource type="Texture2D" uid="uid://ka077qt00kxj" path="res://assets/small_dragon/Idle1.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b6orhmotvc05e" path="res://assets/small_dragon/Attack1.png" id="1_a8ls1"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bhvia4jwxg5ak" path="res://scripts/collision_shape_2d.gd" id="18_fulsm"]
 [ext_resource type="Script" uid="uid://c27wjug3mjim4" path="res://scripts/collision_shape_2d_2.gd" id="19_4r5pv"]
 [ext_resource type="Script" uid="uid://ck5u12q0mlxcq" path="res://scripts/collision_shape_2d_3.gd" id="20_60mlk"]
+[ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="21_i4ail"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
@@ -148,6 +149,13 @@ facing_right_rotation = 66.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-13.3333, -20, -1.66667, -11.6667, 3.33333, -1.66667, 0, 0, -15, -1.66667, -10, 6.66667, -15, 6.66667, -18.3333, 3.33333, -38.3333, 3.33333, -35, 6.66667, -41.6667, 6.66667, -45, 1.66667, -60, 3.33333, -53.3333, -1.66667, -45, -8.33333, -33.3333, -13.3333, -23.3333, -13.3333, -20, -18.3333)
+
+[node name="PlayerDot" type="Sprite2D" parent="."]
+visibility_layer = 2
+z_index = 4
+position = Vector2(-13.333, -25)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("21_i4ail")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

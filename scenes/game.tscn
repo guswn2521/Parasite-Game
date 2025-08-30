@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=14 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -86,5 +86,6 @@ position = Vector2(40, -7)
 [editable path="UI/HpBox/Panel/PlayerHP"]
 [editable path="UI/TrueEnding"]
 [editable path="UI/Gameover"]
+[editable path="UI/Minimap"]
 [editable path="Killzone"]
 [editable path="Tiles"]

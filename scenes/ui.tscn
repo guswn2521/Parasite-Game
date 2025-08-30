@@ -376,3 +376,4 @@ bus = &"BGM"
 [editable path="HpBox/Panel/PlayerHP"]
 [editable path="TrueEnding"]
 [editable path="Gameover"]
+[editable path="Minimap"]

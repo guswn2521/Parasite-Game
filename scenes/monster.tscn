@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dd61sgl40cawi"]
+[gd_scene load_steps=58 format=3 uid="uid://dd61sgl40cawi"]
 
 [ext_resource type="Script" uid="uid://u1mmd1ysyqdv" path="res://scripts/monster.gd" id="1_1cbnp"]
 [ext_resource type="Texture2D" uid="uid://flywivx5bpsa" path="res://assets/sprites/Bringer-of-Death-SpritSheet.png" id="1_uwnm8"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c1di2povlb8w6" path="res://scenes/hitbox.tscn" id="13_1v1i4"]
 [ext_resource type="Texture2D" uid="uid://ugb0nfpjkrqs" path="res://assets/sprites/healthbarProgress.png" id="14_n78d1"]
 [ext_resource type="PackedScene" uid="uid://cmxlhnbkjgkbo" path="res://scenes/hurtbox.tscn" id="15_7han3"]
+[ext_resource type="Texture2D" uid="uid://c7xh22763756i" path="res://assets/red_dot.png" id="17_k0ec1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7han3"]
 size = Vector2(20, 51)
@@ -600,6 +601,12 @@ debug_color = Color(0.827645, 0.308568, 0.635789, 0.42)
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Enemy_dot" type="Sprite2D" parent="."]
+z_index = 4
+position = Vector2(0, -25)
+scale = Vector2(2, 2)
+texture = ExtResource("17_k0ec1")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
