@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://crvbmejm3rmr4"]
+[gd_scene load_steps=31 format=3 uid="uid://crvbmejm3rmr4"]
 
 [ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="1_3er0w"]
 [ext_resource type="Script" uid="uid://6a3kpqn6uobo" path="res://scripts/evolved_player.gd" id="1_i0nw2"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://dqg32oodm5mh3" path="res://scripts/body_collision_shape.gd" id="22_dyl3c"]
 [ext_resource type="Script" uid="uid://m8dkv4r2ryc4" path="res://scripts/front_collision_shape.gd" id="23_uvk2a"]
 [ext_resource type="Script" uid="uid://csa3nlpf28f8f" path="res://scripts/back_collision_shape.gd" id="24_tfbb3"]
+[ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="26_vlp6c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_echix"]
 animations = [{
@@ -172,5 +173,10 @@ visible = false
 [node name="Label" parent="Camera2D/Gameover" index="0"]
 z_index = 1
 theme_override_font_sizes/font_size = 80
+
+[node name="PlayerDot" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("26_vlp6c")
 
 [editable path="Camera2D/Gameover"]

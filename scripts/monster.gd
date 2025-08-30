@@ -79,16 +79,17 @@ func _physics_process(delta: float) -> void:
 		flip_player()
 		
 	if in_chase:
-		var distance = player.position.x - position.x
-		if abs(distance) < 10:
-			velocity.x = 0
-		else:
-			if distance > 0: # 플레이어가 오른쪽에 있을때
-				direction =  1
-				animated_sprite.flip_h = true
-			else: # 플레이어가 왼쪽에 있을때
-				direction = -1 
-				animated_sprite.flip_h = false
+		if player:
+			var distance = player.position.x - position.x
+			if abs(distance) < 10:
+				velocity.x = 0
+			else:
+				if distance > 0: # 플레이어가 오른쪽에 있을때
+					direction =  1
+					animated_sprite.flip_h = true
+				else: # 플레이어가 왼쪽에 있을때
+					direction = -1 
+					animated_sprite.flip_h = false
 	# Default Velocity
 	velocity.x = direction * SPEED
 	if not is_on_floor():
@@ -208,20 +209,21 @@ func attack_animation():
 	if not animation_player.current_animation in ["AttackLeft","AttackRight"]:
 		on_attack = true
 		animated_sprite.visible=false
-		if position.x - player.position.x > 0:
-			# 플레이어가 왼쪽에서 다가옴
-			direction = -1
-			animated_sprite.flip_h = false
-			animated_attack_left.visible = true
-			animation_player.play("AttackLeft")
-			animated_attack_left.play("attack")
-				
-		elif position.x - player.position.x < 0:
-			# 플레이어가 오른쪽에서 다가옴
-			direction = 1
-			animation_player.play("AttackRight")
-			animated_attack_right.visible = true
-			animated_attack_right.play("attack")
+		if player:
+			if position.x - player.position.x > 0:
+				# 플레이어가 왼쪽에서 다가옴
+				direction = -1
+				animated_sprite.flip_h = false
+				animated_attack_left.visible = true
+				animation_player.play("AttackLeft")
+				animated_attack_left.play("attack")
+					
+			elif position.x - player.position.x < 0:
+				# 플레이어가 오른쪽에서 다가옴
+				direction = 1
+				animation_player.play("AttackRight")
+				animated_attack_right.visible = true
+				animated_attack_right.play("attack")
 
 func _on_attack_timer_timeout() -> void:
 	print("attack timer fin")

@@ -1,6 +1,8 @@
 extends Button
 @onready var game: Node2D = get_node("/root/Game")
 @onready var players_parent: Node2D = $"../../../Players"
+@onready var evolution_sfx: AudioStreamPlayer = $"../EvolutionSFX"
+
 var EVOLVED_PLAYER_SCENE = preload("res://scenes/evolved_player.tscn")
 var evolution_effect = preload("res://scenes/evolution.tscn")
 signal no_evolution
@@ -53,6 +55,7 @@ func evolve_player() -> void:
 		players_parent.add_child(new_player)
 		new_player.connect("player_arrived", Callable(game, "decide_true_ending"))
 		new_player.connect("player_died", Callable(game, "game_over"))
+		evolution_sfx.play()
 		print("진화 성공!")
 	else:
 		emit_signal("no_evolution")

@@ -1,5 +1,6 @@
 extends Button
 
+@onready var duplication_sfx: AudioStreamPlayer = $"../DuplicationSFX"
 @onready var players_parent: Node2D = $"../../../Players"
 var PLAYER_SCENE = preload("res://scenes/player.tscn")
 var duplicate_effect = preload("res://scenes/duplicate_effect.tscn")
@@ -26,6 +27,7 @@ func duplicate_player() -> void:
 	var origin_player = null
 	var children = players_parent.get_children()
 	var players_count = GameManager.player_nums
+	
 	print("복제 전 모체 수 :",players_count)
 	if children.size() > 0:
 		origin_player = children[0]
@@ -45,6 +47,7 @@ func duplicate_player() -> void:
 		await get_tree().create_timer(0.3).timeout
 		# 부모 노드(Players)에 새 노드 추가
 		players_parent.add_child(new_player)
+		duplication_sfx.play()
 		print("복제 성공! 모체 수: ",players_parent.get_child_count())
 	else:
 		emit_signal("no_duplication")
