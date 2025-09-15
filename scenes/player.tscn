@@ -45,6 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
 [ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
 [ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
+[ext_resource type="Script" uid="uid://jtyoyw60mhnx" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
@@ -221,9 +222,6 @@ position = Vector2(8, 0)
 scale = Vector2(0.6, 0.6)
 collision_layer = 4
 script = ExtResource("1_qfm1y")
-face_collision_shape = NodePath("CollisionShape2D")
-body_collision_shape = NodePath("CollisionShape2D2")
-tail_collision_shape = NodePath("CollisionShape2D3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13.3333, -8.33333)
@@ -264,7 +262,9 @@ facing_right_rotation = 66.0
 [node name="HurtTimer" type="Timer" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-13.3333, -20, -1.66667, -11.6667, 3.33333, -1.66667, 0, 0, -15, -1.66667, -10, 6.66667, -15, 6.66667, -18.3333, 3.33333, -38.3333, 3.33333, -35, 6.66667, -41.6667, 6.66667, -45, 1.66667, -60, 3.33333, -53.3333, -1.66667, -45, -8.33333, -33.3333, -13.3333, -23.3333, -13.3333, -20, -18.3333)
+polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -8.33333, 6.66667, -16.6667, 6.66667, -18.3333, 3.33333, -36.6667, 3.33333, -31.6667, 8.33333, -40, 8.33333, -45, 1.66667, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)
+script = ExtResource("21_i4ail")
+facing_left_position = Vector2(-26.667, 0)
 
 [node name="PlayerDot" type="Sprite2D" parent="."]
 visibility_layer = 2

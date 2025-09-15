@@ -42,6 +42,7 @@ var character: AnimatedSprite2D = null
 @onready var hurt_sfx: AudioStreamPlayer = $HurtSFX
 @onready var dead_sfx: AudioStreamPlayer = $DeadSFX
 @onready var attack_sfx: AudioStreamPlayer = $AttackSFX
+@onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 
 signal player_died
 signal player_arrived
@@ -114,15 +115,19 @@ func fire_breath() -> void:
 
 func player_collision_shape_fliph(facing_left: bool):
 	if facing_left:
-		face_collision_shape.position = face_collision_shape.facing_left_position
-		body_collision_shape.position = body_collision_shape.facing_left_position
-		tail_collision_shape.position = tail_collision_shape.facing_left_position
-		tail_collision_shape.rotation_degrees = tail_collision_shape.facing_left_rotation
+		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * -1
+		collision_polygon_2d.position = collision_polygon_2d.facing_left_position
+		#face_collision_shape.position = face_collision_shape.facing_left_position
+		#body_collision_shape.position = body_collision_shape.facing_left_position
+		#tail_collision_shape.position = tail_collision_shape.facing_left_position
+		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_left_rotation
 	else:
-		face_collision_shape.position = face_collision_shape.facing_right_position
-		body_collision_shape.position = body_collision_shape.facing_right_position
-		tail_collision_shape.position = tail_collision_shape.facing_right_position
-		tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
+		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * 1
+		collision_polygon_2d.position = collision_polygon_2d.facing_right_position
+		#face_collision_shape.position = face_collision_shape.facing_right_position
+		#body_collision_shape.position = body_collision_shape.facing_right_position
+		#tail_collision_shape.position = tail_collision_shape.facing_right_position
+		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
 
 func _physics_process(delta: float) -> void:
 	if position.x >= ending_position:

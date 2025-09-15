@@ -18,15 +18,11 @@ var DAMAGE_NUMBER_SCENE = preload("res://scenes/damage_number.tscn")
 var rng = RandomNumberGenerator.new()
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
-@onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var players_parent: Node2D = $"../../Players"
 @onready var chase_area: Area2D = $ChaseArea
 @onready var attack_area: Area2D = $AttackArea
 @onready var attack_timer: Timer = $AttackTimer
-@onready var animation_player: AnimationPlayer = $AttackAnimation
 @onready var hit_box: Area2D = $HitBox
-@onready var hit_box_collisionshape: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var currentHP: int = maxHP
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
@@ -39,7 +35,6 @@ func _ready() -> void:
 	chase_area.body_exited.connect(_on_chase_area_body_exited)
 	attack_area.body_entered.connect(_on_attack_area_body_entered)
 	attack_area.body_exited.connect(_on_attack_area_body_exited)
-	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	hit_box.body_entered.connect(_on_hitbox_body_entered)
 	attack_timer.timeout.connect(_on_attack_timeout)
 	hurt_timer.timeout.connect(_on_hurt_timer_timeout)
@@ -49,42 +44,11 @@ func _ready() -> void:
 	monster_hp_bar.value = currentHP
 	
 func _physics_process(delta: float) -> void:
-	# Flip monster
-	if ray_cast_left.is_colliding():
-		flip_player()
-	if ray_cast_right.is_colliding():
-		flip_player()
-	
-	# Death
-	if death:
-		hit_box_collisionshape.disabled = true # 죽으면 공격 불가능하게
-		return
-		
 	# Hurt
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
 		return
-	 
-	# Attack
-	if in_attack_area and can_attack:
-		attack_animation()
-		can_attack = false
-		attack_timer.start(1)
-	
-	# Chase
-	if in_chase:
-		var player = players_parent.get_children()[0]
-		var distance = player.position.x - position.x
-		if abs(distance) <= 10:
-			velocity.x = 0
-		else:
-			if distance > 0:
-				direction = 1
-				animated_sprite.flip_h = true
-			else:
-				direction = -1
-				animated_sprite.flip_h = false
 		
 	# Default Velocity
 	velocity.x = direction * SPEED
@@ -125,34 +89,6 @@ func _on_attack_area_body_exited(body:Node2D) -> void:
 	if "player" in body.name:
 		print("attack area body exited")
 		in_attack_area = false
-		
-func attack_animation():
-	if not can_attack:
-		return
-	if animated_sprite.animation == "attack":
-		return
-	if not animation_player.current_animation in ["attack_left","attack_right"]:
-		on_attack = true
-		var player = players_parent.get_children()[0]
-		if position.x - player.position.x > 0:
-			# 플레이어가 왼쪽에서 다가옴
-			direction = -1
-			animated_sprite.flip_h = false
-			#animated_attack_left.visible = true
-			animation_player.play("attack_left")
-			animated_sprite.play("attack")
-				
-		elif position.x - player.position.x < 0:
-			# 플레이어가 오른쪽에서 다가옴
-			direction = 1
-			animation_player.play("attack_right")
-			#animated_attack_right.visible = true
-			animated_sprite.flip_h = true
-			animated_sprite.play("attack")
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name in ["attack_left","attack_right"]:
-		on_attack = false
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
