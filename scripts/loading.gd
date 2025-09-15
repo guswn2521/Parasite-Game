@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var speed = 500
-	if loading_dragon.position.x >= 1800:
-		loading_dragon.position.x = 600
+	var start_position = loading_dragon.position.x
+	if loading_dragon.position.x >= 1900:
+		loading_dragon.position.x = start_position
 	loading_dragon.position.x += delta * speed

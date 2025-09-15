@@ -47,7 +47,7 @@ grow_vertical = 2
 texture = ExtResource("1_yt702")
 
 [node name="LoadingDragon" type="AnimatedSprite2D" parent="TextureRect"]
-position = Vector2(600, 1025)
+position = Vector2(650, 1025)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_2b8ay")
 animation = &"Loading"
