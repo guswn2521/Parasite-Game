@@ -51,19 +51,13 @@ func game_over():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func _ready() -> void:
-	BgmManager.play_bgm("res://assets/sounds/1_Evening Harmony.ogg")
+	BgmManager.play_bgm_list()
 	get_viewport().canvas_cull_mask &= ~2  # 1번 비트 끄기
 	
 	if player != null:
 		player.connect("player_died", Callable(self, "game_over"))
 		player.player_arrived.connect(decide_true_ending)
-		
-	#if evolved_player != null:
-		
-		#evolved_player.player_arrived.connect(decide_true_ending)
-		#print("evolved_player 있음")
 	new_game()
-	#true_ending.connect("player_arrived", Callable(self, "decide_true_ending"))
 	
 
 func decide_true_ending():
@@ -71,9 +65,6 @@ func decide_true_ending():
 		return
 	print("is_true_ending = true")
 	is_true_ending = true
-
-
-	
 
 func _process(delta: float) -> void:
 	if is_true_ending and !true_ending_triggered:

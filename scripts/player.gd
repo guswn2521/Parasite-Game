@@ -160,7 +160,6 @@ func _physics_process(delta: float) -> void:
 	# Apply Movement
 	if direction:
 		walking = true
-		walking_sfx()
 		velocity.x = direction * SPEED
 	else:
 		walking = false
