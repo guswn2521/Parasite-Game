@@ -1,14 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=12 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ctr6on1nu5b8d" path="res://scenes/ui.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://by65s2bwdp3hq" path="res://scripts/game_manager.gd" id="3_u5sy4"]
-[ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
+[ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
-[ext_resource type="PackedScene" uid="uid://8fl1uahnd52q" path="res://scenes/dog.tscn" id="8_dinhu"]
-[ext_resource type="PackedScene" uid="uid://dre0dpbjxfn4t" path="res://scenes/mushroom.tscn" id="8_kvpfn"]
+[ext_resource type="PackedScene" path="res://scenes/dog.tscn" id="8_dinhu"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
 
@@ -28,7 +27,7 @@ script = ExtResource("3_u5sy4")
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 z_index = 2
-position = Vector2(-433, -90)
+position = Vector2(63750, -90)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 unique_name_in_owner = true
@@ -40,8 +39,18 @@ script = ExtResource("4_iywne")
 
 [node name="Monsters" type="Node" parent="."]
 
-[node name="Mushroom" parent="Monsters" instance=ExtResource("8_kvpfn")]
+[node name="Mushroom" parent="Monsters"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(-579, -26)
+script = null
 
 [node name="dog" parent="Monsters" instance=ExtResource("8_dinhu")]
 position = Vector2(-282, -49)

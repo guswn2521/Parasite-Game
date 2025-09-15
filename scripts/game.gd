@@ -72,13 +72,12 @@ func decide_true_ending():
 	print("is_true_ending = true")
 	is_true_ending = true
 
-func show_true_ending_ui():
-	true_ending.show_true_ending()
+
+	
 
 func _process(delta: float) -> void:
 	if is_true_ending and !true_ending_triggered:
 		await get_tree().create_timer(1.0).timeout
 		get_tree().change_scene_to_file("res://scenes/true_ending.tscn")
-		show_true_ending_ui()
 		true_ending_triggered = true
 		
