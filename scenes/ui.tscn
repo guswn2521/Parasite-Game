@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctr6on1nu5b8d"]
+[gd_scene load_steps=15 format=3 uid="uid://ctr6on1nu5b8d"]
 
 [ext_resource type="Script" uid="uid://b84xd5oqeuuay" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Script" uid="uid://b2ggh8uc2stfs" path="res://scripts/duplication.gd" id="2_x4jx1"]
@@ -11,18 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dqnd658d8ox4c" path="res://assets/themes/BlackBigCircleBoxWithBorder_27x27.png" id="6_p7vwb"]
 [ext_resource type="AudioStream" uid="uid://dsu44eb1oabjm" path="res://assets/sfx/back_style_3_001.wav" id="7_catpy"]
 [ext_resource type="Texture2D" uid="uid://cbn2nr5nmok2c" path="res://assets/themes/HeartIcons_32x32.png" id="7_ktti3"]
-[ext_resource type="PackedScene" uid="uid://vnph6tnndcb3" path="res://scenes/true_ending.tscn" id="8_cgfq5"]
-[ext_resource type="PackedScene" uid="uid://b6cp1rwj0m1ay" path="res://scenes/gameover.tscn" id="9_7dvkv"]
 [ext_resource type="Texture2D" uid="uid://b6mfmpjv4fa3g" path="res://assets/themes/CornerKnot_14x14.png" id="9_vdcm2"]
-[ext_resource type="AudioStream" uid="uid://cmlr363bulupk" path="res://assets/sounds/true_ending.mp3" id="11_jkdwc"]
 [ext_resource type="PackedScene" uid="uid://bnqj5jx51puj6" path="res://scenes/minimap.tscn" id="12_6rmj2"]
 [ext_resource type="Texture2D" uid="uid://cyq6runydh4mn" path="res://assets/themes/RectangleBox_96x96.png" id="12_vsj0x"]
-[ext_resource type="Script" uid="uid://bvgputf7sn1hr" path="res://scripts/title.gd" id="14_8k7j3"]
-[ext_resource type="Texture2D" uid="uid://b50oqxle6a0we" path="res://assets/themes/game_theme_bg.png" id="14_qsv74"]
-[ext_resource type="Texture2D" uid="uid://dvuavt2ufsq3a" path="res://assets/themes/TopPatternPanel_02_33x15.png" id="15_f7tlh"]
-[ext_resource type="Texture2D" uid="uid://4omavltjklky" path="res://assets/themes/BottomPatternPanel_119x17.png" id="16_8k7j3"]
-[ext_resource type="AudioStream" uid="uid://b2uo7hfs7kq" path="res://assets/sfx/Fantasy_UI (21).wav" id="17_jkdwc"]
-[ext_resource type="AudioStream" uid="uid://bj1dxebcrhsui" path="res://assets/sounds/start_title.mp3" id="20_rlppe"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nt7q6")
@@ -171,16 +162,6 @@ offset_right = 34.0
 offset_bottom = 150.0
 texture = ExtResource("9_vdcm2")
 
-[node name="TrueEnding" parent="." instance=ExtResource("8_cgfq5")]
-visible = false
-
-[node name="TrueEndingBGM" type="AudioStreamPlayer" parent="TrueEnding"]
-stream = ExtResource("11_jkdwc")
-bus = &"BGM"
-
-[node name="Gameover" parent="." instance=ExtResource("9_7dvkv")]
-visible = false
-
 [node name="Labels" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 1
@@ -240,155 +221,7 @@ offset_right = 590.0
 offset_bottom = 0.0
 grow_vertical = 0
 
-[node name="Title" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_gdt2y")
-script = ExtResource("14_8k7j3")
-
-[node name="TextureRect" type="TextureRect" parent="Title"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("14_qsv74")
-
-[node name="Panel2" type="Panel" parent="Title/TextureRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -500.0
-offset_right = 400.0
-offset_bottom = 500.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_gdt2y")
-
-[node name="TopPattern" type="TextureRect" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 90.0
-offset_top = 90.0
-offset_right = -90.0
-offset_bottom = 148.0
-grow_horizontal = 2
-texture = ExtResource("15_f7tlh")
-
-[node name="Label" type="Label" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 96.0
-offset_top = 160.0
-offset_right = -104.0
-offset_bottom = -540.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Title"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="StartButton" type="Button" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -119.5
-offset_top = 63.0
-offset_right = 119.5
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Start"
-
-[node name="BottomPattern" type="TextureRect" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 75.0
-offset_top = -190.0
-offset_right = -85.0
-offset_bottom = -110.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("16_8k7j3")
-
-[node name="corner1" type="TextureRect" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-offset_left = -30.0
-offset_top = -20.0
-offset_right = 60.0
-offset_bottom = 70.0
-texture = ExtResource("9_vdcm2")
-
-[node name="corner2" type="TextureRect" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -60.0
-offset_top = -20.0
-offset_right = 30.0
-offset_bottom = 70.0
-grow_horizontal = 0
-texture = ExtResource("9_vdcm2")
-
-[node name="corner3" type="TextureRect" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -30.0
-offset_top = -70.0
-offset_right = 60.0
-offset_bottom = 20.0
-grow_vertical = 0
-texture = ExtResource("9_vdcm2")
-
-[node name="corner4" type="TextureRect" parent="Title/TextureRect/Panel2"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -70.0
-offset_right = 30.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("9_vdcm2")
-
-[node name="ButtonClicked" type="AudioStreamPlayer" parent="Title/TextureRect"]
-stream = ExtResource("17_jkdwc")
-bus = &"SFX"
-
-[node name="TitleBGM" type="AudioStreamPlayer" parent="Title"]
-stream = ExtResource("20_rlppe")
-bus = &"BGM"
-
 [connection signal="pressed" from="Control/Evolution" to="." method="_on_duplication_pressed"]
 
 [editable path="HpBox/Panel/PlayerHP"]
-[editable path="TrueEnding"]
-[editable path="Gameover"]
 [editable path="Minimap"]

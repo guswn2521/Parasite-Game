@@ -4,13 +4,13 @@ extends Node2D
 
 @onready var player: CharacterBody2D = $Players/player
 @onready var evolved_player: CharacterBody2D = $Players/evolved_player
-@onready var start_timer: Timer = $Timers/StartTimer
 @onready var mob_timer: Timer = $Timers/MobTimer
 @onready var monsters: Node = $Monsters
 @onready var gameover: Control = $UI/Gameover
-@onready var gameover_timer: Timer = $UI/Gameover/GameoverTimer
 @onready var true_ending: Control = $UI/TrueEnding
 @onready var sub_viewport: SubViewport = $SubViewport
+@onready var camera_2d: Camera2D = $Players/player/Camera2D
+
 var is_true_ending : bool = false
 var true_ending_triggered : bool = false
 
@@ -34,7 +34,6 @@ func get_monster_positions():
 
 func new_game():
 	get_monster_positions()
-	gameover.visible = false
 	GameManager.dna = 0
 	mob_timer.start()
 
@@ -43,33 +42,16 @@ func _on_mob_timer_timeout() -> void:
 		var mob = mob_scene.instantiate()
 		mob.global_position = position
 		print("몬스터 생성", mob.global_position)
-
-		#var minimap_dot = Sprite2D.new()
-		#minimap_dot.name = "EnemyDot"
-		#minimap_dot.texture = preload("res://assets/red_dot.png")
-		#minimap_dot.scale = Vector2(2.5, 2.5)
-		#minimap_dot.set_visibility_layer_bit(0, false) # 1 off
-		#minimap_dot.set_visibility_layer_bit(1, true) # 2 on
-		#minimap_dot.z_index = 4
-		#print("minimap", minimap_dot.visibility_layer)
-		#mob.add_child(minimap_dot)
 		monsters.add_child(mob)
 
 func game_over():
 	mob_timer.stop()
 	print("game_over")
-	start_timer.start()
-	gameover_timer.start()
-	
+	await get_tree().create_timer(1.0).timeout
+	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
-func _on_gameover_timer_timeout() -> void:
-	gameover.visible = true
-
-func _on_start_timer_timeout() -> void:
-	get_tree().reload_current_scene()
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	BgmManager.play_bgm("res://assets/sounds/1_Evening Harmony.ogg")
 	get_viewport().canvas_cull_mask &= ~2  # 1번 비트 끄기
 	
 	if player != null:
@@ -89,15 +71,14 @@ func decide_true_ending():
 		return
 	print("is_true_ending = true")
 	is_true_ending = true
-	
 
 func show_true_ending_ui():
 	true_ending.show_true_ending()
-	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_true_ending and !true_ending_triggered:
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://scenes/true_ending.tscn")
 		show_true_ending_ui()
 		true_ending_triggered = true
 		

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6cp1rwj0m1ay"]
+[gd_scene load_steps=4 format=3 uid="uid://b6cp1rwj0m1ay"]
 
-[ext_resource type="Theme" uid="uid://b47lgkm1ie1fj" path="res://game_themes.tres" id="1_dy3ie"]
+[ext_resource type="Theme" uid="uid://bdla7c4dxxok8" path="res://game_themes.tres" id="1_dy3ie"]
 [ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_ncp31"]
+[ext_resource type="Script" uid="uid://cjbthdhwdtysn" path="res://scripts/gameover.gd" id="2_h8i2o"]
 
 [node name="Gameover" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_dy3ie")
+script = ExtResource("2_h8i2o")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -29,6 +31,3 @@ theme_override_fonts/font = ExtResource("1_ncp31")
 theme_override_font_sizes/font_size = 64
 text = "GameOver"
 uppercase = true
-
-[node name="GameoverTimer" type="Timer" parent="."]
-one_shot = true

@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddpn50y678er3"]
+
+[ext_resource type="Script" uid="uid://dn3562ljv2kul" path="res://scripts/loading.gd" id="1_2ytni"]
+[ext_resource type="Texture2D" uid="uid://b50oqxle6a0we" path="res://assets/themes/game_theme_bg.png" id="1_yt702"]
+[ext_resource type="Texture2D" uid="uid://bvit1jt7e1ry" path="res://assets/small_dragon/Walk1.png" id="2_2ytni"]
+[ext_resource type="Texture2D" uid="uid://cgjtucl2dhmle" path="res://assets/small_dragon/Walk2.png" id="3_nxo4k"]
+[ext_resource type="Texture2D" uid="uid://cmrf001dkb668" path="res://assets/small_dragon/Walk3.png" id="4_c856a"]
+[ext_resource type="Texture2D" uid="uid://doe2s5qu30viv" path="res://assets/small_dragon/Walk4.png" id="5_3cqd5"]
+[ext_resource type="FontFile" uid="uid://b1ecpk6d5dsk7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="7_nxo4k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2b8ay"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2ytni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nxo4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c856a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3cqd5")
+}],
+"loop": true,
+"name": &"Loading",
+"speed": 8.0
+}]
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ytni")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yt702")
+
+[node name="LoadingDragon" type="AnimatedSprite2D" parent="TextureRect"]
+position = Vector2(600, 1025)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_2b8ay")
+animation = &"Loading"
+autoplay = "Loading"
+frame = 1
+frame_progress = 0.0248372
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -11.5
+offset_right = 37.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_nxo4k")
+theme_override_font_sizes/font_size = 64
+text = "Loading..."

@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=13 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://wnq0abf5qiww" path="res://scenes/bgm_manager.tscn" id="3_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://ctr6on1nu5b8d" path="res://scenes/ui.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://by65s2bwdp3hq" path="res://scripts/game_manager.gd" id="3_u5sy4"]
 [ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
@@ -19,8 +18,6 @@
 script = ExtResource("1_uwrxv")
 mob_scene = ExtResource("4_lbhrr")
 
-[node name="BGMManager" parent="." instance=ExtResource("3_kvpfn")]
-
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_u5sy4")
@@ -34,6 +31,7 @@ z_index = 2
 position = Vector2(140, -130)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
+unique_name_in_owner = true
 position = Vector2(0, -167.667)
 zoom = Vector2(4, 4)
 
@@ -52,10 +50,6 @@ position = Vector2(63642, 94)
 position = Vector2(64282, 130)
 
 [node name="Timers" type="Node" parent="."]
-
-[node name="StartTimer" type="Timer" parent="Timers"]
-wait_time = 3.0
-one_shot = true
 
 [node name="MobTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
@@ -77,15 +71,12 @@ shape = SubResource("WorldBoundaryShape2D_kvpfn")
 position = Vector2(40, -7)
 
 [connection signal="pressed" from="UI/Control/duplication" to="UI/Control/duplication" method="_on_pressed"]
-[connection signal="timeout" from="UI/Gameover/GameoverTimer" to="." method="_on_gameover_timer_timeout"]
-[connection signal="timeout" from="Timers/StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
 
 [editable path="UI"]
 [editable path="UI/HpBox/Panel/PlayerHP"]
-[editable path="UI/TrueEnding"]
-[editable path="UI/Gameover"]
 [editable path="UI/Minimap"]
+[editable path="Players/player"]
 [editable path="Killzone"]
 [editable path="Tiles"]

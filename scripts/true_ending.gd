@@ -6,23 +6,14 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	visible = false
+	#visible = false
 	restart_button.pressed.connect(restart_button_pressed)
 
 func _process(delta: float) -> void:
 	pass
 
 func show_true_ending():
-	var timer = Timer.new()
-	timer.autostart = true
-	timer.one_shot = true
-	timer.wait_time = 1.0
-	add_child(timer)
-	timer.timeout.connect(timer_timeout)
-
-func timer_timeout():
-	visible = true
-	true_ending_bgm.play()
+	BgmManager.play_bgm("res://assets/sounds/true_ending.mp3")
 
 
 func restart_button_pressed():
