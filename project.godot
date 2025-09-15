@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Bgm="*res://scenes/bgm.tscn"
 GameManager="*res://scripts/game_manager.gd"
 BgmManager="*res://scenes/bgm_manager.tscn"
 
