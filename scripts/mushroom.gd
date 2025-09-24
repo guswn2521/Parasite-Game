@@ -2,6 +2,8 @@ extends "res://scripts/monster_base.gd"
 
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
+@onready var ray_cast_left_head: RayCast2D = $RayCastLeft_head
+@onready var ray_cast_right_head: RayCast2D = $RayCastRight_head
 @onready var animation_player: AnimationPlayer = $AttackAnimation
 @onready var hit_box_collisionshape: CollisionShape2D = $HitBox/CollisionShape2D
 
@@ -13,7 +15,11 @@ func _physics_process(delta: float) -> void:
 	# Flip monster
 	if ray_cast_left.is_colliding():
 		flip_player()
-	if ray_cast_right.is_colliding():
+	elif ray_cast_right.is_colliding():
+		flip_player()
+	elif ray_cast_left_head.is_colliding():
+		flip_player()
+	elif ray_cast_right_head.is_colliding():
 		flip_player()
 	# Death
 	if death:

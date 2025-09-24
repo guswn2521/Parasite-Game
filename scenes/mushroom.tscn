@@ -584,29 +584,36 @@ script = ExtResource("1_jekqn")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 position = Vector2(-15, -17)
-polygon = PackedVector2Array(0, 0, 9, 0, 9, 4, 9, 16, 12, 16, 12, 13, 14, 13, 14, 16, 18, 16, 18, 0, 28, -1, 28, -7, 21, -13, 18, -14, 9, -14, 2, -8, 0, -6)
+polygon = PackedVector2Array(0, 0, 9, 0, 8, 4, 8, 11, 9, 13, 9, 17, 12, 17, 12, 13, 14, 13, 14, 17, 18, 17, 18, 13, 20, 11, 20, 0, 28, -1, 28, -7, 21, -13, 18, -14, 9, -14, 2, -8, 0, -6)
 
-[node name="RayCastLeft" type="RayCast2D" parent="." index="1"]
+[node name="RayCastLeft_head" type="RayCast2D" parent="." index="1"]
+position = Vector2(0, -22)
+target_position = Vector2(-16, 0)
+
+[node name="RayCastRight_head" type="RayCast2D" parent="." index="2"]
+position = Vector2(0, -22)
+target_position = Vector2(14, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." index="3"]
 position = Vector2(0, -9)
-target_position = Vector2(-12, 0)
+target_position = Vector2(-8, 0)
 
-[node name="RayCastRight" type="RayCast2D" parent="." index="2"]
+[node name="RayCastRight" type="RayCast2D" parent="." index="4"]
 position = Vector2(0, -9)
-target_position = Vector2(12, 0)
+target_position = Vector2(6, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 position = Vector2(-1, -32)
 sprite_frames = SubResource("SpriteFrames_mes6e")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.667044
 flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MonsterArea" index="0"]
 position = Vector2(-15, -17)
 polygon = PackedVector2Array(0, 0, 9, 0, 9, 4, 9, 16, 12, 16, 12, 13, 14, 13, 14, 16, 18, 16, 18, 0, 28, -1, 28, -7, 21, -13, 18, -14, 9, -14, 2, -8, 0, -6)
 
-[node name="AttackAnimation" type="AnimationPlayer" parent="." index="8"]
+[node name="AttackAnimation" type="AnimationPlayer" parent="." index="10"]
 root_node = NodePath("../AttackTimer")
 libraries = {
 &"": SubResource("AnimationLibrary_6rddh")
@@ -618,6 +625,6 @@ position = Vector2(-8.99997, 9.00003)
 rotation = 0.0449671
 shape = SubResource("CapsuleShape2D_qqj2b")
 
-[node name="TextureProgressBar" parent="." index="11"]
+[node name="TextureProgressBar" parent="." index="13"]
 offset_left = -31.0
 offset_right = 33.0
