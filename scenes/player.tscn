@@ -17,10 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://cgjtucl2dhmle" path="res://assets/small_dragon/Walk2.png" id="14_ujl30"]
 [ext_resource type="Texture2D" uid="uid://cmrf001dkb668" path="res://assets/small_dragon/Walk3.png" id="15_31cv2"]
 [ext_resource type="Texture2D" uid="uid://doe2s5qu30viv" path="res://assets/small_dragon/Walk4.png" id="16_pf23h"]
-[ext_resource type="Script" uid="uid://bhvia4jwxg5ak" path="res://scripts/collision_shape_2d.gd" id="18_fulsm"]
-[ext_resource type="Script" uid="uid://c27wjug3mjim4" path="res://scripts/collision_shape_2d_2.gd" id="19_4r5pv"]
-[ext_resource type="Script" uid="uid://ck5u12q0mlxcq" path="res://scripts/collision_shape_2d_3.gd" id="20_60mlk"]
-[ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="21_i4ail"]
+[ext_resource type="Script" path="res://scripts/collision_shape_2d.gd" id="18_fulsm"]
+[ext_resource type="Script" path="res://scripts/collision_shape_2d_2.gd" id="19_4r5pv"]
+[ext_resource type="Script" path="res://scripts/collision_shape_2d_3.gd" id="20_60mlk"]
+[ext_resource type="Script" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
 [ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="22_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://c038gy7q8dkbg" path="res://assets/sprites/dragon/Attack2.png" id="23_2dvfe"]
 [ext_resource type="Texture2D" uid="uid://cm4qym8xw3lur" path="res://assets/sprites/dragon/Attack3.png" id="24_giy8y"]
@@ -45,7 +45,6 @@
 [ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
 [ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
 [ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
-[ext_resource type="Script" uid="uid://jtyoyw60mhnx" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
 animations = [{
@@ -217,7 +216,7 @@ size = Vector2(36, 15)
 radius = 3.14737
 height = 20.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("face_collision_shape", "body_collision_shape", "tail_collision_shape")]
+[node name="player" type="CharacterBody2D"]
 position = Vector2(8, 0)
 scale = Vector2(0.6, 0.6)
 collision_layer = 4
@@ -262,7 +261,7 @@ facing_right_rotation = 66.0
 [node name="HurtTimer" type="Timer" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -8.33333, 6.66667, -16.6667, 6.66667, -18.3333, 3.33333, -36.6667, 3.33333, -31.6667, 8.33333, -40, 8.33333, -45, 1.66667, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)
+polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -18.3333, 3.33333, -36.6667, 3.33333, -46.6667, 3.33333, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)
 script = ExtResource("21_i4ail")
 facing_left_position = Vector2(-26.667, 0)
 
@@ -271,7 +270,6 @@ visibility_layer = 2
 z_index = 4
 position = Vector2(-13.333, -25)
 scale = Vector2(3.5, 3.5)
-texture = ExtResource("21_i4ail")
 
 [node name="WalkSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("41_2dvfe")
