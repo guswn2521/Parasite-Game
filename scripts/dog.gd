@@ -3,9 +3,16 @@ extends "res://scripts/monster_base.gd"
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var hit_box_collisionshape: CollisionShape2D = $HitBox/CollisionShape2D
+@onready var enemy_dot: Sprite2D = $EnemyDot
 
 func _ready() -> void:
 	super()
+	enemy_dot.set_visibility_layer_bit(0, false) # 1번 끔
+	enemy_dot.set_visibility_layer_bit(1, true) # 2번 켬
+	animated_sprite.set_visibility_layer_bit(0, false) # 1번 끔
+	animated_sprite.set_visibility_layer_bit(2, true) # 3번 켬
+	monster_hp_bar.set_visibility_layer_bit(0, false) # 1번 끔
+	monster_hp_bar.set_visibility_layer_bit(2, false) # 3번 켬
 
 func _physics_process(delta: float) -> void:
 	# Flip monster

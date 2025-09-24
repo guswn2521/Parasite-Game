@@ -110,7 +110,7 @@ func game_over():
 
 func _ready() -> void:
 	BgmManager.play_bgm_list()
-	get_viewport().canvas_cull_mask &= ~2  # 1번 비트 끄기
+	get_viewport().canvas_cull_mask &= ~2  # 2번 비트 끄기
 	
 	if player != null:
 		player.connect("player_died", Callable(self, "game_over"))

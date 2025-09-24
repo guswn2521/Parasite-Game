@@ -32,6 +32,9 @@ script = ExtResource("3_u5sy4")
 z_index = 2
 position = Vector2(-250, -90)
 
+[node name="CollisionPolygon2D" parent="Players/player" index="6"]
+polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -8.33333, 6.66667, -16.6667, 6.66667, -18.3333, 3.33333, -36.6667, 3.33333, -31.6667, 8.33333, -40, 8.33333, -45, 1.66667, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)
+
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 unique_name_in_owner = true
 position = Vector2(0, -167.667)
