@@ -26,7 +26,7 @@ func set_left(is_left: int)-> void:
 	if is_left:
 		direction = -1
 		animated_sprite.flip_h = true
-		global_position += Vector2(-210,0)
+		global_position += Vector2(-160,0)
 	else:
 		direction = 1
 

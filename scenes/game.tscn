@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ctr6on1nu5b8d" path="res://scenes/ui.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://by65s2bwdp3hq" path="res://scripts/game_manager.gd" id="3_u5sy4"]
-[ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
+[ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bgkj1yq7jxrk" path="res://scenes/mushroom.tscn" id="7_vtaks"]
@@ -30,7 +30,7 @@ script = ExtResource("3_u5sy4")
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 z_index = 2
-position = Vector2(-250, -90)
+position = Vector2(-870, 0)
 
 [node name="CollisionPolygon2D" parent="Players/player" index="6"]
 polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -8.33333, 6.66667, -16.6667, 6.66667, -18.3333, 3.33333, -36.6667, 3.33333, -31.6667, 8.33333, -40, 8.33333, -45, 1.66667, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)

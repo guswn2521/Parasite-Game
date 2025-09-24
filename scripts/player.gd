@@ -5,7 +5,7 @@ class_name Player
 var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
-const FIRE_OFFSET: Vector2 = Vector2(110, -50)
+const FIRE_OFFSET: Vector2 = Vector2(50, -30)
 var is_hurt = false
 var is_dead = false
 var walking = false
@@ -22,14 +22,14 @@ var recover_timer: Timer
 var ending_position = 64301
 var state = "base_player"
 var character: AnimatedSprite2D = null
-@export var face_collision_shape: FaceCollisionShape
-@export var body_collision_shape : BodyCollisionShape
-@export var tail_collision_shape : TailCollisionShape
 
 @onready var player_dot: Sprite2D = $PlayerDot
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_polygon: CollisionPolygon2D = $CollisionPolygon
 @onready var evolved_animated_sprite: AnimatedSprite2D = $EvolvedAnimatedSprite
+@onready var evolved_player_collision: CollisionPolygon2D = $EvolvedPlayerCollision
+
 @onready var hurt_timer: Timer = $HurtTimer
 #@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
 #@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
@@ -42,12 +42,13 @@ var character: AnimatedSprite2D = null
 @onready var hurt_sfx: AudioStreamPlayer = $HurtSFX
 @onready var dead_sfx: AudioStreamPlayer = $DeadSFX
 @onready var attack_sfx: AudioStreamPlayer = $AttackSFX
-@onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 
 signal player_died
 signal player_arrived
 
 func _ready() -> void:
+	evolved_animated_sprite.visible = false
+	evolved_player_collision.visible = false
 	add_to_group("Players")
 	evolution.evolved.connect(evolved)
 	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
@@ -84,6 +85,11 @@ func evolved():
 	state = "evolved"
 	animated_sprite.visible = false
 	evolved_animated_sprite.visible = true
+	evolved_player_collision.visible = true
+	evolved_player_collision.disabled = false
+	collision_polygon.visible = false
+	collision_polygon.disabled = true
+	
 	if state == "evolved":
 		character = evolved_animated_sprite
 		character.set_visibility_layer_bit(0, false) # 1번 Visibility Layer 끄기
@@ -108,26 +114,20 @@ func fire_breath() -> void:
 	var fire_instance = FIRE_SCENE.instantiate()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fire_instance)
 	fire_instance.global_position = global_position + FIRE_OFFSET
-	fire_instance.set_left(animated_sprite.flip_h)
+	fire_instance.set_left(evolved_animated_sprite.flip_h)
 	await get_tree().create_timer(0.45).timeout
 	fire_instance.queue_free()
 	attack_state=false
 
-func player_collision_shape_fliph(facing_left: bool):
+func player_collision_shape_fliph(facing_left: bool, collision_shape):
 	if facing_left:
-		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * -1
-		collision_polygon_2d.position = collision_polygon_2d.facing_left_position
-		#face_collision_shape.position = face_collision_shape.facing_left_position
-		#body_collision_shape.position = body_collision_shape.facing_left_position
-		#tail_collision_shape.position = tail_collision_shape.facing_left_position
-		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_left_rotation
+		collision_shape.scale.x = abs(collision_shape.scale.x) * -1
+		collision_shape.position = collision_shape.facing_left_position
+		
 	else:
-		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * 1
-		collision_polygon_2d.position = collision_polygon_2d.facing_right_position
-		#face_collision_shape.position = face_collision_shape.facing_right_position
-		#body_collision_shape.position = body_collision_shape.facing_right_position
-		#tail_collision_shape.position = tail_collision_shape.facing_right_position
-		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
+		collision_shape.scale.x = abs(collision_shape.scale.x) * 1
+		collision_shape.position = collision_shape.facing_right_position
+		
 
 func _physics_process(delta: float) -> void:
 	if position.x >= ending_position:
@@ -155,7 +155,10 @@ func _physics_process(delta: float) -> void:
 			character.flip_h = true
 		elif direction == 1:
 			character.flip_h = false
-	player_collision_shape_fliph(animated_sprite.flip_h) 
+	if state == "base_player":
+		player_collision_shape_fliph(animated_sprite.flip_h, collision_polygon) 
+	elif state == "evolved":
+		player_collision_shape_fliph(evolved_animated_sprite.flip_h, evolved_player_collision)
 	
 	# Apply Movement
 	if direction:

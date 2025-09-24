@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b6teo8gqu2gxs"]
+[gd_scene load_steps=47 format=3 uid="uid://b6teo8gqu2gxs"]
 
 [ext_resource type="Texture2D" uid="uid://ka077qt00kxj" path="res://assets/small_dragon/Idle1.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b6orhmotvc05e" path="res://assets/small_dragon/Attack1.png" id="1_a8ls1"]
@@ -17,9 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://cgjtucl2dhmle" path="res://assets/small_dragon/Walk2.png" id="14_ujl30"]
 [ext_resource type="Texture2D" uid="uid://cmrf001dkb668" path="res://assets/small_dragon/Walk3.png" id="15_31cv2"]
 [ext_resource type="Texture2D" uid="uid://doe2s5qu30viv" path="res://assets/small_dragon/Walk4.png" id="16_pf23h"]
-[ext_resource type="Script" uid="uid://bhvia4jwxg5ak" path="res://scripts/collision_shape_2d.gd" id="18_fulsm"]
-[ext_resource type="Script" uid="uid://c27wjug3mjim4" path="res://scripts/collision_shape_2d_2.gd" id="19_4r5pv"]
-[ext_resource type="Script" uid="uid://ck5u12q0mlxcq" path="res://scripts/collision_shape_2d_3.gd" id="20_60mlk"]
 [ext_resource type="Script" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
 [ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="22_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://c038gy7q8dkbg" path="res://assets/sprites/dragon/Attack2.png" id="23_2dvfe"]
@@ -44,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="41_holxr"]
 [ext_resource type="AudioStream" uid="uid://xoo4ldg50sr" path="res://assets/sfx/30_Jump_03.wav" id="42_giy8y"]
 [ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
+[ext_resource type="Script" uid="uid://brwo41bxfwypx" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
 [ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
 [ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
 
@@ -208,15 +206,6 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a8ls1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfm1y"]
-size = Vector2(36, 15)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfm1y"]
-radius = 3.14737
-height = 20.0
-
 [node name="player" type="CharacterBody2D"]
 position = Vector2(8, 0)
 scale = Vector2(0.6, 0.6)
@@ -226,47 +215,32 @@ script = ExtResource("1_qfm1y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13.3333, -8.33333)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"attack"
+animation = &"walk"
+frame = 2
+frame_progress = 0.987339
 
 [node name="EvolvedAnimatedSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(4, -55)
+position = Vector2(-50, -30)
 sprite_frames = SubResource("SpriteFrames_42b1b")
 animation = &"walk"
-flip_h = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -10)
-shape = SubResource("CircleShape2D_a8ls1")
-script = ExtResource("18_fulsm")
-facing_left_position = Vector2(-20, -10)
-facing_right_position = Vector2(-5, -10)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-26.6667, -5)
-shape = SubResource("RectangleShape2D_qfm1y")
-script = ExtResource("19_4r5pv")
-facing_left_position = Vector2(0, -5)
-facing_right_position = Vector2(-26.667, -5)
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(-48.3333, -1.66667)
-rotation = 1.15192
-shape = SubResource("CapsuleShape2D_qfm1y")
-script = ExtResource("20_60mlk")
-facing_left_position = Vector2(21.667, -1.667)
-facing_right_position = Vector2(-48.333, -1.667)
-facing_left_rotation = -66.0
-facing_right_rotation = 66.0
 
 [node name="HurtTimer" type="Timer" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -18.3333, 3.33333, -36.6667, 3.33333, -46.6667, 3.33333, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)
 script = ExtResource("21_i4ail")
 facing_left_position = Vector2(-26.667, 0)
 
+[node name="EvolvedPlayerCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2(-63, -2)
+polygon = PackedVector2Array(59, -22, 83, -4, 79, 2, 61, -5, 53, 10, 53, 31, 2, 31, -2, 17, 2, 11, 2, -2, 13, -8, 49, -8)
+disabled = true
+script = ExtResource("44_g5jhy")
+facing_left_position = Vector2(-40, 0)
+facing_right_position = Vector2(-60, 0)
+
 [node name="PlayerDot" type="Sprite2D" parent="."]
+visible = false
 z_index = 4
 position = Vector2(-13.333, -25)
 scale = Vector2(3.5, 3.5)
