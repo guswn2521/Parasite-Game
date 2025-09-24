@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdt3w"]
 radius = 9.0
-height = 138.0
+height = 128.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7b6q"]
 size = Vector2(70, 19)

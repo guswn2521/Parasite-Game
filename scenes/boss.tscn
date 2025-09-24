@@ -1,6 +1,7 @@
-[gd_scene load_steps=64 format=3 uid="uid://ddhjroc2a658q"]
+[gd_scene load_steps=67 format=3 uid="uid://ddhjroc2a658q"]
 
 [ext_resource type="PackedScene" uid="uid://b8uvuwlj4nxue" path="res://scenes/monster_base.tscn" id="1_dlmty"]
+[ext_resource type="Script" uid="uid://cu5qovqtygefw" path="res://scripts/boss.gd" id="2_jncid"]
 [ext_resource type="Texture2D" uid="uid://bbma58t2ur8la" path="res://assets/sprites/demon_slime_FREE_v1.0_288x160_spritesheet.png" id="2_neq0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dlq0"]
@@ -451,21 +452,38 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_neq0i"]
+radius = 32.0
+height = 372.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_neq0i"]
+size = Vector2(189.5, 64)
+
 [node name="Boss" instance=ExtResource("1_dlmty")]
+script = ExtResource("2_jncid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(-3, -91)
 sprite_frames = SubResource("SpriteFrames_2avx2")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.180469
+
+[node name="RayCastRight" type="RayCast2D" parent="." index="1"]
+position = Vector2(1, -32)
+target_position = Vector2(31, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." index="2"]
+position = Vector2(1, -32)
+target_position = Vector2(-28, 0)
 
 [node name="CollisionShape2D" parent="ChaseArea" index="0"]
-position = Vector2(0, -28)
+position = Vector2(0, -44)
+shape = SubResource("CapsuleShape2D_neq0i")
 
 [node name="CollisionShape2D" parent="AttackArea" index="0"]
-position = Vector2(-1, -30)
+position = Vector2(1.25, -44)
+shape = SubResource("RectangleShape2D_neq0i")
 
-[node name="TextureProgressBar" parent="." index="7"]
-offset_top = -108.0
-offset_bottom = -68.0
+[node name="TextureProgressBar" parent="." index="9"]
+offset_top = -101.0
+offset_bottom = -61.0
