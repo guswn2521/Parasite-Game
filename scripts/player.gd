@@ -22,10 +22,6 @@ var recover_timer: Timer
 var ending_position = 64301
 var state = "base_player"
 var character: AnimatedSprite2D = null
-@export var face_collision_shape: FaceCollisionShape
-@export var body_collision_shape : BodyCollisionShape
-@export var tail_collision_shape : TailCollisionShape
-
 @onready var player_dot: Sprite2D = $PlayerDot
 @onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -117,17 +113,9 @@ func player_collision_shape_fliph(facing_left: bool):
 	if facing_left:
 		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * -1
 		collision_polygon_2d.position = collision_polygon_2d.facing_left_position
-		#face_collision_shape.position = face_collision_shape.facing_left_position
-		#body_collision_shape.position = body_collision_shape.facing_left_position
-		#tail_collision_shape.position = tail_collision_shape.facing_left_position
-		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_left_rotation
 	else:
 		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * 1
 		collision_polygon_2d.position = collision_polygon_2d.facing_right_position
-		#face_collision_shape.position = face_collision_shape.facing_right_position
-		#body_collision_shape.position = body_collision_shape.facing_right_position
-		#tail_collision_shape.position = tail_collision_shape.facing_right_position
-		#tail_collision_shape.rotation_degrees = tail_collision_shape.facing_right_rotation
 
 func _physics_process(delta: float) -> void:
 	if position.x >= ending_position:

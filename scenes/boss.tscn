@@ -1,8 +1,10 @@
-[gd_scene load_steps=67 format=3 uid="uid://ddhjroc2a658q"]
+[gd_scene load_steps=69 format=3 uid="uid://ddhjroc2a658q"]
 
 [ext_resource type="PackedScene" uid="uid://b8uvuwlj4nxue" path="res://scenes/monster_base.tscn" id="1_dlmty"]
 [ext_resource type="Script" uid="uid://cu5qovqtygefw" path="res://scripts/boss.gd" id="2_jncid"]
 [ext_resource type="Texture2D" uid="uid://bbma58t2ur8la" path="res://assets/sprites/demon_slime_FREE_v1.0_288x160_spritesheet.png" id="2_neq0i"]
+[ext_resource type="Script" uid="uid://ci5vmx3hvhi50" path="res://scripts/boss_collision_polygon_2d.gd" id="3_qnbj4"]
+[ext_resource type="Script" uid="uid://bawao2vlus0a5" path="res://scripts/boss_ray_cast_right.gd" id="5_wqpjq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dlq0"]
 atlas = ExtResource("2_neq0i")
@@ -462,26 +464,37 @@ size = Vector2(189.5, 64)
 [node name="Boss" instance=ExtResource("1_dlmty")]
 script = ExtResource("2_jncid")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+position = Vector2(9, -58)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-7, -17, -9, -10, -9, 8, -9, 13, -9, 18, -10, 26, -10, 46, 45, 46, 45, 16, 41, 2, 36, -9, 22, -22, 7, -22, -5, -19)
+script = ExtResource("3_qnbj4")
+facing_left_position = Vector2(-14, -59)
+facing_right_position = Vector2(9, -58)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 position = Vector2(-3, -91)
 sprite_frames = SubResource("SpriteFrames_2avx2")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.147908
+flip_h = true
 
-[node name="RayCastRight" type="RayCast2D" parent="." index="1"]
-position = Vector2(1, -32)
-target_position = Vector2(31, 0)
-
-[node name="RayCastLeft" type="RayCast2D" parent="." index="2"]
-position = Vector2(1, -32)
-target_position = Vector2(-28, 0)
+[node name="RayCast" type="RayCast2D" parent="." index="2"]
+position = Vector2(-9, -26)
+target_position = Vector2(30, 1)
+script = ExtResource("5_wqpjq")
+facing_left_position = Vector2(0, -26)
+facing_right_position = Vector2(-9, -26)
+target_right_position = Vector2(30, 1)
+target_left_position = Vector2(-26, 1)
 
 [node name="CollisionShape2D" parent="ChaseArea" index="0"]
 position = Vector2(0, -44)
 shape = SubResource("CapsuleShape2D_neq0i")
 
 [node name="CollisionShape2D" parent="AttackArea" index="0"]
-position = Vector2(1.25, -44)
+position = Vector2(-2, -41)
 shape = SubResource("RectangleShape2D_neq0i")
 
 [node name="TextureProgressBar" parent="." index="9"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=14 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://ddhjroc2a658q" path="res://scenes/boss.tscn" id="7_dinhu"]
 [ext_resource type="PackedScene" uid="uid://8fl1uahnd52q" path="res://scenes/dog.tscn" id="8_dinhu"]
 [ext_resource type="PackedScene" uid="uid://dre0dpbjxfn4t" path="res://scenes/mushroom.tscn" id="8_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
@@ -39,6 +40,9 @@ zoom = Vector2(4, 4)
 script = ExtResource("4_iywne")
 
 [node name="Monsters" type="Node" parent="."]
+
+[node name="Boss" parent="Monsters" instance=ExtResource("7_dinhu")]
+position = Vector2(-70, -99)
 
 [node name="dog" parent="Monsters" instance=ExtResource("8_dinhu")]
 position = Vector2(-282, -49)

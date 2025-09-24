@@ -605,7 +605,7 @@ target_position = Vector2(6, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 position = Vector2(-1, -32)
 sprite_frames = SubResource("SpriteFrames_mes6e")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
