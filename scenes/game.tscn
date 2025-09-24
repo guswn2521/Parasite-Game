@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6lr8jrpkqogq"]
+[gd_scene load_steps=13 format=3 uid="uid://6lr8jrpkqogq"]
 
 [ext_resource type="Script" uid="uid://f0npcki7xita" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
-[ext_resource type="PackedScene" path="res://scenes/dog.tscn" id="8_dinhu"]
+[ext_resource type="PackedScene" uid="uid://bgkj1yq7jxrk" path="res://scenes/mushroom.tscn" id="7_vtaks"]
+[ext_resource type="PackedScene" uid="uid://8fl1uahnd52q" path="res://scenes/dog.tscn" id="8_dinhu"]
 [ext_resource type="PackedScene" uid="uid://bngjh5ohlk173" path="res://scenes/killzone.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0duu6b08vntr" path="res://scenes/tiles.tscn" id="11_dinhu"]
 
@@ -16,6 +17,8 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uwrxv")
 mob_scene = ExtResource("4_lbhrr")
+mushroom_scene = ExtResource("7_vtaks")
+dog_scene = ExtResource("8_dinhu")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -27,7 +30,7 @@ script = ExtResource("3_u5sy4")
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 z_index = 2
-position = Vector2(63750, -90)
+position = Vector2(-250, -90)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 unique_name_in_owner = true
@@ -38,12 +41,6 @@ zoom = Vector2(4, 4)
 script = ExtResource("4_iywne")
 
 [node name="Monsters" type="Node" parent="."]
-
-[node name="dog" parent="Monsters" instance=ExtResource("8_dinhu")]
-position = Vector2(-282, -49)
-
-[node name="Monster" parent="Monsters" instance=ExtResource("4_lbhrr")]
-position = Vector2(499, -198)
 
 [node name="Timers" type="Node" parent="."]
 
