@@ -7,7 +7,6 @@ extends "res://scripts/monster_base.gd"
 func _ready() -> void:
 	super()
 
-
 func _physics_process(delta: float) -> void:
 	# Flip monster
 	if ray_cast_left.is_colliding():
