@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8uvuwlj4nxue" path="res://scenes/monster_base.tscn" id="1_iaoh4"]
 [ext_resource type="Texture2D" uid="uid://pk8drr4s1t4r" path="res://assets/sprites/1 Dog/Attack.png" id="2_i2xh6"]
-[ext_resource type="Script" uid="uid://vjslbkrsi318" path="res://scripts/dog.gd" id="2_laypt"]
+[ext_resource type="Script" path="res://scripts/dog.gd" id="2_laypt"]
 [ext_resource type="Texture2D" uid="uid://dugms01ttb4uo" path="res://assets/sprites/1 Dog/Death.png" id="3_laypt"]
 [ext_resource type="Texture2D" uid="uid://op388jtb8iuj" path="res://assets/sprites/1 Dog/Hurt.png" id="4_ei5el"]
 [ext_resource type="Texture2D" uid="uid://b05uqq6v5juej" path="res://assets/sprites/1 Dog/Idle.png" id="5_jlmqp"]
