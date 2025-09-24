@@ -33,6 +33,11 @@ func _physics_process(delta: float) -> void:
 				direction = -1
 				animated_sprite.flip_h = false
 				see_right(false)
+	# Attack
+	if in_attack_area and can_attack:
+		attack_animation()
+		can_attack = false
+		attack_timer.start(1)
 	super(delta)
 	
 func attack_animation():
