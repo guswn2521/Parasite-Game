@@ -29,7 +29,6 @@ var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	add_to_group("Monsters")
-	
 	# signal connect
 	chase_area.body_entered.connect(_on_chase_area_body_entered)
 	chase_area.body_exited.connect(_on_chase_area_body_exited)
