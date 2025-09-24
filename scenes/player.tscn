@@ -223,6 +223,7 @@ frame_progress = 0.987339
 position = Vector2(-50, -30)
 sprite_frames = SubResource("SpriteFrames_42b1b")
 animation = &"walk"
+flip_h = true
 
 [node name="HurtTimer" type="Timer" parent="."]
 

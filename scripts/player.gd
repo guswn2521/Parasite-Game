@@ -121,13 +121,11 @@ func fire_breath() -> void:
 
 func player_collision_shape_fliph(facing_left: bool, collision_shape):
 	if facing_left:
-		collision_shape.scale.x = abs(collision_shape.scale.x) * -1
-		collision_shape.position = collision_shape.facing_left_position
-		
+		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * -1
+		collision_polygon_2d.position = collision_polygon_2d.facing_left_position
 	else:
-		collision_shape.scale.x = abs(collision_shape.scale.x) * 1
-		collision_shape.position = collision_shape.facing_right_position
-		
+		collision_polygon_2d.scale.x = abs(collision_polygon_2d.scale.x) * 1
+		collision_polygon_2d.position = collision_polygon_2d.facing_right_position
 
 func _physics_process(delta: float) -> void:
 	if position.x >= ending_position:
