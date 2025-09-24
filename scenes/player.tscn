@@ -41,7 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="41_holxr"]
 [ext_resource type="AudioStream" uid="uid://xoo4ldg50sr" path="res://assets/sfx/30_Jump_03.wav" id="42_giy8y"]
 [ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
-[ext_resource type="Script" uid="uid://brwo41bxfwypx" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
+[ext_resource type="Script" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
 [ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
 [ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
 

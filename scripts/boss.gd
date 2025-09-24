@@ -3,19 +3,10 @@ extends "res://scripts/monster_base.gd"
 @onready var ray_cast: RayCast2D = $RayCast
 @onready var hit_box_collisionshape: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
+@onready var animation_player: AnimationPlayer = $AttackAnimation
 
-func see_right(direction:int) -> void:
-	if direction==1:
-		collision_polygon_2d.scale.x = -1
-		collision_polygon_2d.position = collision_polygon_2d.facing_right_position
-		ray_cast.position = ray_cast.facing_right_position
-		ray_cast.target_position = ray_cast.target_right_position
-	else:
-		collision_polygon_2d.scale.x = 1
-		collision_polygon_2d.position = collision_polygon_2d.facing_left_position
-		ray_cast.position = ray_cast.facing_left_position
-		ray_cast.target_position = ray_cast.target_left_position
 func _ready() -> void:
+	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	super()
 
 func _physics_process(delta: float) -> void:
@@ -44,3 +35,42 @@ func _physics_process(delta: float) -> void:
 				see_right(false)
 	super(delta)
 	
+func attack_animation():
+	if not can_attack:
+		return
+	if animated_sprite.animation == "attack":
+		return
+	if not animation_player.current_animation in ["attack_left","attack_right"]:
+		on_attack = true
+		var player = players_parent.get_children()[0]
+		if position.x - player.position.x > 0:
+			# 플레이어가 왼쪽에서 다가옴
+			direction = -1
+			animated_sprite.flip_h = false
+			#animated_attack_left.visible = true
+			animation_player.play("attack_left")
+			animated_sprite.play("attack")
+				
+		elif position.x - player.position.x < 0:
+			# 플레이어가 오른쪽에서 다가옴
+			direction = 1
+			animation_player.play("attack_right")
+			#animated_attack_right.visible = true
+			animated_sprite.flip_h = true
+			animated_sprite.play("attack")
+			
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name in ["attack_left","attack_right"]:
+		on_attack = false
+
+func see_right(direction:int) -> void:
+	if direction==1:
+		collision_polygon_2d.scale.x = -1
+		collision_polygon_2d.position = collision_polygon_2d.facing_right_position
+		ray_cast.position = ray_cast.facing_right_position
+		ray_cast.target_position = ray_cast.target_right_position
+	else:
+		collision_polygon_2d.scale.x = 1
+		collision_polygon_2d.position = collision_polygon_2d.facing_left_position
+		ray_cast.position = ray_cast.facing_left_position
+		ray_cast.target_position = ray_cast.target_left_position

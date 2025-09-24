@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://8fl1uahnd52q"]
+[gd_scene load_steps=32 format=3 uid="uid://8fl1uahnd52q"]
 
 [ext_resource type="PackedScene" uid="uid://b8uvuwlj4nxue" path="res://scenes/monster_base.tscn" id="1_iaoh4"]
 [ext_resource type="Texture2D" uid="uid://pk8drr4s1t4r" path="res://assets/sprites/1 Dog/Attack.png" id="2_i2xh6"]
@@ -222,10 +222,11 @@ position = Vector2(3.00003, 8.99999)
 rotation = 0.0086249
 shape = SubResource("CapsuleShape2D_iaoh4")
 
+[node name="TextureProgressBar" parent="." index="10"]
+offset_top = -36.0
+offset_bottom = 4.0
+
 [node name="EnemyDot" type="Sprite2D" parent="." index="11"]
 position = Vector2(0, -10)
 scale = Vector2(2, 2)
 texture = ExtResource("8_laypt")
-[node name="TextureProgressBar" parent="." index="10"]
-offset_top = -36.0
-offset_bottom = 4.0
