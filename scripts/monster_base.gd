@@ -26,6 +26,7 @@ var rng = RandomNumberGenerator.new()
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var currentHP: int = maxHP
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
+@onready var enemy_dot: Sprite2D = $EnemyDot
 
 func _ready() -> void:
 	add_to_group("Monsters")
@@ -39,6 +40,15 @@ func _ready() -> void:
 	hurt_timer.timeout.connect(_on_hurt_timer_timeout)
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	
+	# set visibility
+	enemy_dot.set_visibility_layer_bit(0, false) # 1번 끔
+	enemy_dot.set_visibility_layer_bit(1, true) # 2번 켬
+	animated_sprite.set_visibility_layer_bit(0, false) # 1번 끔
+	animated_sprite.set_visibility_layer_bit(2, true) # 3번 켬
+	monster_hp_bar.set_visibility_layer_bit(0, false) # 1번 끔
+	monster_hp_bar.set_visibility_layer_bit(2, true) # 3번 켬
+	
+	# set HP
 	monster_hp_bar.max_value = maxHP
 	monster_hp_bar.value = currentHP
 	

@@ -55,7 +55,7 @@ func _ready() -> void:
 	animated_sprite.set_visibility_layer_bit(0, false) # 1번 끔
 	animated_sprite.set_visibility_layer_bit(2, true) # 3번 켬
 	monster_hp_bar.set_visibility_layer_bit(0, false) # 1번 끔
-	monster_hp_bar.set_visibility_layer_bit(2, false) # 3번 켬
+	monster_hp_bar.set_visibility_layer_bit(2, true) # 3번 켬
 	
 
 func _physics_process(delta: float) -> void:
