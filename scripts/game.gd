@@ -115,7 +115,7 @@ func _ready() -> void:
 	boss.boss_died.connect(decide_true_ending)
 	if player != null:
 		player.player_died.connect(game_over)
-		player.connect("player_died", Callable(self, "game_over"))
+		#player.connect("player_died", Callable(self, "game_over"))
 	new_game()
 	
 

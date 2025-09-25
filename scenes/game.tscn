@@ -30,8 +30,9 @@ script = ExtResource("3_u5sy4")
 [node name="Players" type="Node2D" parent="."]
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
+unique_name_in_owner = true
 z_index = 2
-position = Vector2(64000, 0)
+position = Vector2(63000, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 unique_name_in_owner = true
@@ -73,6 +74,7 @@ position = Vector2(40, -7)
 
 [editable path="UI"]
 [editable path="UI/HpBox/Panel/PlayerHP"]
+[editable path="UI/BossHpBox/PlayerHP"]
 [editable path="UI/Minimap"]
 [editable path="Players/player"]
 [editable path="Killzone"]

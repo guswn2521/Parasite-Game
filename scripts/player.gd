@@ -21,6 +21,7 @@ var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 
 var recover_timer: Timer
 var state = "base_player"
 var character: AnimatedSprite2D = null
+var already_in_boss_zone: bool = false
 
 @onready var player_dot: Sprite2D = $PlayerDot
 @onready var currentHP: int = maxHP
@@ -28,7 +29,6 @@ var character: AnimatedSprite2D = null
 @onready var collision_polygon: CollisionPolygon2D = $CollisionPolygon
 @onready var evolved_animated_sprite: AnimatedSprite2D = $EvolvedAnimatedSprite
 @onready var evolved_player_collision: CollisionPolygon2D = $EvolvedPlayerCollision
-
 
 @onready var hurt_timer: Timer = $HurtTimer
 #@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
@@ -43,14 +43,15 @@ var character: AnimatedSprite2D = null
 @onready var attack_sfx: AudioStreamPlayer = $AttackSFX
 
 signal player_died
+signal in_boss_zone
 
 func _ready() -> void:
 	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
 	var currentHPs = 0
 	var player_count = 0
+	add_to_group("Players")
 	evolved_animated_sprite.visible = false
 	evolved_player_collision.visible = false
-	add_to_group("Players")
 	evolution.evolved.connect(evolved)
 	# player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
 	for child in players_node.get_children():
@@ -127,6 +128,9 @@ func player_collision_shape_fliph(facing_left: bool, collision_shape):
 func _physics_process(delta: float) -> void:
 	#if is_dead:
 		#return
+	if !already_in_boss_zone and position.x >= 63700:
+		already_in_boss_zone = true
+		emit_signal("in_boss_zone")
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
