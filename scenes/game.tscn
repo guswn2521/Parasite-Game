@@ -31,11 +31,7 @@ script = ExtResource("3_u5sy4")
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 z_index = 2
-<<<<<<< Updated upstream
 position = Vector2(64000, 0)
-=======
-position = Vector2(-870, 0)
->>>>>>> Stashed changes
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 unique_name_in_owner = true
