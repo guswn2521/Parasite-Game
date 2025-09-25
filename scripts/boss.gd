@@ -5,7 +5,11 @@ extends "res://scripts/monster_base.gd"
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 @onready var animation_player: AnimationPlayer = $AttackAnimation
 
+
+signal boss_died
+
 func _ready() -> void:
+	monster_attack_damage = 100
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	super()
 
@@ -17,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	# Death
 	if death:
 		hit_box_collisionshape.disabled = true # 죽으면 공격 불가능하게
+		emit_signal("boss_died")
 		return
 	# Chase
 	if in_chase:

@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 class_name Player
 
-var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
 const FIRE_OFFSET: Vector2 = Vector2(50, -30)
+const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
+const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
+var SPEED = 200.0
 var is_hurt = false
 var is_dead = false
 var walking = false
@@ -15,8 +17,6 @@ var knockback_power = 200 # 원하는 값으로 조정
 var maxHP = 100
 var recover_amount = 2
 var attack_state = false
-const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
-const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 var recover_timer: Timer
 var ending_position = 64301
@@ -44,16 +44,15 @@ var character: AnimatedSprite2D = null
 @onready var attack_sfx: AudioStreamPlayer = $AttackSFX
 
 signal player_died
-signal player_arrived
 
 func _ready() -> void:
+	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
+	var currentHPs = 0
+	var player_count = 0
 	evolved_animated_sprite.visible = false
 	evolved_player_collision.visible = false
 	add_to_group("Players")
 	evolution.evolved.connect(evolved)
-	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
-	var currentHPs = 0
-	var player_count = 0
 	# player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
 	for child in players_node.get_children():
 		if child is Player:
@@ -101,7 +100,6 @@ func recover_timer_timeout():
 		currentHP = min(currentHP, maxHP)
 		player_hp.value = currentHP
 		player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
-		#print("HP 회복! 현재 HP:", currentHP)
 
 func fire_ball() -> void:
 	var fireball_instance = FIREBALL_SCENE.instantiate()
@@ -121,15 +119,13 @@ func fire_breath() -> void:
 
 func player_collision_shape_fliph(facing_left: bool, collision_shape):
 	if facing_left:
-		collision_polygon.scale.x = abs(collision_polygon.scale.x) * -1
-		collision_polygon.position = collision_polygon.facing_left_position
+		collision_shape.scale.x = abs(collision_shape.scale.x) * -1
+		collision_shape.position = collision_shape.facing_left_position
 	else:
-		collision_polygon.scale.x = abs(collision_polygon.scale.x) * 1
-		collision_polygon.position = collision_polygon.facing_right_position
+		collision_shape.scale.x = abs(collision_shape.scale.x) * 1
+		collision_shape.position = collision_shape.facing_right_position
 
 func _physics_process(delta: float) -> void:
-	if position.x >= ending_position:
-		emit_signal("player_arrived")
 	#if is_dead:
 		#return
 	if is_hurt:
@@ -153,8 +149,10 @@ func _physics_process(delta: float) -> void:
 			character.flip_h = true
 		elif direction == 1:
 			character.flip_h = false
+
 	if state == "base_player":
 		player_collision_shape_fliph(animated_sprite.flip_h, collision_polygon) 
+		
 	elif state == "evolved":
 		player_collision_shape_fliph(evolved_animated_sprite.flip_h, evolved_player_collision)
 	

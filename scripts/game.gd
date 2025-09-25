@@ -12,6 +12,7 @@ extends Node2D
 @onready var true_ending: Control = $UI/TrueEnding
 @onready var sub_viewport: SubViewport = $SubViewport
 @onready var camera_2d: Camera2D = $Players/player/Camera2D
+@onready var boss: CharacterBody2D = $Monsters/Boss
 
 var is_true_ending : bool = false
 var true_ending_triggered : bool = false
@@ -111,14 +112,15 @@ func game_over():
 func _ready() -> void:
 	BgmManager.play_bgm_list()
 	get_viewport().canvas_cull_mask &= ~2  # 2번 비트 끄기
-	
+	boss.boss_died.connect(decide_true_ending)
 	if player != null:
+		player.player_died.connect(game_over)
 		player.connect("player_died", Callable(self, "game_over"))
-		player.player_arrived.connect(decide_true_ending)
 	new_game()
 	
 
 func decide_true_ending():
+	await get_tree().create_timer(2.0).timeout
 	if true_ending_triggered:
 		return
 	print("is_true_ending = true")

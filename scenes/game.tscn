@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ctr6on1nu5b8d" path="res://scenes/ui.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://by65s2bwdp3hq" path="res://scripts/game_manager.gd" id="3_u5sy4"]
-[ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
+[ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://ddhjroc2a658q" path="res://scenes/boss.tscn" id="7_dinhu"]
@@ -31,7 +31,7 @@ script = ExtResource("3_u5sy4")
 
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 z_index = 2
-position = Vector2(-870, 0)
+position = Vector2(64000, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 unique_name_in_owner = true
@@ -44,7 +44,7 @@ script = ExtResource("4_iywne")
 [node name="Monsters" type="Node" parent="."]
 
 [node name="Boss" parent="Monsters" instance=ExtResource("7_dinhu")]
-position = Vector2(-70, -99)
+position = Vector2(64400, 111)
 
 [node name="Timers" type="Node" parent="."]
 

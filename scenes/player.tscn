@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cgjtucl2dhmle" path="res://assets/small_dragon/Walk2.png" id="14_ujl30"]
 [ext_resource type="Texture2D" uid="uid://cmrf001dkb668" path="res://assets/small_dragon/Walk3.png" id="15_31cv2"]
 [ext_resource type="Texture2D" uid="uid://doe2s5qu30viv" path="res://assets/small_dragon/Walk4.png" id="16_pf23h"]
-[ext_resource type="Script" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
+[ext_resource type="Script" uid="uid://jtyoyw60mhnx" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
 [ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="22_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://c038gy7q8dkbg" path="res://assets/sprites/dragon/Attack2.png" id="23_2dvfe"]
 [ext_resource type="Texture2D" uid="uid://cm4qym8xw3lur" path="res://assets/sprites/dragon/Attack3.png" id="24_giy8y"]
@@ -41,7 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="41_holxr"]
 [ext_resource type="AudioStream" uid="uid://xoo4ldg50sr" path="res://assets/sfx/30_Jump_03.wav" id="42_giy8y"]
 [ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
-[ext_resource type="Script" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
+[ext_resource type="Script" uid="uid://brwo41bxfwypx" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
 [ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
 [ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
 
@@ -220,10 +220,9 @@ frame = 2
 frame_progress = 0.987339
 
 [node name="EvolvedAnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-50, -30)
+position = Vector2(-43, -54)
 sprite_frames = SubResource("SpriteFrames_42b1b")
 animation = &"walk"
-flip_h = true
 
 [node name="HurtTimer" type="Timer" parent="."]
 
@@ -233,12 +232,12 @@ script = ExtResource("21_i4ail")
 facing_left_position = Vector2(-26.667, 0)
 
 [node name="EvolvedPlayerCollision" type="CollisionPolygon2D" parent="."]
-position = Vector2(-63, -2)
+position = Vector2(-56.333, -23)
 polygon = PackedVector2Array(59, -22, 83, -4, 79, 2, 61, -5, 53, 10, 53, 31, 2, 31, -2, 17, 2, 11, 2, -2, 13, -8, 49, -8)
 disabled = true
 script = ExtResource("44_g5jhy")
-facing_left_position = Vector2(-40, 0)
-facing_right_position = Vector2(-60, 0)
+facing_left_position = Vector2(-35, -23)
+facing_right_position = Vector2(-56, -23)
 
 [node name="PlayerDot" type="Sprite2D" parent="."]
 visible = false
