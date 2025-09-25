@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+@export var maxHP = 1000
+@export var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
 const FIRE_OFFSET: Vector2 = Vector2(50, -30)
@@ -11,10 +13,8 @@ var SPEED = 200.0
 var is_hurt = false
 var is_dead = false
 var walking = false
-var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 100
 var recover_amount = 2
 var attack_state = false
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
@@ -31,6 +31,7 @@ var already_in_boss_zone: bool = false
 @onready var evolved_player_collision: CollisionPolygon2D = $EvolvedPlayerCollision
 
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var attack_timer: Timer = $AttackTimer
 #@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
 #@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
 @onready var player_hp: TextureProgressBar = $"../../UI/HpBox/Panel/PlayerHP"
@@ -46,6 +47,11 @@ signal player_died
 signal in_boss_zone
 
 func _ready() -> void:
+	attack_timer.timeout.connect(_on_attack_timeout)
+	evolved_animated_sprite.visible = false
+	evolved_player_collision.visible = false
+	add_to_group("Players")
+	evolution.evolved.connect(evolved)
 	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
 	var currentHPs = 0
 	var player_count = 0
@@ -106,6 +112,7 @@ func fire_ball() -> void:
 	attack_sfx.play()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
 	fireball_instance.global_position = global_position + FIREBALL_OFFSET
+	fireball_instance.start_position = fireball_instance.global_position  # 사거리 비교용 초기값 지정
 	fireball_instance.set_left(character.flip_h)
 
 func fire_breath() -> void:
@@ -170,6 +177,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Play Animations
 	if Input.is_action_just_pressed("attack") and not attack_state:
+		attack_timer.start()
 		character.play("attack")
 		if character == animated_sprite:
 			fire_ball()
@@ -194,9 +202,19 @@ func _physics_process(delta: float) -> void:
 func start(pos):
 	position = pos
 
+func walking_sfx():
+	if walking:
+		walk_sfx.play()
+		walk_sfx.playing = true
+		await get_tree().create_timer(0.2).timeout
+	else:
+		walk_sfx.playing = false
+
+func _on_attack_timeout() -> void:
+	print("player attack timer fin")
+	attack_state = false
+	
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if character.animation == "attack":
-		attack_state = false
 	if character.animation == "death":
 		print("player death fin")
 
@@ -225,6 +243,7 @@ func hurt_motion(direction: int) -> void:
 	hurt_timer.start(0.4)
 	
 func _on_hurt_timer_timeout() -> void:
+	print("player hurt timer fin")
 	if not is_dead:
 		is_hurt = false
 		knockback_velocity = Vector2.ZERO
