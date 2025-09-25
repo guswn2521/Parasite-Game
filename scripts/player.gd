@@ -108,6 +108,7 @@ func fire_ball() -> void:
 	attack_sfx.play()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
 	fireball_instance.global_position = global_position + FIREBALL_OFFSET
+	fireball_instance.start_position = fireball_instance.global_position  # 사거리 비교용 초기값 지정
 	fireball_instance.set_left(character.flip_h)
 
 func fire_breath() -> void:
