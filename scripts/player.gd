@@ -2,17 +2,16 @@ extends CharacterBody2D
 
 class_name Player
 
-var SPEED = 200.0
+@export var maxHP = 1000
+@export var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
 const FIRE_OFFSET: Vector2 = Vector2(50, -30)
 var is_hurt = false
 var is_dead = false
 var walking = false
-var hurt_duration = 0.5 # 애니메이션 길이에 맞춰서 수정
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var maxHP = 100
 var recover_amount = 2
 var attack_state = false
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
@@ -31,6 +30,7 @@ var character: AnimatedSprite2D = null
 @onready var evolved_player_collision: CollisionPolygon2D = $EvolvedPlayerCollision
 
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var attack_timer: Timer = $AttackTimer
 #@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
 #@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
 @onready var player_hp: TextureProgressBar = $"../../UI/HpBox/Panel/PlayerHP"
@@ -47,6 +47,7 @@ signal player_died
 signal player_arrived
 
 func _ready() -> void:
+	attack_timer.timeout.connect(_on_attack_timeout)
 	evolved_animated_sprite.visible = false
 	evolved_player_collision.visible = false
 	add_to_group("Players")
@@ -170,6 +171,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Play Animations
 	if Input.is_action_just_pressed("attack") and not attack_state:
+		attack_timer.start()
 		character.play("attack")
 		if character == animated_sprite:
 			fire_ball()
@@ -201,9 +203,12 @@ func walking_sfx():
 		await get_tree().create_timer(0.2).timeout
 	else:
 		walk_sfx.playing = false
+
+func _on_attack_timeout() -> void:
+	print("player attack timer fin")
+	attack_state = false
+	
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if character.animation == "attack":
-		attack_state = false
 	if character.animation == "death":
 		print("player death fin")
 
@@ -232,6 +237,7 @@ func hurt_motion(direction: int) -> void:
 	hurt_timer.start(0.4)
 	
 func _on_hurt_timer_timeout() -> void:
+	print("player hurt timer fin")
 	if not is_dead:
 		is_hurt = false
 		knockback_velocity = Vector2.ZERO

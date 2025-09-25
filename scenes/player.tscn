@@ -41,7 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="41_holxr"]
 [ext_resource type="AudioStream" uid="uid://xoo4ldg50sr" path="res://assets/sfx/30_Jump_03.wav" id="42_giy8y"]
 [ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
-[ext_resource type="Script" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
+[ext_resource type="Script" uid="uid://brwo41bxfwypx" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
 [ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
 [ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
 
@@ -215,9 +215,9 @@ script = ExtResource("1_qfm1y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-13.3333, -8.33333)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
-animation = &"walk"
-frame = 2
-frame_progress = 0.987339
+animation = &"hurt"
+frame = 1
+frame_progress = 1.0
 
 [node name="EvolvedAnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-50, -30)
@@ -225,7 +225,12 @@ sprite_frames = SubResource("SpriteFrames_42b1b")
 animation = &"walk"
 flip_h = true
 
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [node name="HurtTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="CollisionPolygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -18.3333, 3.33333, -36.6667, 3.33333, -46.6667, 3.33333, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)
