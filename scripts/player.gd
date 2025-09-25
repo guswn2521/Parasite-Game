@@ -19,7 +19,6 @@ var recover_amount = 2
 var attack_state = false
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 var recover_timer: Timer
-var ending_position = 64301
 var state = "base_player"
 var character: AnimatedSprite2D = null
 
@@ -30,6 +29,7 @@ var character: AnimatedSprite2D = null
 @onready var evolved_animated_sprite: AnimatedSprite2D = $EvolvedAnimatedSprite
 @onready var evolved_player_collision: CollisionPolygon2D = $EvolvedPlayerCollision
 
+
 @onready var hurt_timer: Timer = $HurtTimer
 #@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
 #@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
@@ -37,7 +37,6 @@ var character: AnimatedSprite2D = null
 @onready var player_hp_points: Label = $"../../UI/HpBox/Panel/PlayerHP/PlayerHPPoints"
 @onready var evolution: MenuButton = $"../../UI/Control/Evolution"
 
-@onready var walk_sfx: AudioStreamPlayer = $WalkSFX
 @onready var jump_sfx: AudioStreamPlayer = $JumpSFX
 @onready var hurt_sfx: AudioStreamPlayer = $HurtSFX
 @onready var dead_sfx: AudioStreamPlayer = $DeadSFX
@@ -120,10 +119,10 @@ func fire_breath() -> void:
 func player_collision_shape_fliph(facing_left: bool, collision_shape):
 	if facing_left:
 		collision_shape.scale.x = abs(collision_shape.scale.x) * -1
-		collision_shape.position = collision_shape.facing_left_position
+		#collision_shape.position = collision_shape.facing_left_position
 	else:
 		collision_shape.scale.x = abs(collision_shape.scale.x) * 1
-		collision_shape.position = collision_shape.facing_right_position
+		#collision_shape.position = collision_shape.facing_right_position
 
 func _physics_process(delta: float) -> void:
 	#if is_dead:
@@ -191,13 +190,6 @@ func _physics_process(delta: float) -> void:
 func start(pos):
 	position = pos
 
-func walking_sfx():
-	if walking:
-		walk_sfx.play()
-		walk_sfx.playing = true
-		await get_tree().create_timer(0.2).timeout
-	else:
-		walk_sfx.playing = false
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if character.animation == "attack":
 		attack_state = false
