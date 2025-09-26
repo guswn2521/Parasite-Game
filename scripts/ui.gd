@@ -5,6 +5,9 @@ extends CanvasLayer
 @onready var dna_label: Label = $Labels/DNALabel
 @onready var player_numbers: Label = $Labels/PlayerNumbers
 @onready var failed_sfx: AudioStreamPlayer = $Control/FailedSFX
+@onready var boss_hp_box: Control = $BossHpBox
+@onready var player: Player = %player
+@onready var boss_zone_bgm: AudioStreamPlayer = $BossHpBox/BossZoneBGM
 
 var flash_on = false
 var max_flash = 3
@@ -20,6 +23,14 @@ func _ready() -> void:
 	GameManager.connect("player_nums_changed", Callable(self, "_on_player_nums_changed"))
 	duplication.no_duplication.connect(_on_no_duplication)
 	evolution.no_evolution.connect(_on_no_evolution)
+	boss_hp_box.visible = false
+	player.in_boss_zone.connect(boss_energy_bar)
+	
+func boss_energy_bar():
+	print("보스존")
+	boss_hp_box.visible = true
+	BgmManager.play_bgm("res://assets/sounds/boss_bgm.mp3")
+
 func flash_timer_on(label):
 	if is_flashing:
 		return
