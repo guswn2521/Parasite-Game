@@ -27,6 +27,8 @@ var rng = RandomNumberGenerator.new()
 @onready var currentHP: int = maxHP
 @onready var monster_hp_bar: TextureProgressBar = $TextureProgressBar
 @onready var enemy_dot: Sprite2D = $EnemyDot
+@onready var ray_cast_left_down: RayCast2D = $RayCastLeftDown
+@onready var ray_cast_right_down: RayCast2D = $RayCastRightDown
 
 func _ready() -> void:
 	add_to_group("Monsters")
@@ -156,3 +158,13 @@ func _on_animation_finished() -> void:
 	if animated_sprite.animation == "death":
 		print("death")
 		queue_free()
+
+func check_fall_preventation() -> void:
+	var left_floor = ray_cast_left_down.is_colliding()
+	var right_floor = ray_cast_right_down.is_colliding()
+	# 현재 바라보는 방향으로 바닥이 있는지 체크 -> 바닥없으면 flip
+	if direction==-1 and not left_floor:
+		flip_player()
+	elif direction==1 and not right_floor:
+		flip_player()
+	

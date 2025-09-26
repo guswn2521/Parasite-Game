@@ -21,6 +21,10 @@ func _physics_process(delta: float) -> void:
 		flip_player()
 	elif ray_cast_right_head.is_colliding():
 		flip_player()
+		
+	# 낙사 방지
+	check_fall_preventation()
+		
 	# Death
 	if death:
 		hit_box_collisionshape.disabled = true # 죽으면 공격 불가능하게
