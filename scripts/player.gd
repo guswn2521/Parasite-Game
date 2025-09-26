@@ -51,6 +51,7 @@ func _ready() -> void:
 	attack_timer.timeout.connect(_on_attack_timeout)
 	evolved_animated_sprite.visible = false
 	evolved_player_collision.visible = false
+	evolved_player_collision.disabled = true
 	add_to_group("Players")
 	evolution.evolved.connect(evolved)
 	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
