@@ -6,9 +6,9 @@ class_name Player
 @export var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
-const FIRE_OFFSET: Vector2 = Vector2(50, -30)
+const FIRE_OFFSET: Vector2 = Vector2(80, 10)
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
-const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
+const FIREBALL_OFFSET: Vector2 = Vector2(8, 32)
 
 var is_hurt = false
 var is_dead = false
@@ -113,6 +113,7 @@ func fire_ball() -> void:
 	attack_sfx.play()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
 	fireball_instance.global_position = global_position + FIREBALL_OFFSET
+	print("fireball ", FIREBALL_OFFSET)
 	fireball_instance.start_position = fireball_instance.global_position  # 사거리 비교용 초기값 지정
 	fireball_instance.set_left(character.flip_h)
 
