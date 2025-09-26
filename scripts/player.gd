@@ -43,6 +43,9 @@ var already_in_boss_zone: bool = false
 @onready var hurt_sfx: AudioStreamPlayer = $HurtSFX
 @onready var dead_sfx: AudioStreamPlayer = $DeadSFX
 @onready var attack_sfx: AudioStreamPlayer = $AttackSFX
+@onready var boss_tile: AnimationPlayer = $"../../Tiles/AnimationPlayer"
+@onready var tiles: Node2D = $"../../Tiles"
+
 
 signal player_died
 signal in_boss_zone
@@ -140,11 +143,13 @@ func _physics_process(delta: float) -> void:
 	#if is_dead:
 		#return
 	
-	if !already_in_boss_zone and position.x >= 63700:
+	if !already_in_boss_zone and position.x >= 63900:
 		already_in_boss_zone = true
 		print("보스존 입성")
 		emit_signal("in_boss_zone")
-	if already_in_boss_zone and position.x < 63700:
+		tiles.block_boss_zone()
+		
+	if already_in_boss_zone and position.x < 63900:
 		already_in_boss_zone = false
 		print("보스존 나감")
 		emit_signal("out_boss_zone")
