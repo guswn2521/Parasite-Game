@@ -110,14 +110,14 @@ func game_over():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func _ready() -> void:
-	BgmManager.play_bgm_list()
+	if player.position.x < 63700:
+		BgmManager.play_bgm_list()
 	get_viewport().canvas_cull_mask &= ~2  # 2번 비트 끄기
 	boss.boss_died.connect(decide_true_ending)
 	if player != null:
 		player.player_died.connect(game_over)
 		#player.connect("player_died", Callable(self, "game_over"))
 	new_game()
-	
 
 func decide_true_ending():
 	await get_tree().create_timer(2.0).timeout
