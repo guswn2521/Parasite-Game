@@ -4,17 +4,24 @@ extends "res://scripts/monster_base.gd"
 @onready var hit_box_collisionshape: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 @onready var animation_player: AnimationPlayer = $AttackAnimation
+@onready var boss_hp_points: Label = $"../../UI/BossHpBox/BossHP/BossHPPoints"
+@onready var boss_hp: TextureProgressBar = $"../../UI/BossHpBox/BossHP"
 
 
 signal boss_died
 
 func _ready() -> void:
 	monster_attack_damage = 100
-	maxHP = 1000
+	maxHP = 10000
+	currentHP = maxHP
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	super()
-
+	monster_hp_bar = boss_hp
+	monster_hp_bar.max_value = maxHP
+	monster_hp_bar.value = currentHP
+	
 func _physics_process(delta: float) -> void:
+	boss_hp_points.text = "%d/%d" % [monster_hp_bar.value,maxHP]
 	# Flip monster
 	if ray_cast.is_colliding():
 		flip_player()

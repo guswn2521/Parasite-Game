@@ -81,31 +81,31 @@ func flip_player():
 
 func _on_chase_area_body_entered(body: Node2D) -> void:
 	if "player" in body.name:
-		print("Mushroom chase 시작: ", body.name)
+		#print("Mushroom chase 시작: ", body.name)
 		in_chase = true
 	
 func _on_chase_area_body_exited(body: Node2D) -> void:
 	if "player" in body.name:
-		print("Mushrrom chase 끝")
+		#print("Mushrrom chase 끝")
 		in_chase = false
 		
 func _on_attack_area_body_entered(body:Node2D) -> void:
 	if "player" in body.name:
-		print("attack area body entered")
+		#print("attack area body entered")
 		in_attack_area = true
 	
 func _on_attack_area_body_exited(body:Node2D) -> void:
 	if "player" in body.name:
-		print("attack area body exited")
+		#print("attack area body exited")
 		in_attack_area = false
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
-		print("Mushroom Attack success")
+		#print("Mushroom Attack success")
 		body.take_damage(direction, monster_attack_damage)
 		
 func _on_attack_timeout() -> void:
-	print("attack timer fin")
+	#print("attack timer fin")
 	can_attack = true
 	
 func hurt_motion(direction: int) -> void:
@@ -141,7 +141,7 @@ func take_damage(direction:int, damage: int) -> void:
 	var is_critical = result[1]
 	currentHP -= damage
 	monster_hp_bar.value = currentHP
-	
+	print("몬스터 맞음", currentHP)
 	var damage_number = DAMAGE_NUMBER_SCENE.instantiate()
 	get_parent().add_child(damage_number)
 	# 머리 위에 damage_number

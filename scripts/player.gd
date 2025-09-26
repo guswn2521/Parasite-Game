@@ -32,10 +32,11 @@ var already_in_boss_zone: bool = false
 
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var attack_timer: Timer = $AttackTimer
-#@onready var player_hp: TextureProgressBar = $"../../UI/PlayerHP"
-#@onready var player_hp_points: Label = $"../../UI/PlayerHP/PlayerHPPoints"
-@onready var player_hp: TextureProgressBar = $"../../UI/HpBox/Panel/PlayerHP"
-@onready var player_hp_points: Label = $"../../UI/HpBox/Panel/PlayerHP/PlayerHPPoints"
+
+@onready var player_hp: TextureProgressBar = $"../../UI/HpBox/PlayerHP"
+@onready var player_hp_points: Label = $"../../UI/HpBox/PlayerHP/PlayerHPPoints"
+
+
 @onready var evolution: MenuButton = $"../../UI/Control/Evolution"
 
 @onready var jump_sfx: AudioStreamPlayer = $JumpSFX

@@ -73,8 +73,8 @@ position = Vector2(40, -7)
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
 
 [editable path="UI"]
-[editable path="UI/HpBox/Panel/PlayerHP"]
-[editable path="UI/BossHpBox/PlayerHP"]
+[editable path="UI/HpBox/PlayerHP"]
+[editable path="UI/BossHpBox/BossHP"]
 [editable path="UI/Minimap"]
 [editable path="Players/player"]
 [editable path="Killzone"]
