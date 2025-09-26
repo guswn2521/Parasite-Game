@@ -62,7 +62,7 @@ var dogs_position = [
 	Vector2(25300, 0),
 	Vector2(26000, 0),
 	Vector2(27000, 0),
-	Vector2(28000, -10),
+	Vector2(28000, -30),
 	Vector2(29000, 0),
 	Vector2(30000, 0),
 	Vector2(31000, -30),

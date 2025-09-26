@@ -208,6 +208,14 @@ scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_y4ic2")
 animation = &"idle"
 
+[node name="RayCastLeftDown" parent="." index="4"]
+position = Vector2(-8, 13)
+target_position = Vector2(0, 5)
+
+[node name="RayCastRightDown" parent="." index="5"]
+position = Vector2(7, 12)
+target_position = Vector2(0, 6)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MonsterArea" index="0"]
 polygon = PackedVector2Array(-12, 17, 4, 17, 4, 4, 3, 4, 3, -2, -1, -2, -1, 4, -12, 4)
 
@@ -218,7 +226,7 @@ shape = SubResource("CapsuleShape2D_i2xh6")
 [node name="CollisionShape2D" parent="AttackArea" index="0"]
 position = Vector2(-4, 8)
 
-[node name="HitBox" parent="." index="8"]
+[node name="HitBox" parent="." index="10"]
 position = Vector2(5, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
@@ -226,11 +234,11 @@ position = Vector2(3.00003, 8.99999)
 rotation = 0.0086249
 shape = SubResource("CapsuleShape2D_iaoh4")
 
-[node name="TextureProgressBar" parent="." index="10"]
+[node name="TextureProgressBar" parent="." index="12"]
 offset_left = -34.0
 offset_top = -16.0
 offset_right = 30.0
 offset_bottom = 24.0
 
-[node name="EnemyDot" parent="." index="11"]
+[node name="EnemyDot" parent="." index="13"]
 visible = false
