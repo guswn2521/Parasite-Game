@@ -33,6 +33,7 @@ func play_bgm_list():
 
 func _on_bgm_finished():
 	current_index = (current_index + 1) % bgm_list.size()
+	print(current_index)
 	play_bgm_list()
 
 func fade_in(player: AudioStreamPlayer) -> void:
@@ -53,3 +54,19 @@ func play_bgm(bgm_path: String):
 	current_bgm_path = bgm_path
 	bgm_player.stream = load(bgm_path)
 	fade_in(bgm_player)
+	
+#func play_bgm(bgm_path: String):
+	#if current_bgm_path == bgm_path:
+		#return
+	#current_bgm_path = bgm_path
+	#fade_out(bgm_player)
+	#var tween = create_tween()
+	#tween.tween_callback(self._play_bgm_stream.bind(bgm_path)).set_delay(FADE_DURATION)
+ 	#tween.tween_interval(FADE_DURATION).tween_callback(
+		#func():
+			#bgm_player.stream = load(bgm_path)
+			#fade_in(bgm_player))
+
+#func _play_bgm_stream(bgm_path: String) -> void:
+	#bgm_player.stream = load(bgm_path)
+	#fade_in(bgm_player)

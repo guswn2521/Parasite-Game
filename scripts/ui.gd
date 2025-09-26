@@ -25,9 +25,12 @@ func _ready() -> void:
 	evolution.no_evolution.connect(_on_no_evolution)
 	boss_hp_box.visible = false
 	player.in_boss_zone.connect(boss_energy_bar)
+	player.out_boss_zone.connect(no_boss_energy_bar)
 	
+func no_boss_energy_bar():
+	boss_hp_box.visible = false
+	BgmManager.play_bgm_list()
 func boss_energy_bar():
-	print("보스존")
 	boss_hp_box.visible = true
 	BgmManager.play_bgm("res://assets/sounds/boss_bgm.mp3")
 

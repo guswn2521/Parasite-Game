@@ -9,7 +9,7 @@ const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
 const FIRE_OFFSET: Vector2 = Vector2(50, -30)
 const FIREBALL_SCENE = preload("res://scenes/fireball.tscn")
 const FIREBALL_OFFSET: Vector2 = Vector2(0.0, 0.0)
-var SPEED = 200.0
+
 var is_hurt = false
 var is_dead = false
 var walking = false
@@ -45,6 +45,7 @@ var already_in_boss_zone: bool = false
 
 signal player_died
 signal in_boss_zone
+signal out_boss_zone
 
 func _ready() -> void:
 	attack_timer.timeout.connect(_on_attack_timeout)
@@ -135,9 +136,16 @@ func player_collision_shape_fliph(facing_left: bool, collision_shape):
 func _physics_process(delta: float) -> void:
 	#if is_dead:
 		#return
+	
 	if !already_in_boss_zone and position.x >= 63700:
 		already_in_boss_zone = true
+		print("보스존 입성")
 		emit_signal("in_boss_zone")
+	if already_in_boss_zone and position.x < 63700:
+		already_in_boss_zone = false
+		print("보스존 나감")
+		emit_signal("out_boss_zone")
+	
 	if is_hurt:
 		position += knockback_velocity * delta
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
@@ -201,14 +209,6 @@ func _physics_process(delta: float) -> void:
 		
 func start(pos):
 	position = pos
-
-func walking_sfx():
-	if walking:
-		walk_sfx.play()
-		walk_sfx.playing = true
-		await get_tree().create_timer(0.2).timeout
-	else:
-		walk_sfx.playing = false
 
 func _on_attack_timeout() -> void:
 	print("player attack timer fin")

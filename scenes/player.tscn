@@ -234,16 +234,9 @@ one_shot = true
 [node name="HurtTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="CollisionPolygon" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-1.66667, -20, 5, -13.3333, 10, -3.33333, 3.33333, -1.66667, -10, -5, -11.6667, 1.66667, -18.3333, 3.33333, -36.6667, 3.33333, -46.6667, 3.33333, -63.3333, 1.66667, -55, -3.33333, -46.6667, -10, -35, -15, -18.3333, -13.3333, -15, -20)
-script = ExtResource("21_i4ail")
-facing_left_position = Vector2(-26.667, 0)
-
 [node name="EvolvedPlayerCollision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(50, 10, 71.6667, 30, 68.3333, 35, 50, 26.6667, 38.3333, 41.6667, 38.3333, 61.6667, -8.33333, 61.6667, -10, 38.3333, -8.33333, 28.3333, 0, 23.3333, 31.6667, 23.3333, 38.3333, 13.3333, 43.3333, 8.33333)
 script = ExtResource("44_g5jhy")
-
-[node name="HurtTimer" type="Timer" parent="."]
 
 [node name="PlayerDot" type="Sprite2D" parent="."]
 visible = false

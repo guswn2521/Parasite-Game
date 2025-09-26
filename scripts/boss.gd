@@ -10,6 +10,7 @@ signal boss_died
 
 func _ready() -> void:
 	monster_attack_damage = 100
+	maxHP = 1000
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	super()
 
