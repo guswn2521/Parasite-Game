@@ -3,6 +3,9 @@ extends CharacterBody2D
 class_name Player
 
 @export var maxHP = 500
+
+var player_count = GameManager.player_nums
+
 @export var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
@@ -15,17 +18,14 @@ var is_dead = false
 var walking = false
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
-var recover_amount = 2
 var attack_state = false
 var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
 var recover_timer: Timer
 var state = "base_player"
 var character: AnimatedSprite2D = null
 var already_in_boss_zone: bool = false
-var player_count = 0
 
 @onready var player_dot: Sprite2D = $PlayerDot
-@onready var currentHP: int = maxHP
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_polygon: CollisionPolygon2D = $CollisionPolygon
 @onready var evolved_animated_sprite: AnimatedSprite2D = $EvolvedAnimatedSprite
@@ -35,9 +35,6 @@ var player_count = 0
 @onready var attack_timer: Timer = $AttackTimer
 
 @onready var player_hp: TextureProgressBar = $"../../UI/HpBox/PlayerHP"
-@onready var player_hp_points: Label = $"../../UI/HpBox/PlayerHP/PlayerHPPoints"
-
-
 @onready var evolution: MenuButton = $"../../UI/Control/Evolution"
 
 @onready var jump_sfx: AudioStreamPlayer = $JumpSFX
@@ -47,52 +44,45 @@ var player_count = 0
 @onready var boss_tile: AnimationPlayer = $"../../Tiles/AnimationPlayer"
 @onready var tiles: Node2D = $"../../Tiles"
 
-
 signal player_died
 signal in_boss_zone
 signal out_boss_zone
 
 func _ready() -> void:
+	player_dot.visible = true
 	attack_timer.timeout.connect(_on_attack_timeout)
+	evolution.evolved.connect(evolved)
 	evolved_animated_sprite.visible = false
 	evolved_player_collision.visible = false
 	evolved_player_collision.disabled = true
 	add_to_group("Players")
-	evolution.evolved.connect(evolved)
-	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
-	var currentHPs = 0
-	add_to_group("Players")
-	evolved_animated_sprite.visible = false
-	evolved_player_collision.visible = false
-	evolution.evolved.connect(evolved)
-	## player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
-	for child in players_node.get_children():
-		if child is Player:
-			currentHPs += child.currentHP
-			player_count += 1
-	player_hp.max_value = maxHP*player_count
-	player_hp.value = currentHPs
-	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
-	recover_timer_on()
+	#currentHPs += maxHP * (player_count - 1)
+	# 복제시 실행.
+	#GameManager.player_nums_changed.connect(on_duplication_player_hp_change)
+	#var players_node = get_parent()
+	#for child in players_node.get_children():
+		#if child is Player:
+	#currentHPs += maxHP
+	
+	#print("currentHPs = ", currentHPs)
+	#print("player_count = ", player_count)
+	
+	#player_hp.max_value = maxHP*player_count
+	#player_hp.value = currentHPs
+	#currentHP = currentHPs
+	#recover_timer_on()
+	
+	# visibility layer 조절 (미니맵에 보이게 하기 위해)
 	if state == "base_player":
 		character = animated_sprite
 		character.set_visibility_layer_bit(0, false) # 1번 Visibility Layer 끄기
 		character.set_visibility_layer_bit(2, true) # 3번 Visibility Layer 켜기
-	# visibility layer 조절 (미니맵에 보이게 하기 위해)
 	player_dot.set_visibility_layer_bit(0,false) # 1번 끄기
 	player_dot.set_visibility_layer_bit(1,true) #2번 켜기
-
-func recover_timer_on():
-	recover_timer = Timer.new()
-	recover_timer.autostart = true
-	recover_timer.one_shot = false
-	recover_timer.wait_time = 1.0
-	add_child(recover_timer)
-	recover_timer.timeout.connect(Callable(self, "recover_timer_timeout"))
-	recover_timer.start()
+		
 
 func evolved():
-	currentHP = 3000
+	maxHP = 3000
 	state = "evolved"
 	animated_sprite.visible = false
 	evolved_animated_sprite.visible = true
@@ -105,13 +95,6 @@ func evolved():
 		character = evolved_animated_sprite
 		character.set_visibility_layer_bit(0, false) # 1번 Visibility Layer 끄기
 		character.set_visibility_layer_bit(2, true) # 3번 Visibility Layer 켜기
-
-func recover_timer_timeout():
-	if currentHP < maxHP:
-		currentHP += recover_amount
-		currentHP = min(currentHP, maxHP)
-		player_hp.value = currentHP
-		player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
 
 func fire_ball() -> void:
 	var fireball_instance = FIREBALL_SCENE.instantiate()
@@ -230,11 +213,11 @@ func take_damage(direction:int, amount: int) -> void:
 	if is_dead:
 		return
 	amount = int(amount/player_count)
-	currentHP -= amount
-	player_hp.value -= amount
-	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
-	print("player current HP: ", player_hp.value)
-	if player_hp.value <= 0:
+	GameManager.currentHPs -= amount
+	#player_hp.value -= amount
+	#player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
+	#print("player current HP: ", player_hp.value)
+	if GameManager.currentHPs <= 0:
 		hurt_sfx.play()
 		await get_tree().create_timer(0.5).timeout
 		dead_sfx.play()

@@ -48,7 +48,7 @@ func duplicate_player() -> void:
 		# 부모 노드(Players)에 새 노드 추가
 		players_parent.add_child(new_player)
 		duplication_sfx.play()
-		print("복제 성공! 모체 수: ",players_parent.get_child_count())
+		print("복제 성공! 모체 수: ",GameManager.player_nums)
 	else:
 		emit_signal("no_duplication")
 		print("dna 가 부족하거나, 최대 복제 수 5에 도달 or 진화했습니다.")

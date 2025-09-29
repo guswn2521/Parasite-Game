@@ -2,7 +2,24 @@ extends Node
 
 signal dna_changed(new_dna)
 signal player_nums_changed(player_nums)
+# currentHPs가 바뀌면 시그널.
+signal player_hp_changed(hp)
+
+var maxHP = 500
+var recover_amount = 2
 var players: Node2D = null
+
+var _currentHPs: int = maxHP
+var currentHPs: int:
+	get:
+		return _currentHPs
+	set(value):
+		_currentHPs = value
+		emit_signal("player_hp_changed", _currentHPs)
+		
+		print("currentHPs = ", currentHPs)
+		print("player_count = ", player_nums)
+		print("currentHPs 변함")
 
 var _dna: float = 0
 var dna: float:
@@ -35,6 +52,21 @@ func _ready() -> void:
 	DisplayServer.window_set_position(custom_pos)
 	# 창 크기 원하는 크기로 변경
 	DisplayServer.window_set_size(window_size)
+	recover_timer_on()
+
+func recover_timer_on():
+	var recover_timer = Timer.new()
+	recover_timer.autostart = true
+	recover_timer.one_shot = false
+	recover_timer.wait_time = 1.0
+	add_child(recover_timer)
+	recover_timer.timeout.connect(recover_timer_timeout)
+	recover_timer.start()
+
+func recover_timer_timeout():
+	if currentHPs < maxHP * player_nums:
+		currentHPs += recover_amount
+		currentHPs = min(currentHPs, maxHP * player_nums)
 
 func add_item():
 	if players == null or !is_instance_valid(players):
@@ -52,6 +84,7 @@ func use_item():
 	if dna > 0 :
 		dna -= 1
 		player_nums += 1
+		currentHPs += maxHP
 		print("dna 사용. 남은 dna : ", dna)
 		
 func reset() -> void:

@@ -93,6 +93,8 @@ offset_bottom = 11.0
 offset_left = 46.1066
 offset_right = 181.107
 offset_bottom = 56.7059
+text = "500/500
+"
 
 [node name="HeartCircle" type="TextureRect" parent="HpBox"]
 z_index = 1
