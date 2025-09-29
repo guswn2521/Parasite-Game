@@ -20,7 +20,9 @@ var player_nums: int:
 		_player_nums = value
 		emit_signal("player_nums_changed", _player_nums)
 
-func _ready() -> void:
+var evolution_state: bool = false
+
+func _ready() -> void:	
 	players = get_tree().root.get_node("Game/Players")
 	# 게임 창 크기
 	var window_size = Vector2i(3000, 1200)
@@ -51,4 +53,11 @@ func use_item():
 		dna -= 1
 		player_nums += 1
 		print("dna 사용. 남은 dna : ", dna)
-	
+		
+func reset() -> void:
+	_dna = 0
+	_player_nums = 1
+	evolution_state = false
+	emit_signal("dna_changed", _dna)
+	emit_signal("player_nums_changed", _player_nums)
+	print("Reset 진행")
