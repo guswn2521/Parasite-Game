@@ -39,24 +39,35 @@ func evolve_player() -> void:
 	if children.size() > 0:
 		origin_player = children[0]
 	var players_count = GameManager.player_nums
-	
-	if players_count==5:
-		
-		# 기존 진화 전 플레이어 삭제
+	var evolution_state = GameManager.evolution_state
+	if GameManager.evolution_state == false and players_count==5:
+		GameManager.evolution_state = true
+		# 플레이어 1명 남기고 다 삭제
 		for child in players_parent.get_children():
-			if child is Player:
+			if child is Player and GameManager.player_nums > 1:
 				#child.animated_sprite.visible = false
 				#child.evolved_animated_sprite.visible = true
-				spawn_evolution_effect(child.position)
-				emit_signal("evolved")
-				#child.queue_free()
+				var has_camera = false
+				for grandchild in child.get_children():
+					if grandchild is Camera2D or grandchild is Camera3D:
+						has_camera = true
+						break
+				if has_camera:
+					# 1명 남은 플레이어 진화
+					print("카메라 있는 플레이어 진화")
+					spawn_evolution_effect(child.position)
+					emit_signal("evolved")
+				else:
+					child.queue_free()
+					GameManager.player_nums -= 1
+					print("남은 player: ", GameManager.player_nums)
+
 		# 새 플레이어 인스턴스 생성
 		#var new_player = EVOLVED_PLAYER_SCENE.instantiate()
 		# 첫 번쨰 플레이어 위치 복사
 		#new_player.position = origin_player.position + Vector2(0,-30)
 		#new_player.z_index = 5
 		# 진화 이펙트 실행
-		
 		evolution_sfx.play()
 		print("진화 성공!")
 		# 부모 노드(Players)에 새 노드 추가
