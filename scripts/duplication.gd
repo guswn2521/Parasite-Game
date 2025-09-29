@@ -35,7 +35,7 @@ func duplicate_player() -> void:
 		print("No origin player!")
 		return
 	
-	if GameManager.dna > 0 and players_count <= 4:
+	if GameManager.evolution_state == false and GameManager.dna > 0 and players_count <= 4:
 		GameManager.use_item()
 		# 새 플레이어 인스턴스 생성
 		var new_player = PLAYER_SCENE.instantiate()
@@ -51,6 +51,6 @@ func duplicate_player() -> void:
 		print("복제 성공! 모체 수: ",players_parent.get_child_count())
 	else:
 		emit_signal("no_duplication")
-		print("dna 가 부족하거나, 최대 복제 수 5에 도달했습니다.")
+		print("dna 가 부족하거나, 최대 복제 수 5에 도달 or 진화했습니다.")
 		
 	
