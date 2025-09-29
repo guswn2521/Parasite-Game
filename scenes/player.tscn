@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cgjtucl2dhmle" path="res://assets/small_dragon/Walk2.png" id="14_ujl30"]
 [ext_resource type="Texture2D" uid="uid://cmrf001dkb668" path="res://assets/small_dragon/Walk3.png" id="15_31cv2"]
 [ext_resource type="Texture2D" uid="uid://doe2s5qu30viv" path="res://assets/small_dragon/Walk4.png" id="16_pf23h"]
-[ext_resource type="Script" uid="uid://jtyoyw60mhnx" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
+[ext_resource type="Script" path="res://scripts/collision_polygon_2d.gd" id="21_i4ail"]
 [ext_resource type="Texture2D" uid="uid://cvouxf65q5ic3" path="res://assets/sprites/dragon/Attack1.png" id="22_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://c038gy7q8dkbg" path="res://assets/sprites/dragon/Attack2.png" id="23_2dvfe"]
 [ext_resource type="Texture2D" uid="uid://cm4qym8xw3lur" path="res://assets/sprites/dragon/Attack3.png" id="24_giy8y"]

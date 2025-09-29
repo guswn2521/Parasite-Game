@@ -10,6 +10,9 @@ extends "res://scripts/monster_base.gd"
 func _ready()->void:
 	super()
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
+	
+	maxHP = 200
+	monster_attack_damage = 100
 
 func _physics_process(delta: float) -> void:
 	# Flip monster

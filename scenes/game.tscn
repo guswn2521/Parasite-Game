@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6teo8gqu2gxs" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ctr6on1nu5b8d" path="res://scenes/ui.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://by65s2bwdp3hq" path="res://scripts/game_manager.gd" id="3_u5sy4"]
-[ext_resource type="Script" path="res://scripts/fireballs.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://b6jgmg0jntbf5" path="res://scripts/fireballs.gd" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dd61sgl40cawi" path="res://scenes/monster.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://lw4uct7nsev5" path="res://scenes/item.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://ddhjroc2a658q" path="res://scenes/boss.tscn" id="7_dinhu"]
@@ -32,7 +32,7 @@ script = ExtResource("3_u5sy4")
 [node name="player" parent="Players" instance=ExtResource("2_yqjtg")]
 unique_name_in_owner = true
 z_index = 2
-position = Vector2(63000, 0)
+position = Vector2(-860, -59)
 
 [node name="Camera2D" type="Camera2D" parent="Players/player"]
 unique_name_in_owner = true
@@ -70,9 +70,6 @@ position = Vector2(40, -7)
 
 [node name="AnimationPlayer" parent="Tiles" index="6"]
 autoplay = "BossTile"
-
-[node name="BossZone" parent="Tiles" index="7"]
-position = Vector2(0, 128)
 
 [connection signal="pressed" from="UI/Control/duplication" to="UI/Control/duplication" method="_on_pressed"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_mob_timer_timeout"]

@@ -11,7 +11,7 @@ extends "res://scripts/monster_base.gd"
 signal boss_died
 
 func _ready() -> void:
-	monster_attack_damage = 100
+	monster_attack_damage = 700
 	maxHP = 10000
 	currentHP = maxHP
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)

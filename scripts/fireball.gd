@@ -7,7 +7,7 @@ var start_position: Vector2
 var animated_sprite: AnimatedSprite2D
 var monster: Node
 var hit = false
-var attack_power = 10
+var attack_power = 100
 
 func _ready() -> void:
 	z_index = 1

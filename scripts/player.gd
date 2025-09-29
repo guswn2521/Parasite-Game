@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var maxHP = 1000
+@export var maxHP = 500
 @export var SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 const FIRE_SCENE = preload("res://scenes/firebreath.tscn")
@@ -22,6 +22,7 @@ var recover_timer: Timer
 var state = "base_player"
 var character: AnimatedSprite2D = null
 var already_in_boss_zone: bool = false
+var player_count = 0
 
 @onready var player_dot: Sprite2D = $PlayerDot
 @onready var currentHP: int = maxHP
@@ -60,17 +61,15 @@ func _ready() -> void:
 	evolution.evolved.connect(evolved)
 	var players_node = get_node("/root/Game/Players")  # 또는 상대경로 $Players 등 사용
 	var currentHPs = 0
-	var player_count = 0
 	add_to_group("Players")
 	evolved_animated_sprite.visible = false
 	evolved_player_collision.visible = false
 	evolution.evolved.connect(evolved)
-	# player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
+	## player 노드가 CharacterBody2D 클래스일 경우 체크 할 수 있음
 	for child in players_node.get_children():
 		if child is Player:
 			currentHPs += child.currentHP
 			player_count += 1
-	
 	player_hp.max_value = maxHP*player_count
 	player_hp.value = currentHPs
 	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
@@ -93,6 +92,7 @@ func recover_timer_on():
 	recover_timer.start()
 
 func evolved():
+	currentHP = 3000
 	state = "evolved"
 	animated_sprite.visible = false
 	evolved_animated_sprite.visible = true
@@ -229,6 +229,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func take_damage(direction:int, amount: int) -> void:
 	if is_dead:
 		return
+	amount = int(amount/player_count)
 	currentHP -= amount
 	player_hp.value -= amount
 	player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]

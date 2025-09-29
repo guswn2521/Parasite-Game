@@ -7,7 +7,8 @@ extends "res://scripts/monster_base.gd"
 
 func _ready() -> void:
 	super()
-	
+	maxHP = 500
+	monster_attack_damage = 200
 
 func _physics_process(delta: float) -> void:
 	# Flip monster

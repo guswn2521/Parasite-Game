@@ -40,7 +40,7 @@ func evolve_player() -> void:
 		origin_player = children[0]
 	var players_count = GameManager.player_nums
 	
-	if players_count==1:
+	if players_count==5:
 		
 		# 기존 진화 전 플레이어 삭제
 		for child in players_parent.get_children():

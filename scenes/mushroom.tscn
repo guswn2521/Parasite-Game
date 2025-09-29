@@ -634,6 +634,6 @@ position = Vector2(-8.99997, 9.00003)
 rotation = 0.0449671
 shape = SubResource("CapsuleShape2D_qqj2b")
 
-[node name="TextureProgressBar" parent="." index="13"]
+[node name="TextureProgressBar" parent="." index="15"]
 offset_left = -31.0
 offset_right = 33.0
