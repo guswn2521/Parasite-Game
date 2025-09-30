@@ -212,6 +212,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func take_damage(direction:int, amount: int) -> void:
 	if is_dead:
 		return
+	if is_hurt:
+		return
 	amount = int(amount/player_count)
 	GameManager.currentHPs -= amount
 	#player_hp.value -= amount
@@ -230,9 +232,9 @@ func hurt_motion(direction: int) -> void:
 	is_hurt = true
 	character.play("hurt")
 	hurt_sfx.play()
-	print("**********")
+	print("********** hurt")
 	knockback_velocity = Vector2(direction,0) * knockback_power
-	hurt_timer.start(0.4)
+	hurt_timer.start(0.5)
 	
 func _on_hurt_timer_timeout() -> void:
 	print("player hurt timer fin")
