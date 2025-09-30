@@ -27,7 +27,6 @@ func _ready() -> void:
 func play_bgm_list():
 	bgm_player.stream = load(bgm_list[current_index])
 	fade_in(bgm_player)
-	print(current_index)
 
 func _on_bgm_finished():
 	current_index = (current_index + 1) % bgm_list.size()
@@ -40,7 +39,7 @@ func fade_in(player: AudioStreamPlayer) -> void:
 
 func fade_out(player:AudioStreamPlayer) -> void:
 	var tween = create_tween()
-	tween.tween_property(player, "volume_db", -80, 2.0).connect("finished", func(): 
+	tween.tween_property(player, "volume_db", -80, 1.0).connect("finished", func(): 
 		player.stop()
 		)
 
