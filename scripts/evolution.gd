@@ -41,6 +41,7 @@ func evolve_player() -> void:
 	var players_count = GameManager.player_nums
 	var evolution_state = GameManager.evolution_state
 	if GameManager.evolution_state == false and players_count==5:
+		# 진화
 		GameManager.evolution_state = true
 		# 플레이어 1명 남기고 다 삭제
 		for child in players_parent.get_children():
@@ -56,7 +57,6 @@ func evolve_player() -> void:
 					# 1명 남은 플레이어 진화
 					print("카메라 있는 플레이어 진화")
 					spawn_evolution_effect(child.position)
-					emit_signal("evolved")
 				else:
 					child.queue_free()
 					GameManager.player_nums -= 1
@@ -69,6 +69,7 @@ func evolve_player() -> void:
 		#new_player.z_index = 5
 		# 진화 이펙트 실행
 		evolution_sfx.play()
+		emit_signal("evolved")
 		print("진화 성공!")
 		# 부모 노드(Players)에 새 노드 추가
 		#players_parent.add_child(new_player)

@@ -56,21 +56,6 @@ func _ready() -> void:
 	evolved_player_collision.visible = false
 	evolved_player_collision.disabled = true
 	add_to_group("Players")
-	#currentHPs += maxHP * (player_count - 1)
-	# 복제시 실행.
-	#GameManager.player_nums_changed.connect(on_duplication_player_hp_change)
-	#var players_node = get_parent()
-	#for child in players_node.get_children():
-		#if child is Player:
-	#currentHPs += maxHP
-	
-	#print("currentHPs = ", currentHPs)
-	#print("player_count = ", player_count)
-	
-	#player_hp.max_value = maxHP*player_count
-	#player_hp.value = currentHPs
-	#currentHP = currentHPs
-	#recover_timer_on()
 	
 	# visibility layer 조절 (미니맵에 보이게 하기 위해)
 	if state == "base_player":
@@ -83,6 +68,7 @@ func _ready() -> void:
 
 func evolved():
 	maxHP = 3000
+	GameManager.currentHPs = maxHP
 	state = "evolved"
 	animated_sprite.visible = false
 	evolved_animated_sprite.visible = true
@@ -123,8 +109,6 @@ func player_collision_shape_fliph(facing_left: bool, collision_shape):
 		#collision_shape.position = collision_shape.facing_right_position
 
 func _physics_process(delta: float) -> void:
-	#if is_dead:
-		#return
 	
 	if !already_in_boss_zone and position.x >= 63900:
 		already_in_boss_zone = true
@@ -212,11 +196,12 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func take_damage(direction:int, amount: int) -> void:
 	if is_dead:
 		return
+	print("몬스터 데미지", amount)
 	amount = int(amount/player_count)
+	print("한마리당 데미지 : ", amount)
+	
 	GameManager.currentHPs -= amount
-	#player_hp.value -= amount
-	#player_hp_points.text = "%d/%d" % [player_hp.value,player_hp.max_value]
-	#print("player current HP: ", player_hp.value)
+
 	if GameManager.currentHPs <= 0:
 		hurt_sfx.play()
 		await get_tree().create_timer(0.5).timeout
@@ -241,7 +226,6 @@ func _on_hurt_timer_timeout() -> void:
 		knockback_velocity = Vector2.ZERO
 	
 func death_motion() -> void:
-	#print("player death")
 	character.play("death")
 	is_dead = true
 	SPEED = 0

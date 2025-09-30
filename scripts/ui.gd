@@ -33,9 +33,6 @@ func _ready() -> void:
 	
 func on_player_hp_changed(hp):
 	var max_hp_value = player.maxHP * GameManager.player_nums
-	print("=====================")
-	print(hp)
-	print(GameManager.player_nums)
 	player_hp_points.text = "%d/%d" % [hp, max_hp_value]
 	player_hp.max_value = max_hp_value
 	player_hp.value = hp

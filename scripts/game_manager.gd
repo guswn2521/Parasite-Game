@@ -2,8 +2,8 @@ extends Node
 
 signal dna_changed(new_dna)
 signal player_nums_changed(player_nums)
-# currentHPs가 바뀌면 시그널.
 signal player_hp_changed(hp)
+@onready var player: Player = %player
 
 var maxHP = 500
 var recover_amount = 2
@@ -16,10 +16,6 @@ var currentHPs: int:
 	set(value):
 		_currentHPs = value
 		emit_signal("player_hp_changed", _currentHPs)
-		
-		print("currentHPs = ", currentHPs)
-		print("player_count = ", player_nums)
-		print("currentHPs 변함")
 
 var _dna: float = 0
 var dna: float:
@@ -53,6 +49,7 @@ func _ready() -> void:
 	# 창 크기 원하는 크기로 변경
 	DisplayServer.window_set_size(window_size)
 	recover_timer_on()
+	#player.player_evolved.emit_signal("player_hp_changed", player.maxHP)
 
 func recover_timer_on():
 	var recover_timer = Timer.new()
