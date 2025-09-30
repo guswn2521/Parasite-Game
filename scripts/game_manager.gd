@@ -91,6 +91,8 @@ func reset() -> void:
 	_dna = 0
 	_player_nums = 1
 	evolution_state = false
+	_currentHPs = 500
+	emit_signal("player_hp_changed", _currentHPs)
 	emit_signal("dna_changed", _dna)
 	emit_signal("player_nums_changed", _player_nums)
 	print("Reset 진행")
