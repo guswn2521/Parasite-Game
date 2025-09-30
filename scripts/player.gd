@@ -19,7 +19,7 @@ var walking = false
 var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
 var attack_state = false
-var facing_right := true  # 오른쪽을 보는 상태라면 true, 왼쪽이면 false
+
 var recover_timer: Timer
 var state = "base_player"
 var character: AnimatedSprite2D = null
@@ -34,7 +34,6 @@ var already_in_boss_zone: bool = false
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var attack_timer: Timer = $AttackTimer
 
-@onready var player_hp: TextureProgressBar = $"../../UI/HpBox/PlayerHP"
 @onready var evolution: MenuButton = $"../../UI/Control/Evolution"
 
 @onready var jump_sfx: AudioStreamPlayer = $JumpSFX
@@ -63,8 +62,7 @@ func _ready() -> void:
 		character.set_visibility_layer_bit(0, false) # 1번 Visibility Layer 끄기
 		character.set_visibility_layer_bit(2, true) # 3번 Visibility Layer 켜기
 	player_dot.set_visibility_layer_bit(0,false) # 1번 끄기
-	player_dot.set_visibility_layer_bit(1,true) #2번 켜기
-		
+	player_dot.set_visibility_layer_bit(1,true) #2번 켜기	
 
 func evolved():
 	maxHP = 3000
@@ -87,12 +85,12 @@ func fire_ball() -> void:
 	attack_sfx.play()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fireball_instance)
 	fireball_instance.global_position = global_position + FIREBALL_OFFSET
-	print("fireball ", FIREBALL_OFFSET)
 	fireball_instance.start_position = fireball_instance.global_position  # 사거리 비교용 초기값 지정
 	fireball_instance.set_left(character.flip_h)
 
 func fire_breath() -> void:
 	var fire_instance = FIRE_SCENE.instantiate()
+	attack_sfx.play()
 	get_tree().get_nodes_in_group("Fireballs").front().add_child(fire_instance)
 	fire_instance.global_position = global_position + FIRE_OFFSET
 	fire_instance.set_left(evolved_animated_sprite.flip_h)
@@ -103,22 +101,20 @@ func fire_breath() -> void:
 func player_collision_shape_fliph(facing_left: bool, collision_shape):
 	if facing_left:
 		collision_shape.scale.x = abs(collision_shape.scale.x) * -1
-		#collision_shape.position = collision_shape.facing_left_position
+		
 	else:
 		collision_shape.scale.x = abs(collision_shape.scale.x) * 1
-		#collision_shape.position = collision_shape.facing_right_position
+		
 
 func _physics_process(delta: float) -> void:
 	
 	if !already_in_boss_zone and position.x >= 63900:
 		already_in_boss_zone = true
-		print("보스존 입성")
 		emit_signal("in_boss_zone")
 		tiles.block_boss_zone()
 		
 	if already_in_boss_zone and position.x < 63900:
 		already_in_boss_zone = false
-		print("보스존 나감")
 		emit_signal("out_boss_zone")
 	
 	if is_hurt:
@@ -186,12 +182,8 @@ func start(pos):
 	position = pos
 
 func _on_attack_timeout() -> void:
-	print("player attack timer fin")
 	attack_state = false
-	
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if character.animation == "death":
-		print("player death fin")
+
 
 func take_damage(direction:int, amount: int) -> void:
 	if is_dead:
@@ -199,7 +191,6 @@ func take_damage(direction:int, amount: int) -> void:
 	if is_hurt:
 		return
 	amount = int(amount/player_count)
-	print("한마리당 데미지 : ", amount)
 	
 	GameManager.currentHPs -= amount
 
@@ -216,12 +207,10 @@ func hurt_motion(direction: int) -> void:
 	is_hurt = true
 	character.play("hurt")
 	hurt_sfx.play()
-	print("********** hurt")
 	knockback_velocity = Vector2(direction,0) * knockback_power
 	hurt_timer.start(0.5)
 	
 func _on_hurt_timer_timeout() -> void:
-	print("player hurt timer fin")
 	if not is_dead:
 		is_hurt = false
 		knockback_velocity = Vector2.ZERO

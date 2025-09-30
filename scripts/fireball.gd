@@ -15,7 +15,6 @@ func _ready() -> void:
 	if not is_connected("area_entered", Callable(self, "_on_area_entered")):
 		connect("area_entered", Callable(self, "_on_area_entered"))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not hit:
 		position.x += speed * delta * direction
@@ -35,7 +34,6 @@ func _on_area_entered(area: Area2D) -> void:
 	monster = area.get_parent()
 	# 몬스터가 hit 된 동안 중복 데미지가 들어가서 not hit 조건문 추가
 	if monster.is_in_group("Monsters") and not hit:
-		print("FireBall -> monster HP: ", monster.currentHP)
 		monster.take_damage(direction, attack_power)
 		hit = true
 		animated_sprite.play("explode")

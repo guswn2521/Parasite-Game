@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b6teo8gqu2gxs"]
+[gd_scene load_steps=45 format=3 uid="uid://b6teo8gqu2gxs"]
 
 [ext_resource type="Texture2D" uid="uid://ka077qt00kxj" path="res://assets/small_dragon/Idle1.png" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b6orhmotvc05e" path="res://assets/small_dragon/Attack1.png" id="1_a8ls1"]
@@ -40,7 +40,6 @@
 [ext_resource type="Texture2D" uid="uid://cx26n3xo8jx6t" path="res://assets/player_dot.png" id="41_holxr"]
 [ext_resource type="AudioStream" uid="uid://xoo4ldg50sr" path="res://assets/sfx/30_Jump_03.wav" id="42_giy8y"]
 [ext_resource type="AudioStream" uid="uid://cuillk6hsu0tg" path="res://assets/sfx/61_Hit_03.wav" id="43_fdfoy"]
-[ext_resource type="Script" uid="uid://brwo41bxfwypx" path="res://scripts/evolved_player_collision.gd" id="44_g5jhy"]
 [ext_resource type="AudioStream" uid="uid://lqj4m6hww035" path="res://assets/sfx/21_Player_death.wav" id="44_hhpqf"]
 [ext_resource type="AudioStream" uid="uid://j0nliql6x8if" path="res://assets/sfx/04_Fire_explosion_04_medium.wav" id="45_g5jhy"]
 
@@ -236,7 +235,6 @@ one_shot = true
 
 [node name="EvolvedPlayerCollision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(50, 10, 71.6667, 30, 68.3333, 35, 50, 26.6667, 38.3333, 41.6667, 38.3333, 61.6667, -8.33333, 61.6667, -10, 38.3333, -8.33333, 28.3333, 0, 23.3333, 31.6667, 23.3333, 38.3333, 13.3333, 43.3333, 8.33333)
-script = ExtResource("44_g5jhy")
 
 [node name="PlayerDot" type="Sprite2D" parent="."]
 z_index = 4

@@ -36,7 +36,6 @@ func _physics_process(delta: float) -> void:
 	if in_attack_area and can_attack:
 		attack_animation()
 		can_attack = false
-		print("attack timer start")
 		attack_timer.start(1)
 	# Chase
 	if in_chase:
@@ -66,7 +65,7 @@ func attack_animation():
 			# 플레이어가 왼쪽에서 다가옴
 			direction = -1
 			animated_sprite.flip_h = false
-			#animated_attack_left.visible = true
+			
 			animation_player.play("attack_left")
 			animated_sprite.play("attack")
 				
@@ -74,7 +73,7 @@ func attack_animation():
 			# 플레이어가 오른쪽에서 다가옴
 			direction = 1
 			animation_player.play("attack_right")
-			#animated_attack_right.visible = true
+			
 			animated_sprite.flip_h = true
 			animated_sprite.play("attack")
 			

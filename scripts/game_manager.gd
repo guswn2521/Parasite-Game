@@ -49,7 +49,6 @@ func _ready() -> void:
 	# 창 크기 원하는 크기로 변경
 	DisplayServer.window_set_size(window_size)
 	recover_timer_on()
-	#player.player_evolved.emit_signal("player_hp_changed", player.maxHP)
 
 func recover_timer_on():
 	var recover_timer = Timer.new()
@@ -67,22 +66,18 @@ func recover_timer_timeout():
 
 func add_item():
 	if players == null or !is_instance_valid(players):
-		print("player가 null")
 		players = get_tree().root.get_node("Game/Players")
 		if players == null:
-			print("또 null")
 			return
 	
 	var cnt_players = float(players.get_child_count())
 	dna += 1 / cnt_players
-	print(dna)
 
 func use_item():
 	if dna > 0 :
 		dna -= 1
 		player_nums += 1
 		currentHPs += maxHP
-		print("dna 사용. 남은 dna : ", dna)
 		
 func reset() -> void:
 	_dna = 0
@@ -92,4 +87,3 @@ func reset() -> void:
 	emit_signal("player_hp_changed", _currentHPs)
 	emit_signal("dna_changed", _dna)
 	emit_signal("player_nums_changed", _player_nums)
-	print("Reset 진행")

@@ -15,13 +15,6 @@ func _ready() -> void:
 	if not is_connected("area_entered", Callable(self, "_on_area_entered")):
 		connect("area_entered", Callable(self, "_on_area_entered"))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	#if not hit:
-		#position.x += speed * delta * direction
-
-	
 func set_left(is_left: int)-> void:
 	if is_left:
 		direction = -1
@@ -30,10 +23,8 @@ func set_left(is_left: int)-> void:
 	else:
 		direction = 1
 
-
 func _on_area_entered(area: Area2D) -> void:
 	monster = area.get_parent()
 	if monster.is_in_group("Monsters"):
-		print("HP: ", monster.currentHP)
 		monster.take_damage(direction, attack_power)
 		hit = true

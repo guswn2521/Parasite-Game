@@ -13,5 +13,4 @@ func _process(delta: float) -> void:
 func restart_button_pressed():
 	button_clicked.play()
 	await get_tree().create_timer(0.6).timeout
-	print("버튼 클릭됨")
 	get_tree().change_scene_to_file("res://scenes/title.tscn")

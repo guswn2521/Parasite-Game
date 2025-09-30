@@ -15,7 +15,7 @@ var knockback_velocity = Vector2.ZERO
 var knockback_power = 200 # 원하는 값으로 조정
 var maxHP = 1000
 var monster_attack_damage = 450
-#var in_attack_zone = false
+
 @onready var currentHP: int = maxHP
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var attack_timer: Timer = $AttackTimer
@@ -127,7 +127,6 @@ func change_raycast_bottom_position():
 		
 func hurt_motion(direction: int) -> void:
 	is_hurt = true
-	print("hurt 모션 실행")
 	animated_sprite.play("hurt")
 	knockback_velocity = Vector2(direction,0) * knockback_power
 	hurt_timer.start(0.4)
@@ -171,9 +170,6 @@ func take_damage(direction:int, damage: int) -> void:
 		animated_sprite.visible = true
 		animated_attack_left.visible = false
 		animated_attack_right.visible = false
-		
-		#await get_tree().create_timer(0.5).timeout
-		#dead_sfx.play()
 		death_motion()
 	else:
 		hurt_sfx.play()
@@ -181,7 +177,6 @@ func take_damage(direction:int, damage: int) -> void:
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "death":
-		print("death")
 		drop_item()
 		queue_free()
 
@@ -193,23 +188,19 @@ func drop_item():
 # Hurtbox에 플레이어 들어오면 Chase
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if "player" in body.name:
-		print("chase", body.name)
 		in_chase = true
 		chase_sfx.play()
 
 func _on_hurtbox_body_exited(body: Node2D) -> void:
-	#print("체이스 종료==========")
 	in_chase = false
 
 # MonsterArea 에 플레이어가 들어오면 Attack
 func _on_monster_area_body_entered(body: Node2D) -> void:
 	if "player" in body.name:
-		#print("monster attack area")
 		in_attack_zone = true
 
 func _on_monster_area_body_exited(body: Node2D) -> void:
 	if "player" in body.name:
-		#print("player exit attack area")
 		in_attack_zone = false
 
 func attack_animation():
@@ -237,7 +228,6 @@ func attack_animation():
 				animated_attack_right.play("attack")
 
 func _on_attack_timer_timeout() -> void:
-	#print("attack timer fin")
 	can_attack = true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -248,6 +238,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		animated_attack_left.visible = false
 
 func _on_weapon_hitbox_body_entered(body: Node2D) -> void:
-	print("attack ",monster_attack_damage)
 	if body.is_in_group("Players"):
 		body.take_damage(direction, monster_attack_damage)

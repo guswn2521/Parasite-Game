@@ -1,5 +1,5 @@
 extends CanvasLayer
-#@onready var duplication: Button = $Duplication
+
 @onready var duplication: MenuButton = $Control/duplication
 @onready var evolution: MenuButton = $Control/Evolution
 @onready var dna_label: Label = $Labels/DNALabel
@@ -56,8 +56,6 @@ func flash_timer_on(label):
 	flash_timer.wait_time = 0.5
 	add_child(flash_timer)
 	flash_timer.timeout.connect(Callable(self, "on_flash_timer_timeout").bind(label))
-	#flash_timer.timeout.connect(on_flash_timer_timeout(label))
-	
 
 func on_flash_timer_timeout(label):
 	flash_on = !flash_on
@@ -84,13 +82,10 @@ func _on_dna_changed(new_dna):
 func _on_player_nums_changed(player_nums: int) -> void:
 	player_numbers.text = "모체 수 : %d" % player_nums
 	
-
 func _on_no_duplication():
 	if GameManager.player_nums > 4:
-		print("이미 5마리.")
 		flash_timer_on(player_numbers)
 	elif int(GameManager.dna) == 0:
-		print("dna 가 0개")
 		flash_timer_on(dna_label)
 
 func _on_no_evolution():

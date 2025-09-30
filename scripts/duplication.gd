@@ -17,22 +17,20 @@ func spawn_duplicate_effect(player_position:Vector2) -> void:
 	duplicate_fx.lifetime = 0.25
 	duplicate_fx.z_index = 6
 	players_parent.add_child(duplicate_fx)
-	print("복제 이펙트 시작")
+	
 	duplicate_fx.emitting = true
 	await get_tree().create_timer(0.5).timeout
-	print("복제 이펙트 끝")
+	
 	duplicate_fx.queue_free()
 
 func duplicate_player() -> void:
 	var origin_player = null
 	var children = players_parent.get_children()
 	var players_count = GameManager.player_nums
-	
-	print("복제 전 모체 수 :",players_count)
+
 	if children.size() > 0:
 		origin_player = children[0]
 	else:
-		print("No origin player!")
 		return
 	
 	if GameManager.evolution_state == false and GameManager.dna > 0 and players_count <= 4:
@@ -48,9 +46,8 @@ func duplicate_player() -> void:
 		# 부모 노드(Players)에 새 노드 추가
 		players_parent.add_child(new_player)
 		duplication_sfx.play()
-		print("복제 성공! 모체 수: ",GameManager.player_nums)
+		
 	else:
 		emit_signal("no_duplication")
-		print("dna 가 부족하거나, 최대 복제 수 5에 도달 or 진화했습니다.")
 		
 	
